@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+.custom-background {
+  background-image: url("../public/signUp.svg");
+  /* Optionally, you can specify background size, position, etc. */
+  background-size: cover;
+  background-position: center;
+}
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -30,4 +37,4 @@ body {
   .text-balance {
     text-wrap: balance;
   }
-}
+} */
