@@ -6,6 +6,7 @@ import PhotoFrame from "../test/page";
 const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
     <div className="bg-cover bg-center custom-background h-screen w-screen max-w[1440px] overflow-x-hidden">
+      {/* <p className="pl-8 pt-8 uppercase">Fan fam</p> */}
       <div className="bg-white/40 flex justify-center m-4 lg:m-12 rounded-3xl drop-shadow-3xl h-[670px]">
         <div className=" hidden lg:flex flex-col w-4/6 h-full">
           <div className="flex items-center mt-20 ml-[87px]">
