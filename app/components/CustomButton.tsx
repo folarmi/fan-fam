@@ -1,7 +1,7 @@
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "success" | "warning" | "danger"; // Add more variants as needed
+  variant?: "primary" | "secondary" | "success" | "warning" | "disabled"; // Add more variants as needed
   children: ReactNode;
 }
 
@@ -30,9 +30,8 @@ const CustomButton: React.FC<ButtonProps> = ({
       classes =
         "bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded";
       break;
-    case "danger":
-      classes =
-        "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded";
+    case "disabled":
+      classes = "text-grey_100 font-medium py-2 px-4 rounded";
       break;
     default:
       classes = "bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded";

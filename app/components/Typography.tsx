@@ -4,8 +4,10 @@ interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
   variant?:
     | "default"
     | "heading"
+    | "titleTwo"
     | "h5"
     | "p1"
+    | "p2"
     | "p3"
     | "subtitle2"
     | "caption"; // Add more variants as needed
@@ -25,11 +27,17 @@ const Typography: React.FC<TypographyProps> = ({
     case "heading":
       classes = "text-4xl font-bold";
       break;
+    case "titleTwo":
+      classes = "text-sm font-bold";
+      break;
     case "h5":
       classes = "text-4xl text-grey_900 text-xl font-bold leading-[26px]";
       break;
     case "p1":
       classes = "text-base font-normal text-grey_500 leading-5";
+      break;
+    case "p2":
+      classes = "text-sm font-normal text-grey_500 leading-5";
       break;
     case "p3":
       classes = "text-[13px] font-normal text-grey_500";
