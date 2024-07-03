@@ -5,6 +5,11 @@ import messages from "@/public/icons/messages.svg";
 import collections from "@/public/icons/collections.svg";
 import profile from "@/public/icons/profile.svg";
 import sub from "@/public/icons/sub.svg";
+import defaultAvatar from "@/public/defaultAvatar.svg";
+import defaultAvatarTwo from "@/public/icons/defaultAvatarTwo.svg";
+import defaultAvatarThree from "@/public/icons/defaultAvatarThree.svg";
+import defaultAvatarFour from "@/public/icons/defaultAvatarFour.svg";
+import defaultAvatarFive from "@/public/icons/defaultAvatarFive.svg";
 
 export const sideBarItems = [
   {
@@ -17,13 +22,13 @@ export const sideBarItems = [
     id: 2,
     name: "Notifications",
     image: realNotification,
-    link: "/notifications",
+    link: "/dashboard/notifications",
   },
   {
     id: 3,
     name: "Messages",
     image: notification,
-    link: "/dashboard",
+    link: "/dashboard/notif",
   },
   {
     id: 4,
@@ -41,7 +46,7 @@ export const sideBarItems = [
     id: 6,
     name: "Profile",
     image: sub,
-    link: "dashboard/profile",
+    link: "/dashboard/profile",
   },
   {
     id: 7,
@@ -63,5 +68,127 @@ export const commentOptions = [
   {
     id: 3,
     name: "Report",
+  },
+];
+
+export const sortOptions = [
+  {
+    id: 1,
+    name: "All time",
+  },
+  {
+    id: 2,
+    name: "Date",
+  },
+  {
+    id: 3,
+    name: "Latest post",
+  },
+  {
+    id: 4,
+    name: "Most liked",
+  },
+  {
+    id: 5,
+    name: "Highest tips",
+  },
+];
+
+export const notificationSampleData = [
+  {
+    id: 1,
+    photo: defaultAvatar,
+    tag: "@yummychill54",
+    time: "3 h ago",
+    message: "Subscribed to your account",
+    name: "Priscilia yummy",
+  },
+  {
+    id: 2,
+    photo: defaultAvatarTwo,
+    tag: "@Timmy88",
+    time: "3 h ago",
+    message: "Subscribed to your account",
+    name: "PetitTimmy",
+  },
+  {
+    id: 3,
+    photo: defaultAvatarThree,
+    tag: "@investorchill",
+    time: "6 h ago",
+    message: "Commented on your post.",
+    name: "mArk 🤪 SpecCer 🤪",
+  },
+  {
+    id: 4,
+    photo: defaultAvatarFour,
+    tag: "@NickiCer",
+    time: "6 h ago",
+    message: "Commented on your post.",
+    name: "SpenCer 🤪",
+  },
+  {
+    id: 5,
+    photo: defaultAvatarFive,
+    tag: "@inCin25",
+    time: "3 h ago",
+    message: "Commented on your post.",
+    name: "BellaCa",
+  },
+  {
+    id: 6,
+    photo: defaultAvatar,
+    tag: "@Timmy88",
+    time: "3 h ago",
+    message: "Subscribed to your account",
+    name: "PetitTimmy",
+  },
+  {
+    id: 7,
+    photo: defaultAvatar,
+    tag: "@yummychill54",
+    time: "3 h ago",
+    message: "Subscribed to your account",
+    name: "Priscilia yummy",
+  },
+  {
+    id: 8,
+    photo: defaultAvatarTwo,
+    tag: "@Timmy88",
+    time: "3 h ago",
+    message: "Subscribed to your account",
+    name: "PetitTimmy",
+  },
+  {
+    id: 9,
+    photo: defaultAvatarThree,
+    tag: "@investorchill",
+    time: "6 h ago",
+    message: "Commented on your post.",
+    name: "mArk 🤪 SpecCer 🤪",
+  },
+  {
+    id: 10,
+    photo: defaultAvatarFour,
+    tag: "@NickiCer",
+    time: "6 h ago",
+    message: "Commented on your post.",
+    name: "SpenCer 🤪",
+  },
+  {
+    id: 11,
+    photo: defaultAvatarFive,
+    tag: "@inCin25",
+    time: "3 h ago",
+    message: "Commented on your post.",
+    name: "BellaCa",
+  },
+  {
+    id: 12,
+    photo: defaultAvatar,
+    tag: "@Timmy88",
+    time: "3 h ago",
+    message: "Subscribed to your account",
+    name: "PetitTimmy",
   },
 ];

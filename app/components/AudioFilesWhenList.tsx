@@ -1,57 +1,45 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import blueVerifiedTick from "@/public/blueVerifiedTick.svg";
 import ashMore from "@/public/icons/ashMore.svg";
 import Image from "next/image";
-import Typography from "../Typography";
-import IconAndNumber from "../IconAndNumber";
 // import Modal from "../Modal";
 import copy from "@/public/copy.svg";
 import Like from "@/public/icons/like";
 import Comment from "@/public/icons/comment";
 import Pay from "@/public/icons/pay";
+import audioFileSample from "@/public/audioFileSample.svg";
+import audioFileNotPlaying from "@/public/audioFileNotPlaying.svg";
+import Typography from "./Typography";
+import IconAndNumber from "./IconAndNumber";
 
-type TimelineProps = {
+type AudioFilesWhenListProps = {
   avatar: string;
   profileName: string;
   handle: string;
   time: string;
   paragraphOne?: string;
   paragraphTwo?: string;
-  timeLineImage: string;
-  ifParagraph?: boolean;
-  showModal?: any;
-  setShowModal?: any;
+  showMoreModal?: any;
+  setShowMoreModal?: any;
   ifIcon?: boolean;
-  bgColor?: string;
 };
 
-const Timeline = ({
+const AudioFilesWhenList = ({
   avatar,
   profileName,
   handle,
   time,
   paragraphOne,
   paragraphTwo,
-  timeLineImage,
-  ifParagraph,
-  setShowModal,
-  showModal,
+  setShowMoreModal,
+  showMoreModal,
   ifIcon = true,
-  bgColor = "#FAFAFA",
-}: TimelineProps) => {
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
+}: AudioFilesWhenListProps) => {
+  const [isPlaying, setIsPlaying] = useState(false);
   return (
-    <div
-      style={{
-        backgroundColor: bgColor,
-      }}
-      className="pt-4 mb-2 drop-shadow-4xl"
-    >
+    <div className="pt-4 mb-2 drop-shadow-4xl bg-grey_20">
       <section className="flex items-start px-4">
         <Image src={avatar} alt="default avatar" />
 
@@ -70,25 +58,23 @@ const Timeline = ({
               </Typography>
             </section>
 
-            {ifParagraph && (
-              <>
-                {" "}
-                <p className="pt-[2px] font-normal text-sm text-grey_30 leading-5 pb-4">
-                  {paragraphOne}
-                </p>
-                <p className="font-normal text-sm text-grey_700 leading-5">
-                  {paragraphTwo}
-                </p>
-              </>
-            )}
+            <>
+              {" "}
+              <p className="pt-[2px] font-normal text-sm text-grey_30 leading-5 pb-4">
+                {paragraphOne}
+              </p>
+              <p className="font-normal text-sm text-grey_700 leading-5">
+                {paragraphTwo}
+              </p>
+            </>
           </section>
           <Image
             src={ashMore}
             alt="default avatar"
-            onClick={toggleModal}
+            // onClick={toggleModal}
             className="cursor-pointer"
           />
-          {setShowModal && (
+          {showMoreModal && (
             <div className="flex flex-col absolute left-[62%] bottom-[78%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white z-50">
               <div className="flex items-center justify-between py-2 hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6">
                 <Typography variant="p2" className="text-grey_700">
@@ -113,12 +99,20 @@ const Timeline = ({
         </div>
       </section>
 
-      <div className="w-full my-4">
-        <Image
-          src={timeLineImage}
-          alt="timelineImage"
-          className="w-full h-full"
-        />
+      <div className="my-4">
+        {isPlaying ? (
+          <Image
+            src={audioFileSample}
+            alt="default avatar"
+            className="w-full"
+          />
+        ) : (
+          <Image
+            src={audioFileNotPlaying}
+            alt="default avatar"
+            className="w-full"
+          />
+        )}
       </div>
 
       {ifIcon && (
@@ -132,4 +126,4 @@ const Timeline = ({
   );
 };
 
-export default Timeline;
+export default AudioFilesWhenList;

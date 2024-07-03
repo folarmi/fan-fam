@@ -20,14 +20,14 @@ const EmailSent = () => {
           and follow the information to reset your password.
         </Typography>
 
-        <Typography variant="p2" className="pt-10 pb-4">
+        <Typography variant="p2" className="pt-10 pb-4 text-grey_500">
           Did not receive an email address?
           <Link href="/create-new-password">
             <span className="text-primary"> Resend email</span>
           </Link>
         </Typography>
 
-        <Typography variant="p2">
+        <Typography variant="p2" className="text-grey_500">
           Wrong email address?
           <Link href="/create-new-password">
             <span className="text-primary">Change email address</span>

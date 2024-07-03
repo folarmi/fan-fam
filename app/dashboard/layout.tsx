@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import { usePathname } from "next/navigation";
 import { sideBarItems } from "../data";
@@ -8,9 +8,7 @@ import logo from "@/public/icons/logo.svg";
 import Typography from "../components/Typography";
 import Link from "next/link";
 import CustomButton from "../components/CustomButton";
-import Suggestion from "../components/cards/Suggestion";
-import suggestionOne from "@/public/suggestionOne.svg";
-import suggestTwo from "@/public/suggestTwo.svg";
+import VerticalCarousel from "../components/VerticalCarousel";
 
 // type SidebarType = {
 //     id:number,
@@ -24,6 +22,7 @@ const DashboardLayout = ({
   children: React.ReactNode;
 }>) => {
   const pathName = usePathname();
+  const [isUserSubscribed] = useState(true);
 
   return (
     <div className="flex  justify-center">
@@ -66,18 +65,28 @@ const DashboardLayout = ({
       <main className="w-[50%]">{children}</main>
 
       <div className="w-[25%] px-8 mt-20">
-        <p className="font-medium text-sm text-grey_800">SUGGESTIONS</p>
-
-        <Suggestion img={suggestionOne} isLive />
-        <Suggestion img={suggestTwo} />
-        <Suggestion img={suggestionOne} isLive />
-        <Suggestion img={suggestTwo} />
-
-        <div className="flex items-center mt-3">
+        {isUserSubscribed && (
+          <div className="">
+            <p className="font-medium text-sm text-grey_800">SUGGESTIONS</p>
+            <VerticalCarousel />
+          </div>
+        )}
+        <div
+          className={`flex items-center justify-between mt-3 ${
+            !isUserSubscribed ? "h-[674px]" : ""
+          }`}
+        >
           <Typography variant="labelOne" className="text-grey_400">
             Terms of service
           </Typography>
-          <div className="bg-grey_300 w-4 h-4"></div>
+          <div className="bg-grey_300 w-[2px] h-[2px]"></div>
+          <Typography variant="labelOne" className="text-grey_400">
+            Privacy
+          </Typography>
+          <div className="bg-grey_300 w-[2px] h-[2px]"></div>
+          <Typography variant="labelOne" className="text-grey_400">
+            Cookie notice
+          </Typography>
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ const SearchInput = ({ ifBlur = true }: SearchInputProps) => {
       </div>
 
       {ifBlur && (
-        <div className="flex">
+        <div className="flex items-center">
           {tabs.map(({ id, name }) => {
             return (
               <div

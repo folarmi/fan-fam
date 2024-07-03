@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { useController, UseControllerProps } from "react-hook-form";
 
-interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface CustomInputProps
+  extends React.InputHTMLAttributes<HTMLTextAreaElement> {
   name: string;
   control: any;
   rules?: UseControllerProps["rules"];
   label?: string;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({
+const CustomTextBox: React.FC<CustomInputProps> = ({
   name,
   control,
   rules,
@@ -45,11 +46,13 @@ const CustomInput: React.FC<CustomInputProps> = ({
     //   {error && <span>{error.message}</span>}
     // </div>
     <div className="relative flex flex-col gap-2 mb-6 w-full">
-      <input
+      <textarea
         id={name}
+        cols={5}
+        rows={8}
         {...field}
         {...rest}
-        className={`block w-full h-10 rounded-3xl px-4 text-sm bg-white border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer ${
+        className={`block w-full rounded-3xl px-4 text-sm bg-white border border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-primary peer ${
           error ? "border-red-500" : ""
         }`}
         placeholder=" "
@@ -73,4 +76,4 @@ const CustomInput: React.FC<CustomInputProps> = ({
   );
 };
 
-export default CustomInput;
+export default CustomTextBox;

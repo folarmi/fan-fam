@@ -11,30 +11,30 @@ import circleStar from "@/public/icons/circleStar.svg";
 import moreIcon from "@/public/icons/moreIcon.svg";
 import Typography from "@/app/components/Typography";
 import blueVerifiedTick from "@/public/blueVerifiedTick.svg";
-import Timeline from "@/app/components/cards/Timeline";
-import defaultAvatar from "@/public/defaultAvatar.svg";
-import timelineImage from "@/public/timelineImage.svg";
-import timelineTwo from "@/public/timelineTwo.svg";
-import plus from "@/public/icons/plus.svg";
-import switchList from "@/public/icons/switchList.svg";
-import Modal from "@/app/components/Modal";
-import CreateFolder from "@/app/components/cards/CreateFolder";
 import Pictures from "@/public/icons/pictures";
 import Videos from "@/public/icons/videos";
 import Live from "@/public/icons/live";
-import Like from "@/public/icons/like";
 import ProfileLike from "@/public/icons/profileLike";
 import CircleChat from "@/public/icons/circleChat";
 import CirclePay from "@/public/icons/circlePay";
 import copy from "@/public/copy.svg";
+import defaultAvatar from "@/public/defaultAvatar.svg";
 import { commentOptions } from "@/app/data";
-// import timelineImage from "@/public/timelineImage.svg";
+import Post from "@/app/components/Post";
+import Replies from "@/app/components/Replies";
+import Media from "@/app/components/Media";
+import Link from "next/link";
+import SubscriptionButton from "@/app/components/molecules/SubscriptionButton";
+import CustomButton from "@/app/components/CustomButton";
+import CustomInput from "@/app/components/CustomInput";
+import { useForm } from "react-hook-form";
+import verifyBlue from "@/public/icons/verifyBlue.svg";
+import AmountInput from "@/app/components/AmountInput";
+import PaymentMethod from "@/app/components/PaymentMethod";
 
-type ProfileProps = {
-  ifPersonal: boolean;
-};
-
-const Profile = ({ ifPersonal = false }: ProfileProps) => {
+const Profile = () => {
+  const { control } = useForm();
+  const [isExpanded, setIsExpanded] = useState(false);
   const [tabs, setTabs] = useState([
     {
       id: 1,
@@ -53,46 +53,32 @@ const Profile = ({ ifPersonal = false }: ProfileProps) => {
       name: "Likes",
     },
   ]);
-  const [profileTabs, setProfileTabs] = useState([
-    {
-      id: 1,
-      name: "All",
-      number: "",
-    },
-    {
-      id: 2,
-      name: "Archive",
-      number: "23",
-    },
-    {
-      id: 3,
-      name: "Best of 2023",
-      number: "56",
-    },
-    {
-      id: 3,
-      name: "Best of 2024",
-      number: "37",
-    },
-  ]);
   const [isActiveTab, setIsActiveTab] = useState("Post");
-  const [isProfileTabActive, setIsProfileTabActive] = useState("Archive");
-  const [toggleCreateFolderModal, setToggleCreateFolderModal] = useState(false);
   const [commentModal, setCommentModal] = useState(false);
-  useState;
-
-  const toggleModal = () => {
-    setToggleCreateFolderModal(!toggleCreateFolderModal);
-  };
+  const [linkToProfileModal, setLinkToProfileModal] = useState(false);
+  const [subscription, setSubscription] = useState(true);
+  const [tipModal, setTipModal] = useState(false);
 
   const toggleCommentModal = () => {
     setCommentModal(!commentModal);
   };
 
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  const toggleLinkToProfile = () => {
+    setLinkToProfileModal(!linkToProfileModal);
+  };
+
+  const toggleTipModal = () => {
+    setTipModal(!tipModal);
+  };
+
   return (
     <div>
       <SearchInput ifBlur={false} />
-      <div className="w-full relative ">
+      <div className="w-full relative">
         <Image src={suggestTwo} alt="demo" className="w-full" />
         <div className="flex items-center absolute top-3 pl-4">
           <IconAndNumber
@@ -111,33 +97,116 @@ const Profile = ({ ifPersonal = false }: ProfileProps) => {
         </div>
 
         <section className="px-4 bg-grey_20 drop-shadow-4xl mb-2">
-          <div className=" relative flex items-center">
+          <div className="relative flex items-center">
             <div className="absolute -top-8">
               <Image src={profilePicture} alt="profilePicture" />
             </div>
-            <div className="ml-auto flex items-center justify-between mt-6">
-              <div className="flex items-center">
-                <Image src={location} alt="demo" />
+            <div className="w-full mt-6 flex items-center justify-between">
+              <div className="flex items-center ml-28">
+                <Image src={location} alt="location" />
                 <Typography className="text-grey_400 pl-1" variant="p3">
                   Nigeria
                 </Typography>
               </div>
 
               <div className="flex items-center gap-x-4">
-                <div className="cursor-pointer" onClick={toggleCommentModal}>
+                <div className="cursor-pointer">
                   <CircleChat className="cursor-pointer hover:fill-blue_200" />
                 </div>
 
-                {commentModal && (
-                  <div className="flex flex-col absolute left-[55%] top-[100%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white z-50">
-                    <div className="flex items-center justify-between py-2 hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6">
-                      <Typography variant="p2" className="text-grey_700">
-                        Copy link to profile
-                      </Typography>
-                      <Image src={copy} alt="copy" />
+                <div className="cursor-pointer" onClick={toggleTipModal}>
+                  <CirclePay className="cursor-pointer hover:fill-blue_200" />
+                </div>
+
+                {tipModal && (
+                  <div className="flex flex-col absolute left-[55%] top-[100%] bg-modal-gradient shadow-triple w-[368px] rounded-2xl border-2 border-white z-50 p-6">
+                    <Typography variant="titleOne" className="text-grey_800">
+                      Send Tip
+                    </Typography>
+                    <div className="flex my-6">
+                      <Image
+                        src={defaultAvatar}
+                        alt="demo"
+                        className="w-10 h-10"
+                      />
+
+                      <div className="ml-3">
+                        <div className="flex items-center mb-1">
+                          <Typography
+                            variant="titleTwo"
+                            className="text-grey_900"
+                          >
+                            Priscilia yummy
+                          </Typography>
+
+                          <Image
+                            src={verifyBlue}
+                            alt="demo"
+                            className="ml-[1px] h-4 w-4"
+                          />
+                        </div>
+
+                        <Typography variant="p2" className="text-grey_400">
+                          @yummychill54
+                        </Typography>
+                      </div>
                     </div>
-                    {commentOptions?.map(({ id, name }) => {
-                      return (
+
+                    <AmountInput />
+                    <PaymentMethod />
+                    <CustomInput
+                      name="Folder"
+                      control={control}
+                      label="Message(Optional)"
+                    />
+
+                    <div className="flex items-center ml-[141px]">
+                      <CustomButton
+                        variant="secondary"
+                        className="text-xs mr-6 w-[84px]"
+                      >
+                        Cancel
+                      </CustomButton>
+                      <CustomButton
+                        variant="primary"
+                        className="text-xs px-3 w-[84px]"
+                      >
+                        Send Tip
+                      </CustomButton>
+                    </div>
+                  </div>
+                )}
+
+                <Image src={circleStar} alt="circleStar" />
+
+                <div className="border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white">
+                  <Link
+                    href="/dashboard/profile/edit-profile"
+                    className="cursor-pointer"
+                  >
+                    <Typography variant="subtitle3" className="text-blue_500">
+                      {isActiveTab === "Media" ? "Edit profile" : "Subscribe"}
+                    </Typography>
+                  </Link>
+                </div>
+
+                <div className="relative">
+                  <Image
+                    src={moreIcon}
+                    alt="horizontalMore"
+                    className="cursor-pointer"
+                    onClick={toggleCommentModal}
+                    loading="lazy"
+                  />
+                  {commentModal && (
+                    <div className="mt-5 flex flex-col absolute right-[95%] top-[100%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white z-50">
+                      <div className="flex items-center justify-between py-2 hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6">
+                        <Typography variant="p2" className="text-grey_700">
+                          Copy link to profile
+                        </Typography>
+                        <Image src={copy} alt="copy" />
+                      </div>
+                      {commentOptions?.map(({ id, name }) => (
                         <Typography
                           key={id}
                           variant="p2"
@@ -145,21 +214,20 @@ const Profile = ({ ifPersonal = false }: ProfileProps) => {
                         >
                           {name}
                         </Typography>
-                      );
-                    })}
-                  </div>
-                )}
-
-                <CirclePay className="cursor-pointer hover:fill-blue_200" />
-                <Image src={circleStar} alt="circleStar" />
-
-                <div className="border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white">
-                  <Typography variant="subtitle3" className="text-blue_500">
-                    Subscribe
-                  </Typography>
+                      ))}
+                    </div>
+                  )}
+                  {/* {linkToProfileModal && (
+                    <div className="flex flex-col absolute -right-[100%] top-[140%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white">
+                      <div className="flex items-center justify-between py-[9px] hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6">
+                        <Typography variant="p2" className="text-grey_700">
+                          Copy link to profile
+                        </Typography>
+                        <Image src={copy} alt="copy" />
+                      </div>
+                    </div>
+                  )} */}
                 </div>
-
-                <Image src={moreIcon} alt="horizontalMore" />
               </div>
             </div>
           </div>
@@ -181,13 +249,70 @@ const Profile = ({ ifPersonal = false }: ProfileProps) => {
 
             <Typography variant="p2" className="text-grey_700 py-4">
               Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-              mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-              etra justo pretium sollic itudin digni ssim non solli citudin sit.
+              mi. Nulla sed cursus quis mas sa nato que at adip iscing{" "}
+              {isExpanded && (
+                <>
+                  <span>
+                    {" "}
+                    .... Duis lacinia ligula sit amet lacus egestas, non cursus
+                    magna vestibulum. Sed malesuada, eros ut blandit vehicula,
+                    nisi sapien volutpat turpis, non fermentum lectus ligula sit
+                    amet odio. Suspendisse potenti. Nullam aliquet tincidunt
+                    erat, ut condimentum ligula luctus eu. Nam vitae turpis non
+                    urna fermentum volutpat sit amet a odio. Sed auctor, ex nec
+                    blandit aliquam, nisl nunc dignissim lorem, sed efficitur
+                    orci justo ut justo.{" "}
+                  </span>
+                </>
+              )}
+              {isActiveTab === "Replies" && (
+                <span
+                  onClick={toggleReadMore}
+                  className="font-medium text-sm text-blue_500 cursor-pointer"
+                >
+                  read {isExpanded ? "less" : "more"}
+                </span>
+              )}
             </Typography>
           </section>
         </section>
 
-        <div className="flex items-center justify-between bg-grey_20 border-b border-grey_40">
+        {subscription && (
+          <div className="bg-white drop-shadow-4xl mb-2 py-2">
+            <section className="border-b border-grey_10 pb-4 px-4">
+              <Typography variant="subtitle2">Current subscription</Typography>
+              <Typography variant="p3" className="pb-2 pt-3 text-grey_500">
+                Ends: 10 June 2024
+              </Typography>
+
+              <SubscriptionButton textOne="Renew" textTwo="$15 per month" />
+            </section>
+
+            <section className="pt-4 px-4">
+              <Typography variant="subtitle2" className="pb-4">
+                Subscription bundles
+              </Typography>
+
+              <SubscriptionButton
+                textOne="1 month"
+                textTwo="$15"
+                className="mb-4"
+              />
+              <SubscriptionButton
+                textOne="2 months"
+                textTwo="$100"
+                className="mb-4"
+              />
+              <SubscriptionButton
+                textOne="12 months"
+                textTwo="$150"
+                className="mb-2"
+              />
+            </section>
+          </div>
+        )}
+
+        <div className="flex items-center justify-between bg-grey_20 border-b border-grey_40 mt-2">
           {tabs.map(({ id, name }) => {
             return (
               <div
@@ -210,105 +335,10 @@ const Profile = ({ ifPersonal = false }: ProfileProps) => {
           })}
         </div>
 
-        {ifPersonal && (
-          <div
-            className={`my-4 flex items-center px-4 mr-[14px] justify-between `}
-          >
-            {profileTabs.map(({ id, name, number }) => {
-              return (
-                <div
-                  onClick={() => setIsProfileTabActive(name)}
-                  className={`flex items-center cursor-pointer px-[14px] py-[7px] rounded-3xl hover:bg-blue_200 ${
-                    isProfileTabActive === name ? "bg-blue_200" : "bg-white"
-                  }`}
-                  key={id}
-                >
-                  <Typography variant="p2" className="pr-1">
-                    {name}
-                  </Typography>
-                  {number && (
-                    <Typography
-                      className={`${
-                        isProfileTabActive === name
-                          ? "text-grey_400"
-                          : "text-grey_900"
-                      }`}
-                      variant="subtitle2"
-                    >
-                      {number}
-                    </Typography>
-                  )}
-                </div>
-              );
-            })}
-
-            <div
-              onClick={toggleModal}
-              className="flex items-center border border-grey_10 py-2 px-3 drop-shadow-7xl bg-create-folder rounded-3xl cursor-pointer"
-            >
-              <Typography variant="subtitle3">Create Folder</Typography>
-              <Image src={plus} alt="plus" />
-            </div>
-
-            <Image src={switchList} alt="demo" />
-          </div>
-        )}
-
-        <div className="relative">
-          <Timeline
-            profileName="Priscilia yummy"
-            avatar={defaultAvatar}
-            handle="@yummychill54 ."
-            time="3 h ago"
-            paragraphOne="Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-        etra justo pretium sollic itudin digni ssim non solli citudin sit
-        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
-        dictum a."
-            paragraphTwo="Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-        etra justo pretium sollic itudin digni ssim non solli citudin sit
-        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
-        dictum a."
-            timeLineImage={timelineImage}
-            ifParagraph={true}
-            ifIcon={false}
-            bgColor="#fafafa"
-            //   setShowMoreModal={setShowMoreModalTwo}
-            //   showMoreModal={showMoreModalTwo}
-          />
-        </div>
-
-        <div className="relative">
-          <Timeline
-            profileName="Priscilia yummy"
-            avatar={defaultAvatar}
-            handle="@yummychill54 ."
-            time="3 h ago"
-            paragraphOne="Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-        etra justo pretium sollic itudin digni ssim non solli citudin sit
-        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
-        dictum a."
-            paragraphTwo="Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-        etra justo pretium sollic itudin digni ssim non solli citudin sit
-        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
-        dictum a."
-            timeLineImage={timelineTwo}
-            ifParagraph={true}
-            bgColor="#fafafa"
-            //   setShowMoreModal={setShowMoreModalTwo}
-            //   showMoreModal={showMoreModalTwo}
-          />
-        </div>
+        {isActiveTab === "Post" && <Post />}
+        {isActiveTab === "Replies" && <Replies />}
+        {isActiveTab === "Media" && <Media />}
       </div>
-
-      <Modal show={toggleCreateFolderModal} toggleModal={toggleModal}>
-        <div className="p-4">
-          <CreateFolder toggleModal={toggleModal} />
-        </div>
-      </Modal>
     </div>
   );
 };
