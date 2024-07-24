@@ -34,3 +34,31 @@ const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
 };
 
 export default AuthLayout;
+
+{
+  /* <div className="relative h-[69px] w-[292px]">
+  <Image
+    src={displayImage}
+    alt={`suggestionOne`}
+    className="w-full h-full object-cover"
+  />
+
+  <section className="">
+    <div
+      onClick={toggleVerticalOptions}
+      className="absolute top-2 right-3 cursor-pointer"
+    >
+      <Image
+        src={whiteVerticalIcon}
+        alt={`whiteVerticalIcon`}
+        className="w-6 h-6"
+      />
+    </div>
+    {showVerticalOptions && (
+      <div className="flex flex-col absolute bg-red-200 w-[360px] top-10 right-0 translate-x-[50%] rounded-2xl border-2 border-white z-50">
+        <ModalContent content={collectionsOptions} />
+      </div>
+    )}
+  </section>
+</div> */
+}

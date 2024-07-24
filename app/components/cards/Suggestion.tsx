@@ -2,7 +2,7 @@ import React from "react";
 import verify from "@/public/icons/verify.svg";
 import horizontalMore from "@/public/icons/horizontalMore.svg";
 import Image from "next/image";
-import Typography from "../Typography";
+import Typography from "../forms/Typography";
 
 type SuggestionProps = {
   isLive?: boolean;

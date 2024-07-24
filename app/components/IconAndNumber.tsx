@@ -1,19 +1,33 @@
 import Image from "next/image";
 import React from "react";
-import Typography from "./Typography";
+import Typography from "./forms/Typography";
 
 type IconAndNumberProp = {
-  icon: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   number?: number;
+  numberColor?: string;
+  className?: string;
 };
 
-const IconAndNumber = ({ icon, number }: IconAndNumberProp) => {
+const IconAndNumber = ({
+  Icon,
+  number,
+  numberColor = "#8D8E96",
+  className,
+}: IconAndNumberProp) => {
   return (
-    <div className="flex items-center mr-4">
-      <Image src={icon} alt="icon" />
-      <Typography variant="p2" className="pl-1 text_grey_400">
-        {number}
-      </Typography>
+    <div className={`flex items-center mr-4 ${className}`}>
+      <Icon width="24" height="24" />
+      {number !== undefined && (
+        <p
+          style={{
+            color: numberColor,
+          }}
+          className={`text-sm font-normal leading-5 pl-1`}
+        >
+          {number}
+        </p>
+      )}
     </div>
   );
 };

@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import CustomInput from "../components/CustomInput";
+import CustomInput from "../components/forms/CustomInput";
 import { useForm } from "react-hook-form";
-import CustomButton from "../components/CustomButton";
+import CustomButton from "../components/forms/CustomButton";
 import AuthLayout from "../components/AuthLayout";
-import Typography from "../components/Typography";
+import Typography from "../components/forms/Typography";
 
 const CreateNewPassword = () => {
   const { control } = useForm();

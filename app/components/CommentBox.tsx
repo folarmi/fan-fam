@@ -1,31 +1,66 @@
-import React from "react";
-import picture from "@/public/icons/picture.svg";
-import smile from "@/public/icons/smile.svg";
-import poll from "@/public/icons/poll.svg";
-import record from "@/public/icons/record.svg";
-import Image from "next/image";
-import CustomButton from "./CustomButton";
+"use client";
 
-// bg-grey_20
-const CommentBox = () => {
+import React, { useState } from "react";
+import CustomButton from "./forms/CustomButton";
+import Picture from "@/public/icons/picture";
+import Smile from "@/public/icons/smile";
+import Poll from "@/public/icons/poll";
+import Record from "@/public/icons/record";
+
+type CommentBoxProps = {
+  ifPoll?: boolean;
+  ifRecord?: boolean;
+  setIfUserIsCreatingPoll?: any;
+};
+
+const CommentBox = ({
+  ifPoll = true,
+  ifRecord = true,
+  setIfUserIsCreatingPoll,
+}: CommentBoxProps) => {
+  const [text, setText] = useState("");
+  const [buttonType, setButtonType] = useState("disabled");
+  const [isActive, setIsActive] = useState(false);
+
+  const handleFocus = () => {
+    setIsActive(true);
+  };
+
+  const handleBlur = () => {
+    setIsActive(false);
+  };
+
   return (
-    <div className="mt-1 bg-grey_20 p-4 drop-shadow-3xl shadow-header-md">
+    <div className="mb-2 p-4 border border-grey_10 bg-grey_20 drop-shadow-4xl">
       <textarea
         placeholder="Write a Post.."
         cols={5}
         rows={5}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
         className="w-full outline-none pt-3 bg-grey_20"
       ></textarea>
       <div className="flex items-center justify-between py-[5px]">
         <div className="flex items-center gap-x-3">
-          <Image src={picture} alt="picture" />
-          <Image src={smile} alt="smile" />
-          <Image src={poll} alt="poll" />
-          <Image src={record} alt="record" />
+          <Picture isActive={isActive} className="cursor-pointer" />
+          <Smile isActive={isActive} className="cursor-pointer" />
+          {ifPoll && (
+            <Poll
+              onClick={() => setIfUserIsCreatingPoll(true)}
+              isActive={isActive}
+              className="cursor-pointer"
+            />
+          )}
+          {ifRecord && (
+            <Record isActive={isActive} className="cursor-pointer" />
+          )}
         </div>
 
-        <div>
-          <CustomButton variant="disabled" className="w-[62px] bg-grey_600">
+        <div className="w-[62px]">
+          <CustomButton
+            variant={isActive ? "primary" : "disabled"}
+            className="w-full bg-grey_600"
+          >
             Post
           </CustomButton>
         </div>
