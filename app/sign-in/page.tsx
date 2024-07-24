@@ -2,6 +2,7 @@
 "use client";
 
 import React from "react";
+import Cookies from "js-cookie";
 import CustomInput from "../components/forms/CustomInput";
 import { useForm } from "react-hook-form";
 import Typography from "../components/forms/Typography";
@@ -28,10 +29,18 @@ const SignIn = () => {
     },
     onSuccess: (data) => {
       if (data?.data?.statusCode === 991) {
-        // toast("Kindly check your email for a verification link");
+        // Set the token in a cookie
+        Cookies.set(
+          "auth-token",
+          data?.data?.data?.accessToken
+          // {
+          //   secure: true,
+          // }
+        );
+        Cookies.set("refresh-token", data?.data?.data?.refreshToken);
         router.push("/dashboard");
       }
-      console.log(data?.data?.statusCode);
+      console.log(data?.data?.data?.accessToken);
     },
     onError: (error: any) => {
       toast.error(error?.response?.data?.data?.message);
