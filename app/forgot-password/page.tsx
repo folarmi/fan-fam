@@ -76,7 +76,7 @@ const ForgotPassword = () => {
 
         <Typography variant="p3" className="pb-10 text-center text-grey_500">
           Already have an account?{" "}
-          <Link href="/sign-in">
+          <Link href="/">
             <span className="text-primary">Sign in</span>
           </Link>
         </Typography>

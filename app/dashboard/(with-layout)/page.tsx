@@ -18,7 +18,7 @@ import Poll from "@/app/components/molecules/Poll";
 const Home = () => {
   const [showMoreModal, setShowMoreModal] = useState(false);
   const [showMoreModalTwo, setShowMoreModalTwo] = useState(false);
-  const [ifUserIsCreatingPoll, setIfUserIsCreatingPoll] = useState(true);
+  const [ifUserIsCreatingPoll, setIfUserIsCreatingPoll] = useState(false);
   const [pollOptions, setPollOptions] = useState([
     {
       id: "1",

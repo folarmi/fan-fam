@@ -10,6 +10,7 @@ import React from "react";
 import logo from "@/public/icons/logo.svg";
 import Typography from "@/app/components/forms/Typography";
 import CustomButton from "@/app/components/forms/CustomButton";
+import withAuth from "@/app/hoc/withAuth";
 
 const MessagesLayout = ({
   children,
@@ -61,4 +62,4 @@ const MessagesLayout = ({
   );
 };
 
-export default MessagesLayout;
+export default withAuth(MessagesLayout);

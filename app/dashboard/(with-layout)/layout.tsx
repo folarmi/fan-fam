@@ -12,7 +12,7 @@ import VerticalCarousel from "../../components/VerticalCarousel";
 import { useMutation } from "@tanstack/react-query";
 import api from "@/app/lib/axios";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
+import withAuth from "@/app/hoc/withAuth";
 
 const DashboardLayout = ({
   children,
@@ -30,11 +30,9 @@ const DashboardLayout = ({
     },
     onSuccess: (data) => {
       if (data?.status === 200) {
-        router.push("/sign-in");
-        Cookies.remove("auth-token");
-        Cookies.remove("refresh-token");
+        router.push("/");
+        localStorage.clear();
       }
-      console.log(data?.status);
     },
     onError: (error: any) => {
       toast.error(error?.response?.data?.data?.message);
@@ -122,4 +120,4 @@ const DashboardLayout = ({
   );
 };
 
-export default DashboardLayout;
+export default withAuth(DashboardLayout);

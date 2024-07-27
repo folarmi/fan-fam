@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import paradise from "@/public/paradise.svg";
-import PhotoFrame from "../test/page";
+import PhotoFrame from "./PhotoFrame";
 
 const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (

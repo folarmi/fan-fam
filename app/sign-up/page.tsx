@@ -83,7 +83,13 @@ const Signup = () => {
           name="password"
           control={control}
           type="password"
-          rules={{ required: "Password is required" }}
+          rules={{
+            required: "Password is required",
+            minLength: {
+              value: 6,
+              message: "Password must be at least 6 characters",
+            },
+          }}
         />
 
         <Checkbox
@@ -97,7 +103,7 @@ const Signup = () => {
         <CustomButton
           loading={signUpMutation.isPending}
           variant="primary"
-          className="shadow-custom mb-6"
+          className="shadow-custom mt-10 mb-6"
         >
           Signup
         </CustomButton>
@@ -108,7 +114,7 @@ const Signup = () => {
 
         <Typography variant="p3" className="pb-10 text-center text-grey_500">
           Already have an account?{" "}
-          <Link href="/sign-in">
+          <Link href="/">
             <span className="text-primary">Sign in</span>
           </Link>
         </Typography>
