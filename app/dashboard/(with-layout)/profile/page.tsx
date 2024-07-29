@@ -9,7 +9,6 @@ import profilePicture from "@/public/profilePicture.svg";
 import location from "@/public/icons/location.svg";
 import circleStar from "@/public/icons/circleStar.svg";
 import moreIcon from "@/public/icons/moreIcon.svg";
-import Typography from "@/app/components/Typography";
 import blueVerifiedTick from "@/public/blueVerifiedTick.svg";
 import Pictures from "@/public/icons/pictures";
 import Videos from "@/public/icons/videos";
@@ -25,13 +24,14 @@ import Replies from "@/app/components/Replies";
 import Media from "@/app/components/Media";
 import Link from "next/link";
 import SubscriptionButton from "@/app/components/molecules/SubscriptionButton";
-import CustomButton from "@/app/components/CustomButton";
-import CustomInput from "@/app/components/CustomInput";
+import CustomButton from "@/app/components/forms/CustomButton";
+import CustomInput from "@/app/components/forms/CustomInput";
 import { useForm } from "react-hook-form";
 import verifyBlue from "@/public/icons/verifyBlue.svg";
-import AmountInput from "@/app/components/AmountInput";
 import PaymentMethod from "@/app/components/PaymentMethod";
 import ModalContent from "@/app/components/modals/ModalContent";
+import Typography from "@/app/components/forms/Typography";
+import AmountInput from "@/app/components/forms/AmountInput";
 
 const Profile = () => {
   const { control } = useForm();

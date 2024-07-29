@@ -6,11 +6,11 @@ import editIcon from "@/public/icons/editIcon.svg";
 import profilePicture from "@/public/profilePicture.svg";
 import Image from "next/image";
 import Link from "next/link";
-import Typography from "@/app/components/Typography";
 import moreIcon from "@/public/icons/moreIcon.svg";
-import CustomInput from "@/app/components/CustomInput";
+import CustomInput from "@/app/components/forms/CustomInput";
 import { useForm } from "react-hook-form";
-import CustomTextBox from "@/app/components/CustomTextBox";
+import CustomTextBox from "@/app/components/forms/CustomTextBox";
+import Typography from "@/app/components/forms/Typography";
 
 const EditProfile = () => {
   const { control } = useForm();

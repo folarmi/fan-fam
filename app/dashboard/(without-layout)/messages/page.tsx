@@ -1,6 +1,5 @@
 "use client";
 import SearchInput from "@/app/components/SearchInput";
-import Typography from "@/app/components/Typography";
 import Image from "next/image";
 import React, { useState } from "react";
 import plus from "@/public/icons/plus.svg";
@@ -8,6 +7,7 @@ import { notificationSampleData } from "@/app/data";
 import verifyBlue from "@/public/icons/verifyBlue.svg";
 import horizontalMore from "@/public/icons/ashHorizontalMore.svg";
 import ChatInterface from "./ChatInterface";
+import Typography from "@/app/components/forms/Typography";
 
 const Messages = () => {
   const [messagesTab, setMessagesTab] = useState([

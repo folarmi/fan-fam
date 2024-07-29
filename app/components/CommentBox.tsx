@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import CustomButton from "./CustomButton";
+import CustomButton from "./forms/CustomButton";
 import Picture from "@/public/icons/picture";
 import Smile from "@/public/icons/smile";
 import Poll from "@/public/icons/poll";
@@ -10,9 +10,14 @@ import Record from "@/public/icons/record";
 type CommentBoxProps = {
   ifPoll?: boolean;
   ifRecord?: boolean;
+  setIfUserIsCreatingPoll?: any;
 };
 
-const CommentBox = ({ ifPoll = true, ifRecord = true }: CommentBoxProps) => {
+const CommentBox = ({
+  ifPoll = true,
+  ifRecord = true,
+  setIfUserIsCreatingPoll,
+}: CommentBoxProps) => {
   const [text, setText] = useState("");
   const [buttonType, setButtonType] = useState("disabled");
   const [isActive, setIsActive] = useState(false);
@@ -37,10 +42,18 @@ const CommentBox = ({ ifPoll = true, ifRecord = true }: CommentBoxProps) => {
       ></textarea>
       <div className="flex items-center justify-between py-[5px]">
         <div className="flex items-center gap-x-3">
-          <Picture isActive={isActive} />
-          <Smile isActive={isActive} />
-          {ifPoll && <Poll isActive={isActive} />}
-          {ifRecord && <Record isActive={isActive} />}
+          <Picture isActive={isActive} className="cursor-pointer" />
+          <Smile isActive={isActive} className="cursor-pointer" />
+          {ifPoll && (
+            <Poll
+              onClick={() => setIfUserIsCreatingPoll(true)}
+              isActive={isActive}
+              className="cursor-pointer"
+            />
+          )}
+          {ifRecord && (
+            <Record isActive={isActive} className="cursor-pointer" />
+          )}
         </div>
 
         <div className="w-[62px]">

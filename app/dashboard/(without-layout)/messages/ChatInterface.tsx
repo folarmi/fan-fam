@@ -3,7 +3,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import defaultAvatar from "@/public/defaultAvatar.svg";
-import Typography from "@/app/components/Typography";
 import verifyBlue from "@/public/icons/verifyBlue.svg";
 import moreIcon from "@/public/icons/moreIcon.svg";
 import realNotification from "@/public/icons/realNotification.svg";
@@ -12,6 +11,7 @@ import pin from "@/public/icons/pin.svg";
 // import searchIcon from "@/public/icons/searchIcon.svg";
 import timelineImage from "@/public/timelineImage.svg";
 import CommentBox from "@/app/components/CommentBox";
+import Typography from "@/app/components/forms/Typography";
 
 const ChatInterface = () => {
   const [showModal, setShowModal] = useState(false);

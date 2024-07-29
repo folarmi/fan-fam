@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, ReactNode } from "react";
 
 interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
-  variant?:
+  variant:
     | "default"
     | "heading"
     | "titleOne"
@@ -16,11 +16,13 @@ interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
     | "caption"; // Add more variants as needed
   className?: string;
   children: ReactNode;
+  onClick?: any;
 }
 
 const Typography: React.FC<TypographyProps> = ({
   variant = "default",
   className = "",
+  onClick,
   children,
 }) => {
   let classes = "";
@@ -46,7 +48,7 @@ const Typography: React.FC<TypographyProps> = ({
       classes = "text-sm font-normal leading-5";
       break;
     case "p3":
-      classes = "text-[13px] font-normal text-grey_500";
+      classes = "text-[12px] font-normal";
       break;
     case "subtitle2":
       classes = "text-sm font-medium leading-[18px]";
@@ -62,7 +64,11 @@ const Typography: React.FC<TypographyProps> = ({
   // Concatenate the provided className with the generated classes
   const mergedClassName = `${classes} ${className}`;
 
-  return <p className={mergedClassName}>{children}</p>;
+  return (
+    <p onClick={onClick} className={mergedClassName}>
+      {children}
+    </p>
+  );
 };
 
 export default Typography;

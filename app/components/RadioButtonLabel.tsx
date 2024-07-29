@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "./Typography";
+import Typography from "./forms/Typography";
 
 const RadioButton = ({ label, name, value, checked, onChange }: any) => {
   return (

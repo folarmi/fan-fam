@@ -12,19 +12,43 @@ import SearchInput from "@/app/components/SearchInput";
 import CommentBox from "@/app/components/CommentBox";
 import Timeline from "@/app/components/cards/Timeline";
 import TimeLineHomeModal from "@/app/components/modals/TimeLineHomeModal";
+import Poll from "@/app/components/molecules/Poll";
 // import TimeLineHomeModal from "../components/modals/TimeLineHomeModal";
 
 const Home = () => {
   const [showMoreModal, setShowMoreModal] = useState(false);
   const [showMoreModalTwo, setShowMoreModalTwo] = useState(false);
+  const [ifUserIsCreatingPoll, setIfUserIsCreatingPoll] = useState(false);
+  const [pollOptions, setPollOptions] = useState([
+    {
+      id: "1",
+      name: "Option One",
+    },
+    {
+      id: "2",
+      name: "Option Two",
+    },
+  ]);
+  const [activePoll, setActivePoll] = useState(pollOptions[0].name);
+
   const handleBlur = () => {
     console.log("Text area lost focus");
   };
-
+  //
   return (
     <div>
       <SearchInput />
-      <CommentBox />
+      {ifUserIsCreatingPoll ? (
+        <Poll
+          pollOptions={pollOptions}
+          setPollOptions={setPollOptions}
+          activePoll={activePoll}
+          setActivePoll={setActivePoll}
+        />
+      ) : (
+        <CommentBox setIfUserIsCreatingPoll={setIfUserIsCreatingPoll} />
+      )}
+
       <div className="relative">
         <Timeline
           profileName="Priscilia yummy"

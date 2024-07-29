@@ -13,7 +13,7 @@ import modelOne from "@/public/modelOne.svg";
 import suggestionFive from "@/public/suggestionFive.svg";
 import suggestTwo from "@/public/suggestTwo.svg";
 import horizontalMore from "@/public/icons/horizontalMore.svg";
-import Typography from "./Typography";
+import Typography from "./forms/Typography";
 import verify from "@/public/icons/verify.svg";
 
 const items = [

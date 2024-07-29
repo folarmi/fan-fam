@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Typography from "./Typography";
+import Typography from "./forms/Typography";
 import Image from "next/image";
 import filter from "@/public/icons/filter.svg";
 import mediaToggle from "@/public/icons/mediaToggle.svg";

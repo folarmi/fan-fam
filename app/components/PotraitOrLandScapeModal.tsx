@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Typography from "./Typography";
+import Typography from "./forms/Typography";
 import ashMore from "@/public/icons/ashMore.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
 import blueVerifiedTick from "@/public/blueVerifiedTick.svg";

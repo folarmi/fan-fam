@@ -1,14 +1,18 @@
 "use client";
 import React, { useState } from "react";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { sideBarItems } from "../../data";
 import Image from "next/image";
 import logo from "@/public/icons/logo.svg";
-import Typography from "../../components/Typography";
+import Typography from "../../components/forms/Typography";
 import Link from "next/link";
-import CustomButton from "../../components/CustomButton";
+import CustomButton from "../../components/forms/CustomButton";
 import VerticalCarousel from "../../components/VerticalCarousel";
+import { useMutation } from "@tanstack/react-query";
+import api from "@/app/lib/axios";
+import { toast } from "react-toastify";
+import withAuth from "@/app/hoc/withAuth";
 
 const DashboardLayout = ({
   children,
@@ -16,7 +20,24 @@ const DashboardLayout = ({
   children: React.ReactNode;
 }>) => {
   const pathName = usePathname();
+  const router = useRouter();
   const [isUserSubscribed] = useState(true);
+
+  const logOutMutation = useMutation({
+    mutationFn: async () => {
+      const response = await api.post("auth/logout");
+      return response;
+    },
+    onSuccess: (data) => {
+      if (data?.status === 200) {
+        router.push("/");
+        localStorage.clear();
+      }
+    },
+    onError: (error: any) => {
+      toast.error(error?.response?.data?.data?.message);
+    },
+  });
 
   return (
     <div className="flex justify-center">
@@ -50,6 +71,18 @@ const DashboardLayout = ({
               </Link>
             );
           })}
+
+          <div
+            className={`w-[236px] flex items-center mb-2 py-2 pl-4 rounded-lg`}
+            onClick={() => logOutMutation.mutate()}
+          >
+            <div className="flex items-center cursor-pointer">
+              {/* <Image src={image} alt="icon" className="" /> */}
+              <Typography variant="subtitle2" className="text-grey_400 pl-4">
+                Logout
+              </Typography>
+            </div>
+          </div>
         </div>
 
         <div className="drop-shadow-5xl shadow-post-button w-[221px]">
@@ -87,4 +120,4 @@ const DashboardLayout = ({
   );
 };
 
-export default DashboardLayout;
+export default withAuth(DashboardLayout);

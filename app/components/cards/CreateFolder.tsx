@@ -1,10 +1,10 @@
 import React from "react";
-import Typography from "../Typography";
+import Typography from "../forms/Typography";
 import closeIcon from "@/public/icons/closeIcon.svg";
 import Image from "next/image";
-import CustomInput from "../CustomInput";
+import CustomInput from "../forms/CustomInput";
 import { useForm } from "react-hook-form";
-import CustomButton from "../CustomButton";
+import CustomButton from "../forms/CustomButton";
 
 const CreateFolder = ({ toggleModal }: any) => {
   const { control } = useForm();

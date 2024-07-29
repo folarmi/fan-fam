@@ -4,7 +4,7 @@ import React from "react";
 import blueVerifiedTick from "@/public/blueVerifiedTick.svg";
 import ashMore from "@/public/icons/ashMore.svg";
 import Image from "next/image";
-import Typography from "../Typography";
+import Typography from "../forms/Typography";
 import IconAndNumber from "../IconAndNumber";
 // import Modal from "../Modal";
 import Like from "@/public/icons/like";

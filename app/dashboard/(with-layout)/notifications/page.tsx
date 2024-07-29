@@ -1,11 +1,11 @@
 "use client";
 import SearchInput from "@/app/components/SearchInput";
-import Typography from "@/app/components/Typography";
 import React, { useState } from "react";
 import block from "@/public/icons/block.svg";
 import Image from "next/image";
 import { notificationSampleData } from "@/app/data";
 import verifyBlue from "@/public/icons/verifyBlue.svg";
+import Typography from "@/app/components/forms/Typography";
 
 const Notifications = () => {
   const [notificationsTabs, setNotificationsTabs] = useState([

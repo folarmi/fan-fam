@@ -1,13 +1,16 @@
 "use client";
 
-import CustomButton from "@/app/components/CustomButton";
-import Typography from "@/app/components/Typography";
+// import CustomButton from "@/app/components/CustomButton";
+// import Typography from "@/app/components/Typography";
 import { sideBarItems } from "@/app/data";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import logo from "@/public/icons/logo.svg";
+import Typography from "@/app/components/forms/Typography";
+import CustomButton from "@/app/components/forms/CustomButton";
+import withAuth from "@/app/hoc/withAuth";
 
 const MessagesLayout = ({
   children,
@@ -59,4 +62,4 @@ const MessagesLayout = ({
   );
 };
 
-export default MessagesLayout;
+export default withAuth(MessagesLayout);

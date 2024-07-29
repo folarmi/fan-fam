@@ -1,5 +1,4 @@
 "use client";
-import Typography from "@/app/components/Typography";
 import { dummyCollectionData } from "@/app/data";
 import Image from "next/image";
 import plus from "@/public/icons/plus.svg";
@@ -9,6 +8,7 @@ import CollectionCard from "@/app/components/cards/CollectionCard";
 import suggestionOne from "@/public/suggestionOne.svg";
 import defaultLiveAvatar from "@/public/defaultLiveAvatar.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
+import Typography from "@/app/components/forms/Typography";
 
 const Collections = () => {
   const [collectionsTab, setCollectionsTab] = useState([
@@ -30,7 +30,7 @@ const Collections = () => {
   const [isOptionsShown, setIsOptionsShown] = useState(true);
   const [blockUserModal, setBlockUserModal] = useState(false);
   const [restrictUserModal, setRestrictUserModal] = useState(false);
-  const [reportUserModal, setReportUserModal] = useState(true);
+  const [reportUserModal, setReportUserModal] = useState(false);
 
   return (
     <div className="flex">

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Typography from "./Typography";
+import Typography from "./forms/Typography";
 import Image from "next/image";
 import Timeline from "@/app/components/cards/Timeline";
 import defaultAvatar from "@/public/defaultAvatar.svg";
@@ -11,6 +11,7 @@ import plus from "@/public/icons/plus.svg";
 import switchList from "@/public/icons/switchList.svg";
 import Modal from "./modals/Modal";
 import CreateFolder from "./cards/CreateFolder";
+import PersonPostModal from "./modals/PersonPostModal";
 
 const Post = () => {
   const [isProfileTabActive, setIsProfileTabActive] = useState("All");
@@ -37,6 +38,7 @@ const Post = () => {
     },
   ]);
   const [toggleCreateFolderModal, setToggleCreateFolderModal] = useState(false);
+  const [showMoreModal, setShowMoreModal] = useState(false);
 
   const toggleModal = () => {
     setToggleCreateFolderModal(!toggleCreateFolderModal);
@@ -106,8 +108,9 @@ const Post = () => {
           ifParagraph={true}
           ifIcon={false}
           bgColor="#fafafa"
-          //   setShowMoreModal={setShowMoreModalTwo}
-          //   showMoreModal={showMoreModalTwo}
+          showModal={showMoreModal}
+          setShowModal={setShowMoreModal}
+          TimeLineModal={<PersonPostModal />}
         />
       </div>
 

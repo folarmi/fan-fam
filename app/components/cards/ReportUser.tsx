@@ -1,6 +1,6 @@
 import React from "react";
-import Typography from "../Typography";
-import CustomButton from "../CustomButton";
+import Typography from "../forms/Typography";
+import CustomButton from "../forms/CustomButton";
 import CollectionRadioButton from "../forms/CollectionRadioButton";
 
 const ReportUser = ({ toggleModal }: any) => {

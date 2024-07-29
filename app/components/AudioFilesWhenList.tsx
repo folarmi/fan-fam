@@ -11,7 +11,7 @@ import Comment from "@/public/icons/comment";
 import Pay from "@/public/icons/pay";
 import audioFileSample from "@/public/audioFileSample.svg";
 import audioFileNotPlaying from "@/public/audioFileNotPlaying.svg";
-import Typography from "./Typography";
+import Typography from "./forms/Typography";
 import IconAndNumber from "./IconAndNumber";
 
 type AudioFilesWhenListProps = {

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import React, { useState } from "react";
-import Typography from "../Typography";
+import Typography from "../forms/Typography";
 import whiteVerticalIcon from "@/public/icons/whiteVerticalIcon.svg";
 import ashVerifiedTick from "@/public/icons/ashVerifiedTick.svg";
 import CircleChat from "@/public/icons/circleChatIcon.svg";

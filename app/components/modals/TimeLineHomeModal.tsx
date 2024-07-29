@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "../Typography";
+import Typography from "../forms/Typography";
 import Image from "next/image";
 import copy from "@/public/copy.svg";
 import ModalContent from "./ModalContent";

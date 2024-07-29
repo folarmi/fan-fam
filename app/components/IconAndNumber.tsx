@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Typography from "./Typography";
+import Typography from "./forms/Typography";
 
 type IconAndNumberProp = {
   Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
