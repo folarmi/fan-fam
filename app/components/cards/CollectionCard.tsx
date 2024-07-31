@@ -15,6 +15,7 @@ import Modal from "../modals/Modal";
 import BlockUser from "./BlockUser";
 import RestrictUser from "./RestrictUser";
 import ReportUser from "./ReportUser";
+import AddUserToListModal from "../modals/AddUserToListModal";
 
 type props = {
   displayImage: string;
@@ -33,6 +34,8 @@ type props = {
   setRestrictUserModal?: any;
   reportUserModal?: any;
   setReportUserModal?: any;
+  addUserToList?: any;
+  setAddUserToList?: any;
 };
 
 const CollectionCard = ({
@@ -52,6 +55,8 @@ const CollectionCard = ({
   setRestrictUserModal,
   reportUserModal,
   setReportUserModal,
+  addUserToList,
+  setAddUserToList,
 }: props) => {
   const [showVerticalOptions, setShowVerticalOptions] = useState(false);
   const toggleState = () => {
@@ -72,6 +77,9 @@ const CollectionCard = ({
     } else if (name === "Report") {
       setShowVerticalOptions(false);
       setReportUserModal(!reportUserModal);
+    } else if (name === "Add to another list") {
+      setShowVerticalOptions(false);
+      setAddUserToList(!addUserToList);
     }
   };
 
@@ -85,6 +93,10 @@ const CollectionCard = ({
 
   const toggleReportUserModal = () => {
     setReportUserModal(!reportUserModal);
+  };
+
+  const toggleAddUserToList = () => {
+    setAddUserToList(!addUserToList);
   };
 
   return (
@@ -117,6 +129,7 @@ const CollectionCard = ({
           )}
         </section>
       </div>
+
       <section className="border border-grey_10">
         <div className="relative flex items-center">
           <div className="absolute bottom-[10%] left-4">
@@ -168,6 +181,7 @@ const CollectionCard = ({
             </Typography>
           </div>
         )}
+
         {ifSubscribedWithOption && (
           <section>
             <SubscriptionButton
@@ -234,6 +248,12 @@ const CollectionCard = ({
             <div className="p-4">
               <ReportUser toggleModal={toggleReportUserModal} />
             </div>
+          </Modal>
+        }
+
+        {
+          <Modal show={addUserToList} toggleModal={toggleAddUserToList}>
+            <AddUserToListModal toggleModal={toggleAddUserToList} />
           </Modal>
         }
       </section>

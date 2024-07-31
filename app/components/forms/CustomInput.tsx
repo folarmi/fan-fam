@@ -75,7 +75,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       )}
       <label
         htmlFor={name}
-        className={`absolute left-4 top-2 text-sm font-medium text-grey_200 duration-300 transform -translate-y-4 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3 peer-focus:scale-75 peer-focus:-translate-y-7 ${
+        className={`absolute left-4 top-2 text-sm font-normal text-grey_200 duration-300 transform -translate-y-4 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3 peer-focus:scale-75 peer-focus:-translate-y-7 ${
           isFocused || field.value
             ? "-translate-y-6 scale-75"
             : "translate-y-2.5 scale-100"

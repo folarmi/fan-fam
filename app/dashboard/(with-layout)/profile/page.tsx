@@ -32,6 +32,8 @@ import PaymentMethod from "@/app/components/PaymentMethod";
 import ModalContent from "@/app/components/modals/ModalContent";
 import Typography from "@/app/components/forms/Typography";
 import AmountInput from "@/app/components/forms/AmountInput";
+import Modal from "@/app/components/modals/Modal";
+import AddUserToListModal from "@/app/components/modals/AddUserToListModal";
 
 const Profile = () => {
   const { control } = useForm();
@@ -59,6 +61,7 @@ const Profile = () => {
   const [linkToProfileModal, setLinkToProfileModal] = useState(false);
   const [subscription, setSubscription] = useState(true);
   const [tipModal, setTipModal] = useState(false);
+  const [addUserToList, setAddUserToList] = useState(false);
 
   const toggleCommentModal = () => {
     setCommentModal(!commentModal);
@@ -72,8 +75,19 @@ const Profile = () => {
     setLinkToProfileModal(!linkToProfileModal);
   };
 
+  const toggleAddUserToList = () => {
+    setAddUserToList(!addUserToList);
+  };
+
   const toggleTipModal = () => {
     setTipModal(!tipModal);
+  };
+
+  const getModalValue = (name: string) => {
+    if (name === "Add User to list") {
+      setCommentModal(false);
+      setAddUserToList(!addUserToList);
+    }
   };
 
   return (
@@ -207,19 +221,12 @@ const Profile = () => {
                         </Typography>
                         <Image src={copy} alt="copy" />
                       </div>
-                      <ModalContent content={commentOptions} />
+                      <ModalContent
+                        content={commentOptions}
+                        onClick={getModalValue}
+                      />
                     </div>
                   )}
-                  {/* {linkToProfileModal && (
-                    <div className="flex flex-col absolute -right-[100%] top-[140%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white">
-                      <div className="flex items-center justify-between py-[9px] hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6">
-                        <Typography variant="p2" className="text-grey_700">
-                          Copy link to profile
-                        </Typography>
-                        <Image src={copy} alt="copy" />
-                      </div>
-                    </div>
-                  )} */}
                 </div>
               </div>
             </div>
@@ -327,6 +334,12 @@ const Profile = () => {
             );
           })}
         </div>
+
+        {
+          <Modal show={addUserToList} toggleModal={toggleAddUserToList}>
+            <AddUserToListModal toggleModal={toggleAddUserToList} />
+          </Modal>
+        }
 
         {isActiveTab === "Post" && <Post />}
         {isActiveTab === "Replies" && <Replies />}

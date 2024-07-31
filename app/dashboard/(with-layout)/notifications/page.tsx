@@ -1,4 +1,5 @@
 "use client";
+
 import SearchInput from "@/app/components/SearchInput";
 import React, { useState } from "react";
 import block from "@/public/icons/block.svg";
@@ -6,34 +7,16 @@ import Image from "next/image";
 import { notificationSampleData } from "@/app/data";
 import verifyBlue from "@/public/icons/verifyBlue.svg";
 import Typography from "@/app/components/forms/Typography";
+import Modal from "@/app/components/modals/Modal";
+import RearrangeNotificationCategories from "@/app/components/modals/RearrangeNotificationCategories";
+import { notificationTabs } from "@/app/data";
 
 const Notifications = () => {
-  const [notificationsTabs, setNotificationsTabs] = useState([
-    {
-      id: 1,
-      name: "All",
-    },
-    {
-      id: 2,
-      name: "Promotions",
-    },
-    {
-      id: 3,
-      name: "Subscription",
-    },
-    {
-      id: 4,
-      name: "Tags",
-    },
-    {
-      id: 5,
-      name: "Comments",
-    },
-    {
-      id: 6,
-      name: "Mentions",
-    },
-  ]);
+  const [showRearrangeModal, setShowRearrangeModal] = useState(false);
+
+  const toggleRearrangeModal = () => {
+    setShowRearrangeModal(!showRearrangeModal);
+  };
 
   const [isActiveTab, setIsActiveTab] = useState("All");
   return (
@@ -42,7 +25,7 @@ const Notifications = () => {
 
       <section className="bg-grey_20 drop-shadow-4xl p-4">
         <div className="flex items-center">
-          {notificationsTabs.map(({ id, name }) => {
+          {notificationTabs?.map(({ id, name }) => {
             return (
               <div
                 key={id}
@@ -57,7 +40,12 @@ const Notifications = () => {
               </div>
             );
           })}
-          <Image src={block} alt="block" className="w-6 h-6" />
+          <Image
+            src={block}
+            alt="block"
+            className="w-6 h-6 cursor-pointer"
+            onClick={toggleRearrangeModal}
+          />
         </div>
 
         <div className="">
@@ -101,6 +89,12 @@ const Notifications = () => {
           )}
         </div>
       </section>
+
+      {showRearrangeModal && (
+        <Modal show={showRearrangeModal} toggleModal={toggleRearrangeModal}>
+          <RearrangeNotificationCategories toggleModal={toggleRearrangeModal} />
+        </Modal>
+      )}
     </div>
   );
 };

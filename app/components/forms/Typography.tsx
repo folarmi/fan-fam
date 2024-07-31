@@ -41,6 +41,9 @@ const Typography: React.FC<TypographyProps> = ({
     case "labelOne":
       classes = "text-xs font-medium leading-[16px]";
       break;
+    case "h5":
+      classes = "text-xl font-semibold leading-[16px]";
+      break;
     case "p1":
       classes = "text-base font-normal text-grey_500 leading-5";
       break;

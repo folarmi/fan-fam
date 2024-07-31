@@ -63,10 +63,14 @@ export const commentOptions = [
   },
   {
     id: 2,
-    name: "Block",
+    name: "Add User to list",
   },
   {
     id: 3,
+    name: "Block",
+  },
+  {
+    id: 4,
     name: "Report",
   },
 ];
@@ -247,18 +251,72 @@ export const dummyCollectionData = [
 export const collectionsOptions = [
   {
     id: 1,
-    name: "Remove from list",
+    name: "Add to another list",
   },
   {
     id: 2,
-    name: "Block",
+    name: "Remove from list",
   },
   {
     id: 3,
-    name: "Restrict",
+    name: "Block",
   },
   {
     id: 4,
+    name: "Restrict",
+  },
+  {
+    id: 5,
     name: "Report",
+  },
+];
+
+export const userListCollectionsOptions = [
+  {
+    id: 1,
+    name: "Subscription",
+  },
+  {
+    id: 2,
+    name: "Promotions",
+  },
+  {
+    id: 3,
+    name: "Tags",
+  },
+  {
+    id: 4,
+    name: "Comments",
+  },
+  {
+    id: 5,
+    name: "Mentions",
+  },
+];
+
+export const notificationTabs = [
+  {
+    id: 1,
+    name: "All",
+  },
+  {
+    id: 2,
+    name: "Promotions",
+  },
+  {
+    id: 3,
+    name: "Subscription",
+  },
+  {
+    id: 4,
+    name: "Tags",
+  },
+  {
+    id: 5,
+    name: "Comments",
+  },
+  {
+    id: 6,
+    name: "Mentions",
   },
 ];

@@ -9,6 +9,10 @@ import suggestionOne from "@/public/suggestionOne.svg";
 import defaultLiveAvatar from "@/public/defaultLiveAvatar.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
 import Typography from "@/app/components/forms/Typography";
+import moreIcon from "@/public/icons/moreIcon.svg";
+import CollectionSortingOptionsModal from "@/app/components/modals/CollectionSortingOptionsModal";
+import Modal from "@/app/components/modals/Modal";
+import CreateNewList from "@/app/components/modals/CreateNewList";
 
 const Collections = () => {
   const [collectionsTab, setCollectionsTab] = useState([
@@ -31,6 +35,17 @@ const Collections = () => {
   const [blockUserModal, setBlockUserModal] = useState(false);
   const [restrictUserModal, setRestrictUserModal] = useState(false);
   const [reportUserModal, setReportUserModal] = useState(false);
+  const [showMoreOptions, setShowMoreOptions] = useState(false);
+  const [addUserToList, setAddUserToList] = useState(false);
+  const [createNewList, setCreateNewList] = useState(false);
+
+  const toggleMoreOptions = () => {
+    setShowMoreOptions(!showMoreOptions);
+  };
+
+  const toggleCreateNewList = () => {
+    setCreateNewList(!createNewList);
+  };
 
   return (
     <div className="flex">
@@ -41,6 +56,7 @@ const Collections = () => {
           <div
             className="flex items-center border border-grey_10 drop-shadow-7xl
           py-2 px-3 bg-secondary-btn rounded-3xl cursor-pointer"
+            onClick={toggleCreateNewList}
           >
             <Typography variant="subtitle3">Create New List</Typography>
             <Image src={plus} alt="plus" />
@@ -126,11 +142,23 @@ const Collections = () => {
           })}
         </div>
 
-        <div className="w-full ">
+        <div className="w-full flex items-center">
           <CollectionsSearchInput
             className="m-4 w-full"
             placeholder="Search user"
           />
+          <Image
+            onClick={toggleMoreOptions}
+            src={moreIcon}
+            alt="demo"
+            className="w-6 h-6 cursor-pointer"
+          />
+
+          {showMoreOptions && (
+            <div>
+              <CollectionSortingOptionsModal />
+            </div>
+          )}
         </div>
 
         <div className="flex flex-wrap w-full">
@@ -146,6 +174,8 @@ const Collections = () => {
             setRestrictUserModal={setRestrictUserModal}
             reportUserModal={reportUserModal}
             setReportUserModal={setReportUserModal}
+            addUserToList={addUserToList}
+            setAddUserToList={setAddUserToList}
           />
 
           <CollectionCard
@@ -181,6 +211,12 @@ const Collections = () => {
           />
         </div>
       </section>
+
+      {
+        <Modal show={createNewList} toggleModal={toggleCreateNewList}>
+          <CreateNewList toggleModal={toggleCreateNewList} />
+        </Modal>
+      }
     </div>
   );
 };

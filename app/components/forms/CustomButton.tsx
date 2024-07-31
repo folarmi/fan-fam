@@ -33,14 +33,9 @@ const CustomButton: React.FC<ButtonProps> = ({
       classes =
         "border border-grey_10 drop-shadow-7xl py-2 px-4 rounded bg-secondary-btn";
       break;
-    case "success":
+    case "primaryTwo":
       classes =
-        "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded";
-      break;
-    case "warning":
-      classes =
-        "bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded";
-      break;
+        "border border-blue_500 bg-primary bg-gradient-to-r from-gradient-start to-gradient-end shadow-primary-btn text-white text-base py-2";
     case "disabled":
       classes = "text-grey_100 font-medium py-2 px-4 rounded";
       break;
