@@ -55,7 +55,7 @@ const ForgotPassword = () => {
           Forgot password
         </Typography>
 
-        <Typography variant="p1" className="pb-8">
+        <Typography variant="p1" className="pb-8 text-grey_500">
           Enter the email you use to create your Fan Fam account and we will
           send you a password reset link.
         </Typography>

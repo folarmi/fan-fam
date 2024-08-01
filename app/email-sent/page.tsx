@@ -41,7 +41,7 @@ const EmailSent = () => {
         <Typography variant="h5" className="pb-4">
           Email sent!
         </Typography>
-        <Typography variant="p1" className="pb-8 w-[385px]">
+        <Typography variant="p1" className="pb-8 w-[385px] text-grey_500">
           We have sent an email at {userEmail} Check your inbox and follow the
           instruction to {emailType === "Signup" ? "verify" : "reset"} your{" "}
           {emailType === "Signup" ? "email" : "password"}.

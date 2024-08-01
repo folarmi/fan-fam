@@ -45,7 +45,7 @@ const Typography: React.FC<TypographyProps> = ({
       classes = "text-xl font-semibold leading-[16px]";
       break;
     case "p1":
-      classes = "text-base font-normal text-grey_500 leading-5";
+      classes = "text-base font-normal leading-5";
       break;
     case "p2":
       classes = "text-sm font-normal leading-5";

@@ -90,7 +90,7 @@ const Timeline = ({
             className="cursor-pointer"
           />
           {showModal && (
-            <div className="flex flex-col absolute left-[62%] bottom-[78%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white z-50">
+            <div className="flex flex-col absolute left-[62%] bottom-[73%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white z-50">
               {TimeLineModal}
             </div>
           )}

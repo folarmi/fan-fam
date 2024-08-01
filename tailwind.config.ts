@@ -79,6 +79,7 @@ const config: Config = {
         "custom-outer": "0px 2px 5px 0px rgba(0, 0, 0, 0.2)",
         "search-input":
           "inset 0 1px 3px rgba(236, 238, 251, 1), inset 0 1px 2px rgba(255, 255, 255, 0.25)",
+        "chat-interface": "inset 0px 4px 4px 0px rgba(236, 238, 251, 1)",
       },
       dropShadow: {
         "3xl": "0 4px 4px 0 rgba(183, 181, 181, 0.25)",
@@ -93,5 +94,4 @@ const config: Config = {
 };
 export default config;
 
-// rgba(236, 238, 251, 1)rgba(255, 255, 255, 0.25)
-// rgba(236, 238, 251, 1)
+//  'inner-custom': 'inset 0px 4px 4px 0px rgba(236, 238, 251, 1)

@@ -12,6 +12,7 @@ import pin from "@/public/icons/pin.svg";
 import timelineImage from "@/public/timelineImage.svg";
 import CommentBox from "@/app/components/CommentBox";
 import Typography from "@/app/components/forms/Typography";
+import ModalContent from "@/app/components/modals/ModalContent";
 
 const ChatInterface = () => {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +23,7 @@ const ChatInterface = () => {
 
   return (
     <>
-      <section className="mt-8 w-full pr-[88px] pl-4">
+      <section className="mt-8 w-full pl-4">
         <div className="flex items-center bg-white drop-shadow-4xl">
           <Image src={defaultAvatar} alt="demo" className="w-10 h-10" />
 
@@ -51,23 +52,22 @@ const ChatInterface = () => {
 
           {showModal && (
             <div className="flex flex-col absolute left-[75%] bottom-[77%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white z-50">
-              <div className="flex items-center justify-between py-2 hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6">
-                <Typography variant="p2" className="text-grey_700">
-                  Pin message
-                </Typography>
-              </div>
-              <Typography
-                variant="p2"
-                className="text-grey_700 py-2 hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6"
-              >
-                Mute message
-              </Typography>
-              <Typography
-                variant="p2"
-                className="text-grey_700 py-2 hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6"
-              >
-                Delete user
-              </Typography>
+              <ModalContent
+                content={[
+                  {
+                    id: 1,
+                    name: "Pin message",
+                  },
+                  {
+                    id: 2,
+                    name: "Mute message",
+                  },
+                  {
+                    id: 3,
+                    name: "Delete user",
+                  },
+                ]}
+              />
             </div>
           )}
         </div>
@@ -87,33 +87,28 @@ const ChatInterface = () => {
             </Typography>
           </div>
 
-          {/* <div className="flex items-center ml-auto border border_grey_60 bg-white">
-          <Image src={searchIcon} alt="search icon" className="pr-1" />
-          <input
-            className="bg-white drop-shadow-4xl outline-none text-black"
-            placeholder="Search.."
-          />
-        </div> */}
           <div className="flex ml-auto">
-            <div className="relative w-[212px]">
+            <div className="relative w-[212px] ">
               <input
                 type="text"
-                className="w-full pl-10 pr-4 py-2 rounded-lg shadow-xl focus:outline-none"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-grey_60 rounded shadow-chat-interface focus:outline-none"
               />
               <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
                 <svg
-                  className="w-6 h-6 text-gray-400"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
                   fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1116.5 9.65a7.5 7.5 0 010 10.6z"
-                  ></path>
+                    d="M7.66658 14.5002C3.89992 14.5002 0.833252 11.4335 0.833252 7.66683C0.833252 3.90016 3.89992 0.833496 7.66658 0.833496C11.4333 0.833496 14.4999 3.90016 14.4999 7.66683C14.4999 11.4335 11.4333 14.5002 7.66658 14.5002ZM7.66658 1.8335C4.44659 1.8335 1.83325 4.4535 1.83325 7.66683C1.83325 10.8802 4.44659 13.5002 7.66658 13.5002C10.8866 13.5002 13.4999 10.8802 13.4999 7.66683C13.4999 4.4535 10.8866 1.8335 7.66658 1.8335Z"
+                    fill="#6F7076"
+                  />
+                  <path
+                    d="M14.6666 15.1666C14.54 15.1666 14.4133 15.12 14.3133 15.02L12.98 13.6866C12.7866 13.4933 12.7866 13.1733 12.98 12.98C13.1733 12.7866 13.4933 12.7866 13.6866 12.98L15.02 14.3133C15.2133 14.5066 15.2133 14.8266 15.02 15.02C14.92 15.12 14.7933 15.1666 14.6666 15.1666Z"
+                    fill="#292D32"
+                  />
                 </svg>
               </div>
             </div>
@@ -125,7 +120,7 @@ const ChatInterface = () => {
             May 18
           </Typography>
 
-          <section>
+          <section className="pr-[88px]">
             <div className="flex items-center">
               <Image
                 src={defaultAvatar}
@@ -139,7 +134,7 @@ const ChatInterface = () => {
               </div>
             </div>
 
-            <Image src={timelineImage} alt="timelineImage" className="mt-3" />
+            <Image src={timelineImage} alt="timelineImage" className="mt-3 " />
 
             <div className="flex items-center mt-6">
               <div className="bg-green_10 p-2 w-full mr-4">

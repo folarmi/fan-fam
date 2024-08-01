@@ -6,17 +6,11 @@ import Image from "next/image";
 import filter from "@/public/icons/filter.svg";
 import mediaToggle from "@/public/icons/mediaToggle.svg";
 import switchList from "@/public/icons/switchList.svg";
-import gridOne from "@/public/gridOne.svg";
-import gridTwo from "@/public/gridTwo.svg";
-import gridThree from "@/public/gridThree.svg";
-import gridFour from "@/public/gridFour.svg";
-import gridFive from "@/public/gridFive.svg";
-import gridSix from "@/public/gridSix.svg";
 import Timeline from "./cards/Timeline";
 import defaultAvatar from "@/public/defaultAvatar.svg";
 import timelineImage from "@/public/timelineImage.svg";
 import timelineTwo from "@/public/timelineTwo.svg";
-import { sortOptions } from "../data";
+import { images, sortOptions } from "../data";
 import RadioButton from "./RadioButtonLabel";
 import AudioMedia from "./AudioMedia";
 import AudioFilesWhenList from "./AudioFilesWhenList";
@@ -47,27 +41,12 @@ const Media = () => {
       number: "8",
     },
   ]);
-  const [isMediaTabActive, setIsMediaTabActive] = useState("Photos");
+  const [isMediaTabActive, setIsMediaTabActive] = useState("All");
   const [ifList, setIfList] = useState(false);
   const [sortModal, setSortModal] = useState(false);
   const [selectedValue, setSelectedValue] = useState("option1");
   const [potraitOrLandScape, setPotraitOrLandScape] = useState(false);
   const [currentImage, setCurrentImage] = useState("");
-
-  const images = [
-    gridOne,
-    timelineTwo,
-    gridThree,
-    gridFour,
-    gridFive,
-    gridSix,
-    gridOne,
-    gridTwo,
-    gridThree,
-    gridFour,
-    gridFive,
-    gridSix,
-  ];
 
   const toggleList = () => {
     setIfList(!ifList);

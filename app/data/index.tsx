@@ -10,6 +10,14 @@ import defaultAvatarTwo from "@/public/icons/defaultAvatarTwo.svg";
 import defaultAvatarThree from "@/public/icons/defaultAvatarThree.svg";
 import defaultAvatarFour from "@/public/icons/defaultAvatarFour.svg";
 import defaultAvatarFive from "@/public/icons/defaultAvatarFive.svg";
+import gridOne from "@/public/gridOne.svg";
+import gridTwo from "@/public/gridTwo.svg";
+import gridThree from "@/public/gridThree.svg";
+import gridFour from "@/public/gridFour.svg";
+import gridFive from "@/public/gridFive.svg";
+import gridSix from "@/public/gridSix.svg";
+import timelineTwo from "@/public/timelineTwo.svg";
+import audioFile from "@/public/icons/audioFile.svg";
 
 export const sideBarItems = [
   {
@@ -319,4 +327,49 @@ export const notificationTabs = [
     id: 6,
     name: "Mentions",
   },
+];
+
+export const sampleChatGroups = [
+  {
+    id: 1,
+    groupName: "Newly subscribed users",
+    noOfUsers: "8 users",
+  },
+  {
+    id: 2,
+    groupName: "$30 users",
+    noOfUsers: "5 users",
+  },
+  {
+    id: 3,
+    groupName: "$50 users",
+    noOfUsers: "8 users",
+  },
+];
+
+export const images = [
+  gridOne,
+  timelineTwo,
+  gridThree,
+  gridFour,
+  gridFive,
+  gridSix,
+  gridOne,
+  gridTwo,
+  gridThree,
+  gridFour,
+  gridFive,
+  gridSix,
+];
+
+export const audioImages = [
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
 ];

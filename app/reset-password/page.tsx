@@ -53,7 +53,7 @@ const ResetPassword = () => {
   return (
     <AuthLayout>
       <Typography variant="h5">Create new password</Typography>
-      <Typography variant="p1" className="pt-4 pb-8">
+      <Typography variant="p1" className="pt-4 pb-8 text-grey_500">
         Create your new password and make sure it is different from your old
         password.
       </Typography>
