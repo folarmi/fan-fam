@@ -23,8 +23,8 @@ const ChatInterface = () => {
 
   return (
     <>
-      <section className="mt-8 w-full pl-4">
-        <div className="flex items-center bg-white drop-shadow-4xl">
+      <section className="mt-8 w-full pl-4 pr-[88px]">
+        <div className="flex items-center bg-white drop-shadow-4xl ">
           <Image src={defaultAvatar} alt="demo" className="w-10 h-10" />
 
           <div className="ml-2">
@@ -120,7 +120,7 @@ const ChatInterface = () => {
             May 18
           </Typography>
 
-          <section className="pr-[88px]">
+          <section className="">
             <div className="flex items-center">
               <Image
                 src={defaultAvatar}

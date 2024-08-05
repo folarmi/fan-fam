@@ -11,6 +11,7 @@ interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
     | "p1"
     | "p2"
     | "p3"
+    | "subtitle1"
     | "subtitle2"
     | "subtitle3"
     | "caption"; // Add more variants as needed
@@ -52,6 +53,9 @@ const Typography: React.FC<TypographyProps> = ({
       break;
     case "p3":
       classes = "text-[12px] font-normal";
+      break;
+    case "subtitle1":
+      classes = "text-base font-medium leading-[20px]";
       break;
     case "subtitle2":
       classes = "text-sm font-medium leading-[18px]";

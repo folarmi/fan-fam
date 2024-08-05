@@ -4,9 +4,17 @@ type CheckBoxProps = {
   iflabel?: boolean;
   checked: boolean;
   onChange: any;
+  labelText?: string;
+  labelStyles?: string;
 };
 
-const CustomCheckBox = ({ iflabel, checked, onChange }: CheckBoxProps) => {
+const CustomCheckBox = ({
+  iflabel,
+  checked,
+  onChange,
+  labelText,
+  labelStyles,
+}: CheckBoxProps) => {
   return (
     <div className="flex items-center">
       <input
@@ -19,7 +27,9 @@ const CustomCheckBox = ({ iflabel, checked, onChange }: CheckBoxProps) => {
       />
       <label
         htmlFor="checked-checkbox"
-        className="relative cursor-pointer w-6 h-6 bg-blue_500 rounded-lg flex items-center justify-center"
+        className={`relative cursor-pointer w-6 h-6 rounded-lg flex items-center justify-center ${
+          checked ? "bg-blue_500" : "bg-white border-[0.67px] border-grey_400"
+        }`}
       >
         <svg
           className={`w-2 h-[6.5px] text-white ${checked ? "block" : "hidden"}`}
@@ -32,18 +42,15 @@ const CustomCheckBox = ({ iflabel, checked, onChange }: CheckBoxProps) => {
           <path
             d="M1 5L4 7.5L9 1"
             stroke="white"
-            stroke-width="2"
+            strokeWidth="2"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
         </svg>
       </label>
       {iflabel && (
-        <label
-          htmlFor="checked-checkbox"
-          className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-        >
-          Checked state
+        <label htmlFor="checked-checkbox" className={`ms-2 ${labelStyles}`}>
+          {labelText}
         </label>
       )}
     </div>

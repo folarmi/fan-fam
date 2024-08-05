@@ -60,7 +60,7 @@ export const sideBarItems = [
     id: 7,
     name: "More",
     image: profile,
-    link: "/dashboard",
+    link: "/dashboard/settings/account",
   },
 ];
 
@@ -372,4 +372,274 @@ export const audioImages = [
   audioFile,
   audioFile,
   audioFile,
+];
+
+export const samplePollData = [
+  {
+    id: 1,
+    name: "This is option 1 of the poll",
+    percent: "70%",
+  },
+  {
+    id: 2,
+    name: "This is option 2 of the poll",
+    percent: "30%",
+  },
+];
+
+export const settingsModule = [
+  {
+    id: 1,
+    name: "Account",
+    path: "/dashboard/settings/account",
+  },
+  {
+    id: 2,
+    name: "Subscriptions",
+    path: "/dashboard/settings/subscriptions",
+  },
+  {
+    id: 3,
+    name: "Collections",
+    path: "/dashboard/settings/collections",
+  },
+  {
+    id: 4,
+    name: "Chat",
+    path: "/dashboard/settings/chat",
+  },
+  {
+    id: 5,
+    name: "Notifications",
+    path: "/dashboard/settings/notifications",
+  },
+  {
+    id: 6,
+    name: "Story",
+    path: "/dashboard/settings/story",
+  },
+  {
+    id: 7,
+    name: "Display",
+    path: "/dashboard/settings/display",
+  },
+  {
+    id: 8,
+    name: "QR Code",
+    path: "/dashboard/settings/qr-code",
+  },
+  {
+    id: 9,
+    name: "Privacy and safety",
+    path: "/dashboard/settings/privacy",
+  },
+];
+
+export const accountSettingsModules = [
+  {
+    groupName: "Security",
+    items: [
+      {
+        id: 1,
+        name: "Password",
+        path: "/dashboard/settings/account/change-password",
+      },
+      {
+        id: 2,
+        name: "Login sessions",
+        path: "/dashboard/settings/account/login-sessions",
+      },
+      {
+        id: 3,
+        name: "Two factor authentication",
+        path: "/dashboard/settings/account/two-factor",
+      },
+    ],
+  },
+  {
+    groupName: "Linked accounts",
+    items: [
+      {
+        id: 1,
+        name: "TikTok",
+        path: "/dashboard/settings/account/tiktok",
+      },
+      {
+        id: 2,
+        name: "X App",
+        path: "/dashboard/settings/account/twitter",
+      },
+      {
+        id: 3,
+        name: "Facebook",
+        path: "/dashboard/settings/account/facebook",
+      },
+      {
+        id: 4,
+        name: "Google",
+        path: "/dashboard/settings/account/google",
+      },
+    ],
+  },
+  {
+    groupName: "Account management",
+    items: [
+      {
+        id: 1,
+        name: "Delete account",
+        path: "/dashboard/settings/account/delete-account",
+      },
+    ],
+  },
+];
+
+export const sampleLoginSessions = [
+  {
+    id: 1,
+    deviceName: "Chrome 126, Mac 10.15, Apple",
+    ipAddress: "102.88.82.27 Nigeria",
+    status: true,
+    lastSeen: "",
+  },
+  {
+    id: 2,
+    deviceName: "Microsoft Edge 126, Windows 10",
+    ipAddress: "102.88.82.27 United States",
+    status: false,
+    lastSeen: "7/25/24 5:43pm",
+  },
+  {
+    id: 3,
+    deviceName: "Microsoft Edge 126, Windows 10",
+    ipAddress: "102.88.82.27 United States",
+    status: false,
+    lastSeen: "7/25/24 5:43pm",
+  },
+];
+
+export const sampleTwoFactor = [
+  { id: 1, name: "SMS", desc: "A one time code will be sent to your phone" },
+  { id: 2, name: "Face ID", desc: "Works only on your mobile phone" },
+];
+
+export const notificationsSettings = [
+  {
+    id: 1,
+    name: "Push notifications",
+    desc: "Get push notifications to find out what’s going on when you’re not on OnlyFans. You can turn them off anytime.",
+  },
+  {
+    id: 2,
+    name: "Mentions",
+    desc: "When OFF you will be notified when a friend mentions you",
+  },
+  {
+    id: 3,
+    name: "Email notification",
+    desc: "Get emails to find out what’s going on when you’re not on OnlyFans. You can turn them off anytime.",
+  },
+];
+
+export const displaySettings = [
+  {
+    groupName: "Language",
+    items: [
+      {
+        id: 1,
+        name: "English",
+      },
+      {
+        id: 2,
+        name: "French",
+      },
+      {
+        id: 3,
+        name: "Spanish",
+      },
+    ],
+  },
+  {
+    groupName: "Theme",
+    items: [
+      {
+        id: 1,
+        name: "Light",
+      },
+      {
+        id: 2,
+        name: "Dark",
+      },
+      {
+        id: 3,
+        name: "System",
+      },
+    ],
+  },
+];
+
+export const subscriptionSettings = [
+  {
+    id: 1,
+    name: "Profile  promotion campaign",
+    desc: "Offer a free trial or a discounted subscription on your profile for a limited number or already expired subscription",
+    buttonText: "Start promotion campaign",
+  },
+  {
+    id: 2,
+    name: "Subscription bundles",
+    desc: "Offer several months of subscription as a discounted bundle",
+    buttonText: "Add bundle",
+  },
+  {
+    id: 3,
+    name: "Trial links",
+    desc: "Create and share separate links with free trial subscription",
+    buttonText: "Create new free trial link",
+  },
+];
+
+export const limitedOfferData = [
+  {
+    id: 1,
+    name: "Started",
+    date: "July 31",
+  },
+  {
+    id: 2,
+    name: "End",
+    date: "August 4",
+  },
+  {
+    id: 3,
+    name: "Days left",
+    date: "2",
+  },
+  {
+    id: 4,
+    name: "Claims count",
+    date: "5",
+  },
+];
+
+export const happyPeopleFeed = [
+  {
+    id: 1,
+    name: "Link created",
+    date: "July 31",
+  },
+  {
+    id: 2,
+    name: "Link expires",
+    date: "August 4",
+  },
+  {
+    id: 3,
+    name: "Offer limit",
+    date: "August 4",
+  },
+  {
+    id: 4,
+    name: "Claims count",
+    date: "5",
+  },
 ];

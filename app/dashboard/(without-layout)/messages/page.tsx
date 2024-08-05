@@ -39,7 +39,7 @@ const Messages = () => {
       name: "Chat groups",
     },
   ]);
-  const [isActiveTab, setIsActiveTab] = useState("Chat groups");
+  const [isActiveTab, setIsActiveTab] = useState("All");
   const [createNewGroup, setCreateNewGroup] = useState(false);
 
   const toggleCreateNewChatGroup = () => {
@@ -53,7 +53,7 @@ const Messages = () => {
 
         <div
           className="flex items-center justify-between w-full bg-grey_20 py-3 px-4  rounded-sm
-     border-grey_20 drop-shadow-3xl shadow-header-md mb-2"
+   border border-grey_20 drop-shadow-3xl shadow-header-md mb-2"
         >
           <div
             onClick={toggleCreateNewChatGroup}
@@ -160,7 +160,7 @@ const Messages = () => {
                   <div>
                     <Typography
                       variant="titleTwo"
-                      className="pb-[2px] text_grey_900"
+                      className="pb-[2px] text-grey_900"
                     >
                       {groupName}
                     </Typography>

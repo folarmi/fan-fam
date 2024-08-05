@@ -3,11 +3,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import defaultAvatar from "@/public/defaultAvatar.svg";
-import verifyBlue from "@/public/icons/verifyBlue.svg";
 import moreIcon from "@/public/icons/moreIcon.svg";
-import realNotification from "@/public/icons/realNotification.svg";
-import star from "@/public/icons/star.svg";
-import pin from "@/public/icons/pin.svg";
 // import searchIcon from "@/public/icons/searchIcon.svg";
 import timelineImage from "@/public/timelineImage.svg";
 import CommentBox from "@/app/components/CommentBox";
@@ -57,7 +53,7 @@ const GroupChatInterface = () => {
 
   return (
     <>
-      <section className="mt-8 w-full pl-4">
+      <section className="mt-8 w-full pl-4 pr-[88px]">
         <div className="flex justify-between">
           <Typography variant="titleOne" className="text-grey_900">
             $30 users
@@ -124,7 +120,7 @@ const GroupChatInterface = () => {
                 May 18
               </Typography>
 
-              <section className="pr-[88px]">
+              <section className="">
                 <div className="flex items-center">
                   <Image
                     src={defaultAvatar}
@@ -247,7 +243,7 @@ const GroupChatInterface = () => {
                 <div className="flex items-center flex-wrap gap-[1px] cursor-pointer">
                   {images.map((src, index) => (
                     <div
-                      className="w-[180px] h-[210px] overflow-hidden"
+                      className="w-[165px] h-[210px] overflow-hidden"
                       key={index}
                       // onClick={() => toggleProtraitModal(src)}
                     >

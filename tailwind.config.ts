@@ -48,6 +48,7 @@ const config: Config = {
         grey_700: "#414245",
         grey_800: "#2A2A2D",
         grey_900: "#131314",
+        gray_100: "#101510",
         blue_100: "#F7FAFC",
         blue_200: "#E4F1FC",
         blue_300: "#E0E2EE80",
@@ -55,10 +56,12 @@ const config: Config = {
         blue_500: "#2599F6",
         blue_10: "#A7D4FC",
         green_10: "#F5FBF5",
+        green_50: "#EFFAED",
         green_100: "#1CF417",
+        green_600: "#29AF1D",
         red_100: "#FC0404",
-        // "gradient-start": "#4F86F0",
-        // "gradient-end": "#2D72E6",
+        red_200: "#FFD1D1",
+        red_300: "#F50000",
         "gradient-start": "#FFFFFF29",
         "gradient-end": "#FFFFFF00",
       },
@@ -80,6 +83,10 @@ const config: Config = {
         "search-input":
           "inset 0 1px 3px rgba(236, 238, 251, 1), inset 0 1px 2px rgba(255, 255, 255, 0.25)",
         "chat-interface": "inset 0px 4px 4px 0px rgba(236, 238, 251, 1)",
+        "custom-combined":
+          "0px 4px 4px 0px rgba(236, 238, 251, 1), inset 0px -4px 1px 0px rgba(255, 255, 255, 0.25)",
+        "disabled-button":
+          "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
       },
       dropShadow: {
         "3xl": "0 4px 4px 0 rgba(183, 181, 181, 0.25)",
@@ -93,5 +100,3 @@ const config: Config = {
   plugins: [],
 };
 export default config;
-
-//  'inner-custom': 'inset 0px 4px 4px 0px rgba(236, 238, 251, 1)

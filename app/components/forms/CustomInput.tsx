@@ -8,6 +8,8 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   readOnly?: boolean;
   type?: string;
+  borderRadius?: string;
+  onFocus?: () => void;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -17,6 +19,8 @@ const CustomInput: React.FC<CustomInputProps> = ({
   label,
   readOnly,
   type,
+  borderRadius = "3xl",
+  onFocus,
   ...rest
 }) => {
   const {
@@ -49,14 +53,17 @@ const CustomInput: React.FC<CustomInputProps> = ({
         type={showPassword ? "text" : type}
         {...field}
         {...rest}
-        className={`block w-full h-10 rounded-3xl px-4 text-sm bg-white border appearance-none focus:outline-none focus:ring-0 peer ${
+        className={`block w-full h-10 rounded-${borderRadius} px-4 text-sm bg-white border appearance-none focus:outline-none focus:ring-0 peer ${
           error
             ? "border border-red-500"
             : "border-gray-300 focus:border-primary"
         }`}
         placeholder=" "
         value={field.value || ""}
-        onFocus={() => setIsFocused(true)}
+        onFocus={(e) => {
+          setIsFocused(true);
+          if (onFocus) onFocus();
+        }}
         onBlur={() => setIsFocused(!!field.value)}
         style={{
           backgroundColor: readOnly ? "hsl(0,0%, 90%)" : "",
