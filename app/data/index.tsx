@@ -643,3 +643,94 @@ export const happyPeopleFeed = [
     date: "5",
   },
 ];
+
+export const privacyAndSafetyItems = [
+  {
+    groupName: "Profile",
+    items: [
+      {
+        id: 1,
+        name: "Show activity status",
+        isOn: true,
+      },
+      {
+        id: 2,
+        name: "Show activity status",
+        isOn: false,
+      },
+      {
+        id: 3,
+        name: "Show media count on your profile",
+        isOn: true,
+      },
+      {
+        id: 4,
+        name: "Public friends lst",
+        isOn: true,
+      },
+      {
+        id: 5,
+        name: "Password",
+        isOn: true,
+      },
+    ],
+  },
+  {
+    groupName: "Discoverability",
+    items: [
+      {
+        id: 1,
+        name: "Opt out of suggestions",
+        isOn: false,
+      },
+    ],
+  },
+  {
+    groupName: "Water marks",
+    items: [
+      {
+        id: 1,
+        name: "Pictures",
+        isOn: false,
+      },
+      {
+        id: 2,
+        name: "Videos",
+        isOn: false,
+      },
+    ],
+  },
+  {
+    groupName: "Posts",
+    items: [
+      {
+        id: 1,
+        name: "Enable comments",
+        isOn: true,
+      },
+      {
+        id: 2,
+        name: "Allow comments only from subscribers who spent $1 or more",
+        isOn: false,
+      },
+      {
+        id: 3,
+        name: "Show post tips sum",
+        isOn: true,
+      },
+    ],
+  },
+];
+
+export const privacyAndSafety = [
+  {
+    id: 1,
+    name: "Blocked by country",
+    path: "/dashboard/settings/privacy/block-country",
+  },
+  {
+    id: 2,
+    name: "Blocked by IP address",
+    path: "/dashboard/settings/privacy/block-ip",
+  },
+];

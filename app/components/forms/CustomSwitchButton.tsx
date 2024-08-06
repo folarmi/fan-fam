@@ -1,10 +1,19 @@
 import React from "react";
 
-const CustomSwitchButton = () => {
+type CustomSwitchButtonProp = {
+  isChecked?: boolean;
+};
+
+const CustomSwitchButton = ({ isChecked }: CustomSwitchButtonProp) => {
   return (
     <div>
       <label className="inline-flex items-center cursor-pointer">
-        <input type="checkbox" value="" className="sr-only peer" />
+        <input
+          type="checkbox"
+          value=""
+          className="sr-only peer"
+          checked={isChecked}
+        />
         <div
           className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer 
         peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white 

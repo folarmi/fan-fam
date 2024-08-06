@@ -2,7 +2,7 @@ import React from "react";
 import ReactSelect from "react-select";
 
 type CustomSelectProps = {
-  placeholder: string;
+  placeholder?: string;
   className?: string;
   ifLabel?: boolean;
   label?: string;
@@ -37,6 +37,10 @@ const CustomSelect = ({
             color: "#BDBFC9",
             fontWeight: 400,
             fontSize: 12,
+          }),
+          input: (baseStyles) => ({
+            ...baseStyles,
+            borderRadius: 24,
           }),
         }}
         placeholder={placeholder}
