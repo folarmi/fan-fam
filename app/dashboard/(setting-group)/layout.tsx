@@ -53,14 +53,14 @@ const SettingLayout = ({
           })}
         </div>
 
-        <div className="drop-shadow-5x shadow-post-button w-[221px]">
-          <CustomButton className="mt-6">Post</CustomButton>
+        <div className="drop-shadow-5xl shadow-post-button w-[221px]">
+          <CustomButton className="mt-6 w-full">Post</CustomButton>
         </div>
       </div>
 
       <section className="w-[25%]">
         <div
-          className="w-full bg-grey_20 py-3 px-4 border
+          className="w-full bg-grey_20 py-3 px-4 h-14 border
      border-grey_20 shadow-custom-combined mb-2"
         >
           <Typography variant="subtitle1">Settings</Typography>

@@ -1,9 +1,9 @@
 "use client";
 
-import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CustomButton from "@/app/components/forms/CustomButton";
 import CustomInput from "@/app/components/forms/CustomInput";
 import Typography from "@/app/components/forms/Typography";
+import AddBundle from "@/app/components/modals/AddBundle";
 import FreeTrialLink from "@/app/components/modals/FreeTrialLink";
 import Modal from "@/app/components/modals/Modal";
 import PromotionalCampaign from "@/app/components/modals/PromotionalCampaign";
@@ -11,30 +11,35 @@ import Tag from "@/app/components/molecules/Tag";
 import {
   happyPeopleFeed,
   limitedOfferData,
+  subBundles,
   subscriptionSettings,
 } from "@/app/data";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import SubscriptionHeader from "./SubscriptionHeader";
 
 const Subscriptions = () => {
   const { control } = useForm();
   const [isPromotionalCampaign, setIsPromotionalCampaign] = useState(false);
   const [isFreeTrialLink, setIsFreeTrialLink] = useState(false);
   const [isPromotion, setIsPromotion] = useState(false);
-  const [isFreeTrial, setIsFreeTrial] = useState(true);
+  const [isFreeTrial, setIsFreeTrial] = useState(false);
+  const [isBundleModal, setIsBundleModal] = useState(false);
+  const [isBundleContent, setIsBundleContent] = useState(true);
 
   const toggleModal = (buttonText: string) => {
     if (buttonText === "Start promotion campaign")
       setIsPromotionalCampaign(!isPromotionalCampaign);
     else if (buttonText === "Create new free trial link")
       setIsFreeTrialLink(!isFreeTrialLink);
+    else if (buttonText === "Add bundle") setIsBundleModal(!isBundleModal);
   };
 
   return (
     <div>
-      <AccountBackButton showBack={false} />
+      <SubscriptionHeader text="Subscription Settings" />
 
-      <section className="mt-4 ml-4">
+      <section className="mt-4 ml-4 p-4 shadow-timeline-card-shadow">
         <CustomInput
           label="Price per month"
           name="phoneNumber"
@@ -46,7 +51,7 @@ const Subscriptions = () => {
 
         <div className="flex items-center justify-between -mt-3">
           <Typography variant="p3" className="text-grey_500">
-            Minimum $5 or free
+            Minimum $5 or freesss
           </Typography>
 
           <div className="flex items-center">
@@ -67,18 +72,18 @@ const Subscriptions = () => {
       <div className="ml-4">
         {subscriptionSettings?.map(({ id, buttonText, desc, name }) => {
           return (
-            <div key={id} className="mt-6">
+            <div key={id} className="mt-6 p-4 shadow-timeline-card-shadow">
               <Typography variant="subtitle2" className="text-grey_800">
                 {name}
               </Typography>
               <Typography variant="p2" className="text-grey_500 pb-[2px]">
                 {desc}
               </Typography>
-              <div className="flex ml-auto justify-end w-1/2 mt-2">
+              <div className="flex ml-auto justify-end mt-2">
                 <CustomButton
                   onClick={() => toggleModal(buttonText)}
                   variant="secondary"
-                  className="text-xs w-fit cursor-pointer"
+                  className="text-xs w-fit cursor-pointer flex-shrink-0"
                 >
                   {buttonText}
                 </CustomButton>
@@ -130,6 +135,62 @@ const Subscriptions = () => {
                 </div>
               )}
 
+              {id === 2 && isBundleContent && (
+                <div className="mt-2">
+                  {subBundles?.map(({ amount, duration, id }) => {
+                    return (
+                      <div
+                        key={id}
+                        className="flex items-center justify-between border border-grey_100 px-4 py-6 rounded-2xl mb-4"
+                      >
+                        <div className="flex items-center">
+                          <div className="flex items-center mr-6">
+                            <Typography variant="p2" className="text-grey_500">
+                              Amount:
+                            </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              className="text-grey_800 pl-2"
+                            >
+                              {amount}
+                            </Typography>
+                          </div>
+
+                          <div className="flex items-center">
+                            <Typography variant="p2" className="text-grey_500">
+                              Duration:
+                            </Typography>
+                            <Typography
+                              variant="subtitle2"
+                              className="text-grey_800 pl-2"
+                            >
+                              {duration}
+                            </Typography>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center">
+                          <CustomButton
+                            variant="secondary"
+                            className="text-xs mr-4 w-fit"
+                          >
+                            Edit Bundle
+                          </CustomButton>
+
+                          <CustomButton
+                            variant="secondary"
+                            className="text-xs mr-4 w-fit"
+                            onClick={() => setIsBundleContent(false)}
+                          >
+                            Delete
+                          </CustomButton>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+
               {id === 3 && isFreeTrial && (
                 <div className="">
                   <Typography variant="titleTwo" className="text-grey_800 py-4">
@@ -157,17 +218,19 @@ const Subscriptions = () => {
                     );
                   })}
 
-                  <div className="flex items-center justify-end my-8 ml-auto">
+                  <div className="flex items-center justify-end ml-auto my-8 w-1/3">
                     <CustomButton
                       onClick={() => setIsFreeTrial(false)}
                       variant="secondary"
                       className="text-xs mr-4 w-fit"
+                      primaryButtonSize="xs"
                     >
                       Delete
                     </CustomButton>
                     <CustomButton
                       variant="primary"
                       className="text-xs px-3 w-fit"
+                      primaryButtonSize="xs"
                     >
                       Copy link
                     </CustomButton>
@@ -191,6 +254,10 @@ const Subscriptions = () => {
         toggleModal={() => toggleModal("Create new free trial link")}
       >
         <FreeTrialLink toggleModal={toggleModal} />
+      </Modal>
+
+      <Modal show={isBundleModal} toggleModal={() => toggleModal("Add Bundle")}>
+        <AddBundle toggleModal={toggleModal} />
       </Modal>
     </div>
   );

@@ -86,7 +86,7 @@ const DashboardLayout = ({
         </div>
 
         <div className="drop-shadow-5xl shadow-post-button w-[221px]">
-          <CustomButton className="mt-6">Post</CustomButton>
+          <CustomButton className="mt-6 w-full">Post</CustomButton>
         </div>
       </div>
       <main className="w-[50%]">{children}</main>

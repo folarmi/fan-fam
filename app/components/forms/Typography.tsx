@@ -7,6 +7,7 @@ interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
     | "titleOne"
     | "titleTwo"
     | "labelOne"
+    | "h4"
     | "h5"
     | "p1"
     | "p2"
@@ -42,8 +43,14 @@ const Typography: React.FC<TypographyProps> = ({
     case "labelOne":
       classes = "text-xs font-medium leading-[16px]";
       break;
+    case "h4":
+      classes = "text-2xl font-bold leading-[16px]";
+      break;
     case "h5":
       classes = "text-xl font-semibold leading-[16px]";
+      break;
+    case "h4":
+      classes = "text-2xl font-bold leading-[16px]";
       break;
     case "p1":
       classes = "text-base font-normal leading-5";

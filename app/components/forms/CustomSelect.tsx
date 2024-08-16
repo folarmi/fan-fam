@@ -28,6 +28,7 @@ const CustomSelect = ({
       )}
       <ReactSelect
         options={options}
+        className=" rounded-2xl outline-none text-sm w-full "
         components={{
           IndicatorSeparator: () => null,
         }}
@@ -40,7 +41,18 @@ const CustomSelect = ({
           }),
           input: (baseStyles) => ({
             ...baseStyles,
+            // border: 2,
+            // borderColor: "red",
+            // borderStyle: "solid",
             borderRadius: 24,
+          }),
+          container: (baseStyles) => ({
+            ...baseStyles,
+            borderRadius: 24,
+            backgroundColor: "yellow",
+            // borderColor: "red",
+            // borderStyle: "solid",
+            // borderRadius: 24,
           }),
         }}
         placeholder={placeholder}

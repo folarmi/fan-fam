@@ -171,7 +171,7 @@ const CustomButton: React.FC<ButtonProps> = ({
 
   const mergedClassName = `${baseClasses} ${
     disabled ? disabledClasses : ""
-  } ${className} w-full whitespace-nowrap rounded-3xl font-medium text-base`;
+  } ${className} whitespace-nowrap rounded-3xl font-medium text-base`;
 
   return (
     <button

@@ -9,6 +9,7 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   readOnly?: boolean;
   type?: string;
   borderRadius?: string;
+  className?: string;
   onFocus?: () => void;
 }
 
@@ -19,6 +20,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   label,
   readOnly,
   type,
+  className,
   borderRadius = "3xl",
   onFocus,
   ...rest
@@ -46,7 +48,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
   }, [field.value]);
 
   return (
-    <div className="relative flex flex-col gap-2 mb-6 w-full">
+    <div className={`relative flex flex-col gap-2 mb-6 w-full ${className}`}>
       <input
         readOnly={readOnly}
         id={name}

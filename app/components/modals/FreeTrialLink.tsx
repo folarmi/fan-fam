@@ -2,7 +2,6 @@ import React from "react";
 import CustomButton from "../forms/CustomButton";
 import Typography from "../forms/Typography";
 import { useForm } from "react-hook-form";
-import Tag from "../molecules/Tag";
 import CustomSelect from "../forms/CustomSelect";
 import CustomInput from "../forms/CustomInput";
 

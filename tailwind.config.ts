@@ -44,10 +44,11 @@ const config: Config = {
         grey_300: "#A5A7AF",
         grey_400: "#8D8E96",
         grey_500: "#6F7076",
-        grey_600: "#F3F4FC",
+        grey_600: "#58595E",
         grey_700: "#414245",
         grey_800: "#2A2A2D",
         grey_900: "#131314",
+        grey_90: "#F3F4FC",
         gray_100: "#101510",
         blue_100: "#F7FAFC",
         blue_200: "#E4F1FC",
@@ -62,6 +63,7 @@ const config: Config = {
         red_100: "#FC0404",
         red_200: "#FFD1D1",
         red_300: "#F50000",
+        red_400: "#E20C0C",
         "gradient-start": "#FFFFFF29",
         "gradient-end": "#FFFFFF00",
       },
@@ -87,6 +89,7 @@ const config: Config = {
           "0px 4px 4px 0px rgba(236, 238, 251, 1), inset 0px -4px 1px 0px rgba(255, 255, 255, 0.25)",
         "disabled-button":
           "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        "timeline-card-shadow": "0px 4px 4px 0px rgba(236, 238, 251, 1)",
       },
       dropShadow: {
         "3xl": "0 4px 4px 0 rgba(183, 181, 181, 0.25)",
@@ -100,3 +103,5 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+
+// box-shadow: 0px 4px 4px 0px rgba(236, 238, 251, 1)

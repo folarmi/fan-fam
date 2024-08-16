@@ -18,6 +18,9 @@ import gridFive from "@/public/gridFive.svg";
 import gridSix from "@/public/gridSix.svg";
 import timelineTwo from "@/public/timelineTwo.svg";
 import audioFile from "@/public/icons/audioFile.svg";
+import post from "@/public/icons/post.svg";
+import story from "@/public/icons/story.svg";
+import video from "@/public/icons/video.svg";
 
 export const sideBarItems = [
   {
@@ -48,7 +51,7 @@ export const sideBarItems = [
     id: 5,
     name: "Subscriptions",
     image: collections,
-    link: "/dashboard",
+    link: "/dashboard/subscriptions/add-card",
   },
   {
     id: 6,
@@ -395,41 +398,36 @@ export const settingsModule = [
   },
   {
     id: 2,
-    name: "Subscriptions",
-    path: "/dashboard/settings/subscriptions",
-  },
-  {
-    id: 3,
     name: "Collections",
     path: "/dashboard/settings/collections",
   },
   {
-    id: 4,
+    id: 3,
     name: "Chat",
     path: "/dashboard/settings/chat",
   },
   {
-    id: 5,
+    id: 4,
     name: "Notifications",
     path: "/dashboard/settings/notifications",
   },
   {
-    id: 6,
+    id: 5,
     name: "Story",
     path: "/dashboard/settings/story",
   },
   {
-    id: 7,
+    id: 6,
     name: "Display",
     path: "/dashboard/settings/display",
   },
   {
-    id: 8,
+    id: 7,
     name: "QR Code",
     path: "/dashboard/settings/qr-code",
   },
   {
-    id: 9,
+    id: 8,
     name: "Privacy and safety",
     path: "/dashboard/settings/privacy",
   },
@@ -644,6 +642,19 @@ export const happyPeopleFeed = [
   },
 ];
 
+export const subBundles = [
+  {
+    id: 1,
+    amount: "$15",
+    duration: "1 month",
+  },
+  {
+    id: 2,
+    amount: "$100",
+    duration: "6 months",
+  },
+];
+
 export const privacyAndSafetyItems = [
   {
     groupName: "Profile",
@@ -732,5 +743,67 @@ export const privacyAndSafety = [
     id: 2,
     name: "Blocked by IP address",
     path: "/dashboard/settings/privacy/block-ip",
+  },
+];
+
+export const subscriptionMenu = [
+  {
+    id: 1,
+    name: "Add card",
+    path: "/dashboard/subscriptions/add-card",
+  },
+  {
+    id: 2,
+    name: "Subscriptions Settings",
+    path: "/dashboard/subscriptions/settings",
+  },
+  {
+    id: 3,
+    name: "Returned Payments",
+    path: "",
+  },
+  {
+    id: 4,
+    name: "Statistics",
+    path: "/dashboard/subscriptions/statistics",
+  },
+  {
+    id: 5,
+    name: "Statements",
+    path: "",
+  },
+];
+
+export const earningsSampleData = [
+  { id: 1, earningsType: "Total", amount: "$0.00", net: "$0.00" },
+  { id: 2, earningsType: "Subscriptions", amount: "$0.00", net: "$0.00" },
+  { id: 3, earningsType: "Tips", amount: "$0.00", net: "$0.00" },
+  { id: 4, earningsType: "Stream Tips", amount: "$0.00", net: "$0.00" },
+  { id: 5, earningsType: "Posts", amount: "$0.00", net: "$0.00" },
+  { id: 6, earningsType: "Messages", amount: "$0.00", net: "$0.00" },
+  { id: 7, earningsType: "Streams", amount: "$0.00", net: "$0.00" },
+  { id: 8, earningsType: "Referrals", amount: "$0.00", net: "$0.00" },
+];
+
+export const sampleStreakData = [
+  {
+    id: 1,
+    name: "New Post",
+    image: post,
+  },
+  {
+    id: 2,
+    name: "Add to Story",
+    image: story,
+  },
+  {
+    id: 3,
+    name: "Reply your followers",
+    image: post,
+  },
+  {
+    id: 4,
+    name: "Go Live",
+    image: video,
   },
 ];
