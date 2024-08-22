@@ -1,7 +1,7 @@
 "use client";
 
 import CustomButton from "@/app/components/forms/CustomButton";
-import { settingsModule, sideBarItems, subscriptionMenu } from "@/app/data";
+import { sideBarItems, subscriptionMenu } from "@/app/data";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

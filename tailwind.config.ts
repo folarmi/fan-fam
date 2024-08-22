@@ -55,6 +55,8 @@ const config: Config = {
         blue_300: "#E0E2EE80",
         blue_400: "#C1E1FA",
         blue_500: "#2599F6",
+        blue_600: "#2599F6",
+        blue_900: "#011220",
         blue_10: "#A7D4FC",
         green_10: "#F5FBF5",
         green_50: "#EFFAED",
@@ -104,4 +106,44 @@ const config: Config = {
 };
 export default config;
 
-// box-shadow: 0px 4px 4px 0px rgba(236, 238, 251, 1)
+// box-shadow: 0px 4px 4px 0px; rgba(236, 238, 251, 1)
+
+// Floating Input
+// import React, { useState } from 'react';
+
+// const FloatingLabelInput = () => {
+//   const [isFocused, setIsFocused] = useState(false);
+//   const [value, setValue] = useState('');
+
+//   const handleFocus = () => setIsFocused(true);
+//   const handleBlur = () => setIsFocused(!!value);
+
+//   return (
+//     <div className="relative z-0 w-full mb-6 group">
+//       <input
+//         type="text"
+//         id="price"
+//         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+//         placeholder=" "
+//         value={value}
+//         onChange={(e) => setValue(e.target.value)}
+//         onFocus={handleFocus}
+//         onBlur={handleBlur}
+//       />
+//       <label
+//         htmlFor="price"
+//         className={`absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] ${
+//           isFocused || value ? 'peer-focus:left-0 peer-focus:text-blue-600 peer-focus:scale-75 peer-focus:-translate-y-6' : 'scale-100 translate-y-0'
+//         } left-0`}
+//       >
+//         Price per month
+//       </label>
+//       <div className="absolute top-0 left-0 flex items-center h-full px-3 pointer-events-none text-gray-500">
+//         <span>$</span>
+//       </div>
+//       {value === '' && <div className="absolute right-3 top-0 h-full flex items-center text-gray-500 pointer-events-none">Free</div>}
+//     </div>
+//   );
+// };
+
+// export default FloatingLabelInput;

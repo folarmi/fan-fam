@@ -21,6 +21,8 @@ import audioFile from "@/public/icons/audioFile.svg";
 import post from "@/public/icons/post.svg";
 import story from "@/public/icons/story.svg";
 import video from "@/public/icons/video.svg";
+import sampleImageOne from "@/public/sampleImageOne.svg";
+import sampleImageTwo from "@/public/sampleImageTwo.svg";
 
 export const sideBarItems = [
   {
@@ -805,5 +807,223 @@ export const sampleStreakData = [
     id: 4,
     name: "Go Live",
     image: video,
+  },
+];
+
+export const engagementSummary = [
+  {
+    id: 1,
+    name: "Posts",
+    extra: 1,
+  },
+  {
+    id: 2,
+    name: "Posts View",
+    extra: 0,
+  },
+  {
+    id: 3,
+    name: "Post Earnings",
+    extra: "$0.00",
+  },
+];
+
+export const sampleEngagementTableData = [
+  {
+    id: 1,
+    date: "Aug 13 2024, 8:14 pm",
+    views: 0,
+    tips: "$0.00",
+    price: "$0.00",
+    purchases: "$0.00",
+    image: sampleImageTwo,
+    text: "Hi there",
+    statsLink: "#",
+    imageNo: 0,
+  },
+  {
+    id: 2,
+    date: "Aug 12 2024, 6:12 pm",
+    views: 0,
+    tips: "$0.00",
+    price: "$0.00",
+    purchases: "$0.00",
+    image: sampleImageOne,
+    text: "Hi there",
+    statsLink: "#",
+    imageNo: 2,
+  },
+];
+
+export const engagementMessagesSummary = [
+  {
+    id: 1,
+    name: "Messages",
+    extra: "1",
+  },
+  {
+    id: 2,
+    name: "Top Messages",
+    extra: "0",
+  },
+  {
+    id: 3,
+    name: "Message Earnings",
+    extra: "$0.00",
+  },
+];
+
+export const engagementMessagesStories = [
+  {
+    id: 1,
+    name: "Stories",
+    extra: 0,
+  },
+  {
+    id: 2,
+    name: "Likes",
+    extra: 0,
+  },
+  {
+    id: 3,
+    name: "View",
+    extra: 0,
+  },
+  {
+    id: 4,
+    name: "Stories Tips",
+    extra: "$0.00",
+  },
+];
+
+export const statHeader = [
+  {
+    id: 1,
+    name: "Date",
+  },
+  {
+    id: 2,
+    name: "Views",
+  },
+  {
+    id: 3,
+    name: "Tips",
+  },
+  {
+    id: 4,
+    name: "Price",
+  },
+  {
+    id: 5,
+    name: "Purchases",
+  },
+];
+
+export const statHeaderTwo = [
+  {
+    id: 1,
+    name: "Date",
+  },
+  {
+    id: 2,
+    name: "Viewers",
+  },
+  {
+    id: 4,
+    name: "Likes",
+  },
+  {
+    id: 5,
+    name: "Comments",
+  },
+  {
+    id: 3,
+    name: "Tips",
+  },
+];
+
+export const reachStatHeader = [
+  {
+    id: 1,
+    name: "Statistics",
+  },
+  {
+    id: 2,
+    name: "Guests",
+  },
+  {
+    id: 3,
+    name: "Users",
+  },
+  {
+    id: 4,
+    name: "Total",
+  },
+];
+export const storiesData = [
+  {
+    id: 1,
+    name: "New Post",
+    image: post,
+  },
+  {
+    id: 2,
+    name: "Add to Story",
+    image: story,
+  },
+  {
+    id: 3,
+    name: "Reply your followers",
+    image: post,
+  },
+  {
+    id: 4,
+    name: "Go Live",
+    image: video,
+  },
+];
+
+export const storyStatSample = [
+  {
+    id: 1,
+    name: "Viewers",
+    num: 0,
+    bgColor: "#131314",
+  },
+  {
+    id: 2,
+    name: "Likes",
+    num: 0,
+    bgColor: "#1775C1",
+  },
+  {
+    id: 3,
+    name: "Comments",
+    num: 0,
+    bgColor: "#29AF1D",
+  },
+  {
+    id: 4,
+    name: "Tips",
+    num: "0($0.00)",
+    bgColor: "#E20C0C",
+  },
+];
+
+export const reachProfileSummary = [
+  {
+    id: 1,
+    name: "Profile Visitors",
+    extra: 0,
+  },
+  {
+    id: 2,
+    name: "New Subs/Renews",
+    extra: 0 / 0,
+  },
+  {
+    id: 3,
+    name: "Subscription Earnings",
+    extra: "$0.00",
   },
 ];

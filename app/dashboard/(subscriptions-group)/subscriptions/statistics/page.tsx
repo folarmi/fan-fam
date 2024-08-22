@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import SubscriptionHeader from "../settings/SubscriptionHeader";
 import Typography from "@/app/components/forms/Typography";
 import Overview from "./Overview";
+import Engagement from "./Engagement";
+import Reach from "./Reach";
 
 const Statistics = () => {
   const [tabs, setTabs] = useState([
@@ -25,17 +27,22 @@ const Statistics = () => {
     },
   ]);
 
-  const [isActiveTab, setisActiveTab] = useState("Overview");
+  const [isActiveTab, setisActiveTab] = useState("Engagements");
 
   return (
     <div className="border border-grey_10 shadow-chat-interface">
-      <SubscriptionHeader text="Subscription Statistics" />
+      <SubscriptionHeader text="Statistics" />
 
-      {/* border-b border-blue_900 */}
-      <div className="flex items-center border-b border-grey_10">
+      <div className="flex items-center border-b border-grey_10 cursor-pointer">
         {tabs.map(({ id, name }) => {
           return (
-            <div key={id} className="px-4 py-2">
+            <div
+              key={id}
+              className={`px-4 py-[11px] ${
+                isActiveTab === name ? "border-b border-blue_900" : ""
+              }`}
+              onClick={() => setisActiveTab(name)}
+            >
               <Typography
                 className={`
                 ${isActiveTab === name ? "text-blue_900 " : "text-grey_500"}
@@ -50,6 +57,8 @@ const Statistics = () => {
       </div>
 
       {isActiveTab === "Overview" && <Overview />}
+      {isActiveTab === "Engagements" && <Engagement />}
+      {isActiveTab === "Reach" && <Reach />}
     </div>
   );
 };
