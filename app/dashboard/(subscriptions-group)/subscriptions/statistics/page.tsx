@@ -6,6 +6,7 @@ import Typography from "@/app/components/forms/Typography";
 import Overview from "./Overview";
 import Engagement from "./Engagement";
 import Reach from "./Reach";
+import Fans from "./Fans";
 
 const Statistics = () => {
   const [tabs, setTabs] = useState([
@@ -27,7 +28,7 @@ const Statistics = () => {
     },
   ]);
 
-  const [isActiveTab, setisActiveTab] = useState("Engagements");
+  const [isActiveTab, setisActiveTab] = useState("Overview");
 
   return (
     <div className="border border-grey_10 shadow-chat-interface">
@@ -59,6 +60,7 @@ const Statistics = () => {
       {isActiveTab === "Overview" && <Overview />}
       {isActiveTab === "Engagements" && <Engagement />}
       {isActiveTab === "Reach" && <Reach />}
+      {isActiveTab === "Fans" && <Fans />}
     </div>
   );
 };

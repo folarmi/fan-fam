@@ -3,6 +3,7 @@ import {
   engagementMessagesSummary,
   engagementSummary,
   reachProfileSummary,
+  reachPromotionsSummary,
 } from "../data";
 
 export const phoneRegex =
@@ -34,9 +35,8 @@ export const engagementTypeData = (type: string) => {
 export const reachTypeData = (type: string) => {
   let typeData;
   if (type === "Profile Visitors") typeData = reachProfileSummary;
-  else if (type === "Messages") typeData = engagementMessagesSummary;
-  else if (type === "Streaming") typeData = engagementMessagesSummary;
-  else if (type === "Stories") typeData = engagementMessagesStories;
+  else if (type === "Promotions" || "Trial Links")
+    typeData = reachPromotionsSummary;
 
   return typeData;
 };

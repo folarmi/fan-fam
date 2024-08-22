@@ -23,6 +23,9 @@ import story from "@/public/icons/story.svg";
 import video from "@/public/icons/video.svg";
 import sampleImageOne from "@/public/sampleImageOne.svg";
 import sampleImageTwo from "@/public/sampleImageTwo.svg";
+import SA from "@/public/icons/SA.svg";
+import NIG from "@/public/icons/NIG.svg";
+import GH from "@/public/icons/GH.svg";
 
 export const sideBarItems = [
   {
@@ -960,6 +963,60 @@ export const reachStatHeader = [
     name: "Total",
   },
 ];
+
+export const reachStatHeaderTwo = [
+  {
+    id: 1,
+    name: "Country",
+  },
+  {
+    id: 2,
+    name: "Guests",
+  },
+  {
+    id: 3,
+    name: "Users",
+  },
+  {
+    id: 4,
+    name: "Total",
+  },
+];
+
+export const reachPromotionHeader = [
+  {
+    id: 1,
+    name: "Start Date",
+  },
+  {
+    id: 2,
+    name: "End Date",
+  },
+  {
+    id: 3,
+    name: "Offer Limit",
+  },
+  {
+    id: 4,
+    name: "Claimed",
+  },
+];
+
+export const fanSubHeader = [
+  {
+    id: 1,
+    name: "Name",
+  },
+  {
+    id: 2,
+    name: "Price",
+  },
+  {
+    id: 3,
+    name: "New Subscribers",
+  },
+];
+
 export const storiesData = [
   {
     id: 1,
@@ -1019,11 +1076,96 @@ export const reachProfileSummary = [
   {
     id: 2,
     name: "New Subs/Renews",
-    extra: 0 / 0,
+    extra: "0 / 0",
   },
   {
     id: 3,
     name: "Subscription Earnings",
     extra: "$0.00",
+  },
+];
+
+export const reachPromotionsSummary = [
+  {
+    id: 1,
+    name: "Mass Offers",
+    extra: 0,
+  },
+  {
+    id: 2,
+    name: "Claims",
+    extra: 0,
+  },
+  {
+    id: 3,
+    name: "Subscription Earnings",
+    extra: "$0.00",
+  },
+];
+
+export const fanPromotionsSummary = [
+  {
+    id: 1,
+    name: "Subscribers",
+    extra: 2,
+  },
+  {
+    id: 2,
+    name: "New Subs/Renews",
+    extra: 0,
+  },
+  {
+    id: 3,
+    name: "Subscription Earnings",
+    extra: "$0.00",
+  },
+  {
+    id: 4,
+    name: "Top Fan",
+    extra: "None Yet",
+  },
+];
+
+export const sampleReachStat = [
+  {
+    id: 1,
+    title: "Profile Visitors",
+    guests: 0,
+    users: 0,
+    total: "$0.00",
+  },
+  {
+    id: 2,
+    title: "View Duration",
+    guests: "0h:00m",
+    users: "0h:00m",
+    total: "0h:00m",
+  },
+];
+
+export const topCountriesData = [
+  {
+    id: 1,
+    country: "South Africa",
+    image: SA,
+    guests: 0,
+    users: 0,
+    total: 0,
+  },
+  {
+    id: 2,
+    country: "Nigeria",
+    image: NIG,
+    guests: 0,
+    users: 0,
+    total: 0,
+  },
+  {
+    id: 3,
+    country: "Ghana",
+    image: GH,
+    guests: 0,
+    users: 0,
+    total: 0,
   },
 ];

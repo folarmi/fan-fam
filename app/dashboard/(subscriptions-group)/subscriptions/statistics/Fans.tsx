@@ -1,36 +1,28 @@
 "use client";
 
+import StatTableHeader from "@/app/components/forms/StatTableHeader";
 import Tabs from "@/app/components/forms/Tabs";
+import TimelineAndOverview from "@/app/components/forms/TimelineAndOverview";
 import Typography from "@/app/components/forms/Typography";
 import BankingInformation from "@/app/components/molecules/BankingInformation";
-
-import { reachTypeData } from "@/app/utils/helper";
+import { fanPromotionsSummary, fanSubHeader } from "@/app/data";
 import React, { useState } from "react";
-import ReachProfileVisitors from "./ReachProfileVisitors";
-import ReachPromotions from "./ReachPromotions";
-import ReachTrackingLink from "./ReachTrackingLink";
+import FansSubscription from "./FansSubscription";
+import TopFan from "./TopFan";
 
-const Reach = () => {
+const Fans = () => {
   const [tabs, setTabs] = useState([
     {
       id: 1,
-      name: "Profile Visitors",
+      name: "Subscriptions",
     },
     {
       id: 2,
-      name: "Promotions",
-    },
-    {
-      id: 3,
-      name: "Trial Links",
-    },
-    {
-      id: 4,
-      name: "Tracking Links",
+      name: "Top Fan",
     },
   ]);
 
-  const [isActiveTab, setIsActiveTab] = useState("Profile Visitors");
+  const [isActiveTab, setIsActiveTab] = useState("Subscriptions");
 
   return (
     <div>
@@ -49,10 +41,10 @@ const Reach = () => {
           Summary
         </Typography>
 
-        <div className="flex items-center mb-4">
-          {reachTypeData(isActiveTab)?.map(({ extra, id, name }) => {
+        <div className="flex items-center mb-4 w-full">
+          {fanPromotionsSummary?.map(({ extra, id, name }) => {
             return (
-              <div className="mr-6 w-24" key={id}>
+              <div className="mr-10 w-24" key={id}>
                 <Typography
                   variant="p3"
                   className="text-grey_600 whitespace-nowrap"
@@ -71,13 +63,10 @@ const Reach = () => {
         </div>
       </section>
 
-      {isActiveTab === "Profile Visitors" && <ReachProfileVisitors />}
-      {(isActiveTab === "Promotions" || isActiveTab === "Trial Links") && (
-        <ReachPromotions isActiveTab={isActiveTab} />
-      )}
-      {isActiveTab === "Tracking Links" && <ReachTrackingLink />}
+      {isActiveTab === "Subscriptions" && <FansSubscription />}
+      {isActiveTab === "Top Fan" && <TopFan />}
     </div>
   );
 };
 
-export default Reach;
+export default Fans;
