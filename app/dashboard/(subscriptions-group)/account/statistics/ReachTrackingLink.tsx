@@ -1,5 +1,6 @@
 import TimelineAndOverview from "@/app/components/forms/TimelineAndOverview";
 import Typography from "@/app/components/forms/Typography";
+import EmptyState from "@/app/components/molecules/EmptyState";
 import React from "react";
 
 const ReachTrackingLink = () => {
@@ -11,14 +12,7 @@ const ReachTrackingLink = () => {
         amount=""
       />
 
-      <div className="flex items-center justify-center">
-        <Typography
-          variant="p2"
-          className="text-grey_600 text-center py-20 w-52"
-        >
-          No activity found during selected period
-        </Typography>
-      </div>
+      <EmptyState text="No activity found during selected period" />
     </div>
   );
 };

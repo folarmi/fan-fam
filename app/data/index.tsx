@@ -54,9 +54,9 @@ export const sideBarItems = [
   },
   {
     id: 5,
-    name: "Subscriptions",
+    name: "Account",
     image: collections,
-    link: "/dashboard/subscriptions/add-card",
+    link: "/dashboard/account/add-card",
   },
   {
     id: 6,
@@ -753,14 +753,24 @@ export const privacyAndSafety = [
 
 export const subscriptionMenu = [
   {
+    id: 9,
+    name: "Subscribed",
+    path: "/dashboard/account/subscribed",
+  },
+  {
     id: 1,
     name: "Add card",
-    path: "/dashboard/subscriptions/add-card",
+    path: "/dashboard/account/add-card",
+  },
+  {
+    id: 6,
+    name: "Wallet",
+    path: "/dashboard/account/wallet",
   },
   {
     id: 2,
     name: "Subscriptions Settings",
-    path: "/dashboard/subscriptions/settings",
+    path: "/dashboard/account/settings",
   },
   {
     id: 3,
@@ -770,11 +780,21 @@ export const subscriptionMenu = [
   {
     id: 4,
     name: "Statistics",
-    path: "/dashboard/subscriptions/statistics",
+    path: "/dashboard/account/statistics",
   },
   {
     id: 5,
     name: "Statements",
+    path: "",
+  },
+  {
+    id: 7,
+    name: "Referrals",
+    path: "",
+  },
+  {
+    id: 8,
+    name: "Profile Ads",
     path: "",
   },
 ];
@@ -1167,5 +1187,42 @@ export const topCountriesData = [
     guests: 0,
     users: 0,
     total: 0,
+  },
+];
+
+export const walletSampleData = [
+  {
+    id: 1,
+    name: "Make wallet primary method for rebills",
+  },
+  {
+    id: 2,
+    name: "Auto Recharge",
+  },
+];
+
+export const subscribedTabs = [
+  {
+    id: 1,
+    name: "All Creators",
+  },
+  {
+    id: 2,
+    name: "All Creators",
+  },
+];
+
+export const subOptions = [
+  {
+    id: 1,
+    name: "Full access to this user's content",
+  },
+  {
+    id: 2,
+    name: "Direct message with this user",
+  },
+  {
+    id: 3,
+    name: "Cancel your subscription at any time",
   },
 ];

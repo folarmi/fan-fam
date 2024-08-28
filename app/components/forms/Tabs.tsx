@@ -22,7 +22,10 @@ const Tabs = ({ tabsArray, isActiveTab, setIsActiveTab }: TabsProps) => {
                 : "bg-white border border-grey_10"
             }`}
           >
-            <Typography variant="p3" className="text-grey_800">
+            <Typography
+              variant="p3"
+              className="text-grey_800 whitespace-nowrap"
+            >
               {name}
             </Typography>
           </div>

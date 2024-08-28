@@ -13,7 +13,7 @@ import AddNewCardForm from "./AddNewCardForm";
 
 const AddCard = () => {
   const [isCardAdded, setIsCardAdded] = useState(false);
-  const [addNewCard, setAddNewCard] = useState(true);
+  const [addNewCard, setAddNewCard] = useState(false);
 
   return (
     <div className="">

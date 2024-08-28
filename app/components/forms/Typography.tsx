@@ -9,6 +9,8 @@ interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
     | "labelOne"
     | "h4"
     | "h5"
+    | "h6"
+    | "h8"
     | "p1"
     | "p2"
     | "p3"
@@ -19,12 +21,14 @@ interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
   className?: string;
   children: ReactNode;
   onClick?: any;
+  style?: any;
 }
 
 const Typography: React.FC<TypographyProps> = ({
   variant = "default",
   className = "",
   onClick,
+  style,
   children,
 }) => {
   let classes = "";
@@ -49,7 +53,10 @@ const Typography: React.FC<TypographyProps> = ({
     case "h5":
       classes = "text-xl font-semibold leading-[16px]";
       break;
-    case "h4":
+    case "h6":
+      classes = "text-2xl font-normal leading-[30px]";
+      break;
+    case "h8":
       classes = "text-2xl font-bold leading-[16px]";
       break;
     case "p1":
@@ -79,7 +86,7 @@ const Typography: React.FC<TypographyProps> = ({
   const mergedClassName = `${classes} ${className}`;
 
   return (
-    <p onClick={onClick} className={mergedClassName}>
+    <p style={style} onClick={onClick} className={mergedClassName}>
       {children}
     </p>
   );

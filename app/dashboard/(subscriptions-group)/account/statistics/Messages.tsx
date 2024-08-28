@@ -3,29 +3,14 @@
 import Tabs from "@/app/components/forms/Tabs";
 import TimelineAndOverview from "@/app/components/forms/TimelineAndOverview";
 import Typography from "@/app/components/forms/Typography";
+import EmptyState from "@/app/components/molecules/EmptyState";
 import React, { useState } from "react";
 
-const Streaming = () => {
+const Messages = () => {
   const [tabs, setTabs] = useState([
     {
       id: 1,
       name: "Purchases",
-    },
-    {
-      id: 2,
-      name: "Tips",
-    },
-    {
-      id: 3,
-      name: "Views",
-    },
-    {
-      id: 4,
-      name: "Likes",
-    },
-    {
-      id: 5,
-      name: "Comments",
     },
   ]);
   const [isActiveTab, setIsActiveTab] = useState("Purchases");
@@ -46,16 +31,9 @@ const Streaming = () => {
         amount=""
       />
 
-      <div className="flex items-center justify-center">
-        <Typography
-          variant="p2"
-          className="text-grey_600 text-center py-20 w-52"
-        >
-          No activity found during selected period
-        </Typography>
-      </div>
+      <EmptyState text="    No activity found during selected period" />
     </div>
   );
 };
 
-export default Streaming;
+export default Messages;

@@ -3,7 +3,7 @@ import React from "react";
 import Typography from "@/app/components/forms/Typography";
 
 type SubscriptionHeaderProps = {
-  text: string;
+  text?: string;
 };
 
 const SubscriptionHeader = ({ text }: SubscriptionHeaderProps) => {
