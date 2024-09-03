@@ -95,27 +95,12 @@ const SubscribedCard = ({
         />
       )}
 
-      {/* <Modal show={showModal} toggleModal={toggleModal}>
-        <div className="p-4">
-          <SubscribedModal toggleModal={toggleModal} />
-        </div>
-
-        {showModal && (
-          <div
-            className="fixed inset-0  cursor-pointer"
-            onClick={toggleModal}
-          ></div>
-        )}
-      </Modal> */}
       {showModal && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center"
           onClick={toggleModal}
         >
-          <div
-            className=""
-            onClick={(e) => e.stopPropagation()} // Prevent click events inside the modal from closing it
-          >
+          <div className="" onClick={(e) => e.stopPropagation()}>
             <SubscribedModal toggleModal={toggleModal} />
           </div>
         </div>
@@ -125,11 +110,3 @@ const SubscribedCard = ({
 };
 
 export default SubscribedCard;
-{
-  /* {showModal && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm cursor-pointer"
-            onClick={toggleModal}
-          ></div>
-        )} */
-}

@@ -1,10 +1,4 @@
-import home from "@/public/icons/home.svg";
-import notification from "@/public/icons/notification.svg";
-import realNotification from "@/public/icons/realNotification.svg";
-import messages from "@/public/icons/messages.svg";
-import collections from "@/public/icons/collections.svg";
-import profile from "@/public/icons/profile.svg";
-import sub from "@/public/icons/sub.svg";
+// import profile from "@/public/icons/profile.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
 import defaultAvatarTwo from "@/public/icons/defaultAvatarTwo.svg";
 import defaultAvatarThree from "@/public/icons/defaultAvatarThree.svg";
@@ -26,48 +20,62 @@ import sampleImageTwo from "@/public/sampleImageTwo.svg";
 import SA from "@/public/icons/SA.svg";
 import NIG from "@/public/icons/NIG.svg";
 import GH from "@/public/icons/GH.svg";
+import Home from "../components/svgs/Home";
+import Notification from "../components/svgs/Notification";
+import Messages from "../components/svgs/Messages";
+import Collections from "../components/svgs/Collections";
+import Schedule from "../components/svgs/Schedule";
+import MyAccount from "../components/svgs/MyAccount";
+import Profile from "../components/svgs/Profile";
+import More from "../components/svgs/More";
 
 export const sideBarItems = [
   {
     id: 1,
     name: "Home",
-    image: home,
+    image: <Home />,
     link: "/dashboard",
   },
   {
     id: 2,
     name: "Notifications",
-    image: realNotification,
+    image: <Notification />,
     link: "/dashboard/notifications",
   },
   {
     id: 3,
     name: "Messages",
-    image: notification,
+    image: <Messages />,
     link: "/dashboard/messages",
   },
   {
     id: 4,
     name: "Collections",
-    image: messages,
+    image: <Collections />,
     link: "/dashboard/collections",
   },
   {
+    id: 8,
+    name: "Schedule",
+    image: <Schedule />,
+    link: "/dashboard/schedule",
+  },
+  {
     id: 5,
-    name: "Account",
-    image: collections,
+    name: "My Account",
+    image: <MyAccount />,
     link: "/dashboard/account/add-card",
   },
   {
     id: 6,
     name: "Profile",
-    image: sub,
+    image: <Profile />,
     link: "/dashboard/profile",
   },
   {
     id: 7,
     name: "More",
-    image: profile,
+    image: <More />,
     link: "/dashboard/settings/account",
   },
 ];
@@ -790,12 +798,12 @@ export const subscriptionMenu = [
   {
     id: 7,
     name: "Referrals",
-    path: "",
+    path: "/dashboard/account/referrals",
   },
   {
     id: 8,
     name: "Profile Ads",
-    path: "",
+    path: "/dashboard/account/profile-ads",
   },
 ];
 
@@ -1224,5 +1232,140 @@ export const subOptions = [
   {
     id: 3,
     name: "Cancel your subscription at any time",
+  },
+];
+
+export const scheduledPostsAndMessages = [
+  {
+    id: 1,
+    date: "Aug 15, 1:26 pm",
+    text: "Hi fan family! promo coming up",
+    type: "Post",
+  },
+  {
+    id: 2,
+    date: "Aug 15, 1:26 pm",
+    text: "Hi fan family! promo coming up",
+    type: "Message",
+  },
+  {
+    id: 3,
+    date: "Aug 15, 1:26 pm",
+    text: "Hi fan family! promo coming up",
+    type: "Message",
+  },
+];
+
+export const scheduleMessages = [
+  {
+    id: 1,
+    name: "Edit scheduled message",
+  },
+  {
+    id: 2,
+    name: "Send message right now",
+  },
+  {
+    id: 3,
+    name: "Send message right now",
+  },
+];
+
+export const schedulePosts = [
+  {
+    id: 4,
+    name: "Edit post",
+  },
+  {
+    id: 5,
+    name: "Publish now",
+  },
+  {
+    id: 6,
+    name: "Delete post",
+  },
+];
+
+export const giftSubOptions = [
+  {
+    id: 1,
+    name: "Subscription",
+    ans: "2 Months ($34)",
+  },
+  {
+    id: 2,
+    name: "Name of Receiver",
+    ans: "",
+  },
+  {
+    id: 3,
+    name: "Email Address to send Gift",
+    ans: "daaveyjohn1234@gmail.com",
+  },
+];
+
+export const profileAdsTabs = [
+  {
+    id: 1,
+    name: "Get to 200 Viewers",
+    date: "12 July - 19 July",
+    price: "$70",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Get to 200 Viewers",
+    date: "12 July - 19 July",
+    price: "$70",
+    status: "Inactive",
+  },
+];
+
+export const referralInfo = [
+  {
+    id: 1,
+    name: "Total Referrals",
+    num: "2 Referrals",
+  },
+  {
+    id: 2,
+    name: "Pending Earnings",
+    num: "$23.00",
+  },
+];
+
+export const referralHistoryTableHeader = [
+  {
+    id: 1,
+    name: "Referred User",
+  },
+  {
+    id: 2,
+    name: "Date",
+  },
+  {
+    id: 3,
+    name: "Reward",
+  },
+  {
+    id: 4,
+    name: "Status",
+  },
+];
+
+export const referralHistorySampleData = [
+  {
+    id: 1,
+    name: "John Doe",
+    date: "23 July 2024",
+    reward: "$23.00",
+    status: "Pending",
+  },
+  {
+    id: 2,
+    name: "Mavis Inyang",
+    date: "23 July 2024",
+    reward: "$23.00",
+    status: "Rewarded",
   },
 ];

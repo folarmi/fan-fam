@@ -22,7 +22,6 @@ import { commentOptions } from "@/app/data";
 import Post from "@/app/components/Post";
 import Replies from "@/app/components/Replies";
 import Media from "@/app/components/Media";
-import Link from "next/link";
 import SubscriptionButton from "@/app/components/molecules/SubscriptionButton";
 import CustomButton from "@/app/components/forms/CustomButton";
 import CustomInput from "@/app/components/forms/CustomInput";
@@ -34,6 +33,8 @@ import Typography from "@/app/components/forms/Typography";
 import AmountInput from "@/app/components/forms/AmountInput";
 import Modal from "@/app/components/modals/Modal";
 import AddUserToListModal from "@/app/components/modals/AddUserToListModal";
+import blueGift from "@/public/icons/blueGift.svg";
+import GiftSubscription from "@/app/components/modals/GiftSubscription";
 
 const Profile = () => {
   const { control } = useForm();
@@ -62,6 +63,11 @@ const Profile = () => {
   const [subscription, setSubscription] = useState(true);
   const [tipModal, setTipModal] = useState(false);
   const [addUserToList, setAddUserToList] = useState(false);
+  const [showModal, setShowModal] = useState(true);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const toggleCommentModal = () => {
     setCommentModal(!commentModal);
@@ -117,14 +123,21 @@ const Profile = () => {
               <Image src={profilePicture} alt="profilePicture" />
             </div>
             <div className="w-full mt-6 flex items-center justify-between">
-              <div className="flex items-center ml-28">
+              {/* <div className="flex items-center ml-28">
                 <Image src={location} alt="location" />
                 <Typography className="text-grey_400 pl-1" variant="p3">
                   Nigeria
                 </Typography>
-              </div>
+              </div> */}
 
-              <div className="flex items-center gap-x-4">
+              <div className="flex items-center gap-x-4 justify-between w-full">
+                <div className="flex items-center ml-28">
+                  <Image src={location} alt="location" />
+                  <Typography className="text-grey_400 pl-1" variant="p3">
+                    Nigeria
+                  </Typography>
+                </div>
+
                 <div className="cursor-pointer">
                   <CircleChat className="cursor-pointer hover:fill-blue_200" />
                 </div>
@@ -194,16 +207,18 @@ const Profile = () => {
 
                 <Image src={circleStar} alt="circleStar" />
 
-                <div className="border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white">
-                  <Link
-                    href="/dashboard/profile/edit-profile"
-                    className="cursor-pointer"
-                  >
-                    <Typography variant="subtitle3" className="text-blue_500">
-                      {isActiveTab === "Media" ? "Edit profile" : "Subscribe"}
-                    </Typography>
-                  </Link>
+                <div
+                  className={`flex items-center gap-x-2 border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white `}
+                >
+                  <Image src={blueGift} alt="gift" />
+                  <Typography variant="subtitle3" className="text-blue_500">
+                    Gift Subscription
+                  </Typography>
                 </div>
+
+                <CustomButton variant="primary" primaryButtonSize="xs px-3">
+                  {isActiveTab === "Media" ? "Edit profile" : "Subscribe"}
+                </CustomButton>
 
                 <div className="relative">
                   <Image
@@ -345,6 +360,17 @@ const Profile = () => {
         {isActiveTab === "Replies" && <Replies />}
         {isActiveTab === "Media" && <Media />}
       </div>
+
+      {showModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-40"
+          onClick={toggleModal}
+        >
+          <div className="" onClick={(e) => e.stopPropagation()}>
+            <GiftSubscription toggleModal={toggleModal} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

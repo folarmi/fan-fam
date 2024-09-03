@@ -67,6 +67,7 @@ const config: Config = {
         red_200: "#FFD1D1",
         red_300: "#F50000",
         red_400: "#E20C0C",
+        orange_100: "#F69625",
         "gradient-start": "#FFFFFF29",
         "gradient-end": "#FFFFFF00",
       },
