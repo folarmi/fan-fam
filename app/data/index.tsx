@@ -1369,3 +1369,48 @@ export const referralHistorySampleData = [
     status: "Rewarded",
   },
 ];
+
+export const transactionHistorySampleData = [
+  {
+    id: 1,
+    title: "@2 Months Subscription",
+    content: "@yummychill54 paid $24 for your contents ",
+  },
+  {
+    id: 2,
+    title: "@2 Months Subscription",
+    content: "@yummychill54 paid $24 for your contents ",
+  },
+  {
+    id: 3,
+    title: "@2 Months Subscription",
+    content: "@yummychill54 paid $24 for your contents ",
+  },
+];
+
+export const thirdColumnSampleData = [
+  {
+    id: 1,
+    photo: defaultAvatar,
+    tag: "@yummychill54",
+    message: "Subscribed to your account",
+    name: "Priscilia yummy",
+    time: "Now",
+  },
+  {
+    id: 2,
+    photo: defaultAvatarTwo,
+    tag: "@Timmy88",
+    message: "Subscribed to your account",
+    name: "PetitTimmy",
+    time: "2 mins ago",
+  },
+  {
+    id: 3,
+    photo: defaultAvatarThree,
+    tag: "@investorchill",
+    message: "Commented on your post.",
+    name: "mArk 🤪 SpecCer 🤪",
+    time: "3 h ago",
+  },
+];

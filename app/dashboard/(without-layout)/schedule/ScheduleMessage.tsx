@@ -5,8 +5,6 @@ import { notificationSampleData } from "@/app/data";
 import Image from "next/image";
 import React from "react";
 import verifyBlue from "@/public/icons/verifyBlue.svg";
-import horizontalMore from "@/public/icons/ashHorizontalMore.svg";
-import CustomCheckBox from "@/app/components/forms/CustomCheckBox";
 import CollectionRadioButton from "@/app/components/forms/CollectionRadioButton";
 
 const ScheduleMessage = ({
@@ -28,35 +26,33 @@ const ScheduleMessage = ({
           </Typography>
         </div>
 
-        {notificationSampleData.map(
-          ({ id, name, message, photo, tag, time }) => {
-            return (
-              <div
-                key={id}
-                className="flex items-center justify-between p-4 border-b border-grey_10"
-              >
-                <div className="flex items-center">
-                  <Image src={photo} alt="demo" className="w-10 h-10" />
+        {notificationSampleData.map(({ id, name, photo, tag }) => {
+          return (
+            <div
+              key={id}
+              className="flex items-center justify-between p-4 border-b border-grey_10"
+            >
+              <div className="flex items-center">
+                <Image src={photo} alt="demo" className="w-10 h-10" />
 
-                  <div className="ml-3">
-                    <div className="flex items-center mb-1">
-                      <Typography variant="titleTwo" className="text-grey_900">
-                        {name}
-                      </Typography>
-
-                      <Image src={verifyBlue} alt="demo" className=" h-4 w-4" />
-                    </div>
-                    <Typography variant="p2" className="text-grey_400">
-                      {tag}
+                <div className="ml-3">
+                  <div className="flex items-center mb-1">
+                    <Typography variant="titleTwo" className="text-grey_900">
+                      {name}
                     </Typography>
-                  </div>
-                </div>
 
-                <CollectionRadioButton />
+                    <Image src={verifyBlue} alt="demo" className=" h-4 w-4" />
+                  </div>
+                  <Typography variant="p2" className="text-grey_400">
+                    {tag}
+                  </Typography>
+                </div>
               </div>
-            );
-          }
-        )}
+
+              <CollectionRadioButton />
+            </div>
+          );
+        })}
       </section>
 
       <ScheduleButton isPost={false} setShowMessagePost={setShowMessagePost} />

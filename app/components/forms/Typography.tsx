@@ -17,7 +17,7 @@ interface TypographyProps extends HTMLAttributes<HTMLParagraphElement> {
     | "subtitle1"
     | "subtitle2"
     | "subtitle3"
-    | "caption"; // Add more variants as needed
+    | "caption1";
   className?: string;
   children: ReactNode;
   onClick?: any;
@@ -76,6 +76,9 @@ const Typography: React.FC<TypographyProps> = ({
       break;
     case "subtitle3":
       classes = "text-xs font-medium";
+      break;
+    case "caption1":
+      classes = "text-xs font-normal leading-[16px]";
       break;
     default:
       classes = "text-base";
