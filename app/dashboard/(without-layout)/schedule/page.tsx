@@ -17,6 +17,9 @@ import {
 } from "@/app/data";
 import More from "@/app/components/svgs/More";
 import ModalContent from "@/app/components/modals/ModalContent";
+import SchedulePost from "./SchedulePost";
+import backArrow from "@/public/icons/backArrow.svg";
+import ScheduleMessage from "./ScheduleMessage";
 
 const Schedule = () => {
   const [tabs, setTabs] = useState([
@@ -37,11 +40,17 @@ const Schedule = () => {
   const [showModal, setShowModal] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
+  const [showMessagePost, setShowMessagePost] = useState(false);
   const [showPostModal, setShowPostModal] = useState(false);
+  const [showSchedulePost, setShowSchedulePost] = useState(false);
   const [currentModal, setCurrentModal] = useState(0);
+
+  console.log(showMessagePost);
 
   const toggleModal = () => {
     setShowModal(!showModal);
+    setShowMessageModal(false);
+    setShowPostModal(false);
   };
 
   const getModalValue = (value: string, id: number) => {
@@ -161,24 +170,60 @@ const Schedule = () => {
       </div>
 
       <div className="w-[60%]">
-        <SubscriptionHeader />
-        <div className="m-4">
-          <Tabs
-            tabsArray={tabs}
-            isActiveTab={isActiveTab}
-            setIsActiveTab={setIsActiveTab}
-          />
-          <CustomCalendar myEventsList={testEvents} />
-        </div>
+        <SubscriptionHeader
+          text={
+            showModal
+              ? ""
+              : (showSchedulePost || showMessagePost) && (
+                  <div className="flex items-center">
+                    <Image
+                      src={backArrow}
+                      alt="back"
+                      className="w-6 h-6 cursor-pointer"
+                      onClick={() => {
+                        setShowSchedulePost(false);
+                        setShowMessagePost(false);
+                      }}
+                    />
+                    <Typography variant="subtitle1" className="pl-4">
+                      {showSchedulePost
+                        ? "Schedule Post"
+                        : showMessagePost
+                        ? "Schedule Mass Message"
+                        : ""}
+                    </Typography>
+                  </div>
+                )
+          }
+        />
+        {showSchedulePost ? (
+          <SchedulePost setShowSchedulePost={setShowSchedulePost} />
+        ) : showMessagePost ? (
+          <ScheduleMessage setShowMessagePost={setShowMessagePost} />
+        ) : (
+          <div className="m-4">
+            <Tabs
+              tabsArray={tabs}
+              isActiveTab={isActiveTab}
+              setIsActiveTab={setIsActiveTab}
+            />
+            <CustomCalendar myEventsList={testEvents} />
+          </div>
+        )}
       </div>
 
       {showModal && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center"
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
           onClick={toggleModal}
         >
           <div className="" onClick={(e) => e.stopPropagation()}>
-            <AddToSchedule toggleModal={toggleModal} />
+            <AddToSchedule
+              toggleModal={toggleModal}
+              setShowSchedulePost={setShowSchedulePost}
+              setShowModal={setShowModal}
+              setShowMessagePost={setShowMessagePost}
+            />
           </div>
         </div>
       )}
