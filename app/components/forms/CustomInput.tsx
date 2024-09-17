@@ -8,6 +8,9 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   readOnly?: boolean;
   type?: string;
+  borderRadius?: string;
+  className?: string;
+  onFocus?: () => void;
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({
@@ -17,6 +20,9 @@ const CustomInput: React.FC<CustomInputProps> = ({
   label,
   readOnly,
   type,
+  className,
+  borderRadius = "3xl",
+  onFocus,
   ...rest
 }) => {
   const {
@@ -42,21 +48,24 @@ const CustomInput: React.FC<CustomInputProps> = ({
   }, [field.value]);
 
   return (
-    <div className="relative flex flex-col gap-2 mb-6 w-full">
+    <div className={`relative flex flex-col gap-2 mb-6 w-full ${className}`}>
       <input
         readOnly={readOnly}
         id={name}
         type={showPassword ? "text" : type}
         {...field}
         {...rest}
-        className={`block w-full h-10 rounded-3xl px-4 text-sm bg-white border appearance-none focus:outline-none focus:ring-0 peer ${
+        className={`block w-full h-10 rounded-${borderRadius} px-4 text-sm bg-white border appearance-none focus:outline-none focus:ring-0 peer ${
           error
             ? "border border-red-500"
             : "border-gray-300 focus:border-primary"
         }`}
         placeholder=" "
         value={field.value || ""}
-        onFocus={() => setIsFocused(true)}
+        onFocus={(e) => {
+          setIsFocused(true);
+          if (onFocus) onFocus();
+        }}
         onBlur={() => setIsFocused(!!field.value)}
         style={{
           backgroundColor: readOnly ? "hsl(0,0%, 90%)" : "",
@@ -75,7 +84,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       )}
       <label
         htmlFor={name}
-        className={`absolute left-4 top-2 text-sm font-medium text-grey_200 duration-300 transform -translate-y-4 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3 peer-focus:scale-75 peer-focus:-translate-y-7 ${
+        className={`absolute left-4 top-2 text-sm font-normal text-grey_200 duration-300 transform -translate-y-4 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3 peer-focus:scale-75 peer-focus:-translate-y-7 ${
           isFocused || field.value
             ? "-translate-y-6 scale-75"
             : "translate-y-2.5 scale-100"

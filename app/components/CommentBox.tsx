@@ -59,7 +59,7 @@ const CommentBox = ({
         <div className="w-[62px]">
           <CustomButton
             variant={isActive ? "primary" : "disabled"}
-            className="w-full bg-grey_600"
+            className="w-full bg-grey_90"
           >
             Post
           </CustomButton>

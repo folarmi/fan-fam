@@ -1,58 +1,91 @@
-import home from "@/public/icons/home.svg";
-import notification from "@/public/icons/notification.svg";
-import realNotification from "@/public/icons/realNotification.svg";
-import messages from "@/public/icons/messages.svg";
-import collections from "@/public/icons/collections.svg";
-import profile from "@/public/icons/profile.svg";
-import sub from "@/public/icons/sub.svg";
+// import profile from "@/public/icons/profile.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
 import defaultAvatarTwo from "@/public/icons/defaultAvatarTwo.svg";
 import defaultAvatarThree from "@/public/icons/defaultAvatarThree.svg";
 import defaultAvatarFour from "@/public/icons/defaultAvatarFour.svg";
 import defaultAvatarFive from "@/public/icons/defaultAvatarFive.svg";
+import gridOne from "@/public/gridOne.svg";
+import gridTwo from "@/public/gridTwo.svg";
+import gridThree from "@/public/gridThree.svg";
+import gridFour from "@/public/gridFour.svg";
+import gridFive from "@/public/gridFive.svg";
+import gridSix from "@/public/gridSix.svg";
+import timelineTwo from "@/public/timelineTwo.svg";
+import audioFile from "@/public/icons/audioFile.svg";
+import post from "@/public/icons/post.svg";
+import story from "@/public/icons/story.svg";
+import video from "@/public/icons/video.svg";
+import sampleImageOne from "@/public/sampleImageOne.svg";
+import sampleImageTwo from "@/public/sampleImageTwo.svg";
+import SA from "@/public/icons/SA.svg";
+import NIG from "@/public/icons/NIG.svg";
+import GH from "@/public/icons/GH.svg";
+import Home from "../components/svgs/Home";
+import Notification from "../components/svgs/Notification";
+import Messages from "../components/svgs/Messages";
+import Collections from "../components/svgs/Collections";
+import Schedule from "../components/svgs/Schedule";
+import MyAccount from "../components/svgs/MyAccount";
+import Profile from "../components/svgs/Profile";
+import More from "../components/svgs/More";
+import all from "@/public/all.svg";
+import africa from "@/public/africa.svg";
+import asia from "@/public/asia.svg";
+import europe from "@/public/europe.svg";
+import northAmerica from "@/public/northAmerica.svg";
+import oceania from "@/public/oceania.svg";
+import southAmerica from "@/public/southAmerica.svg";
+import algeria from "@/public/icons/algeria.svg";
+import eastTimor from "@/public/icons/eastTimor.svg";
 
 export const sideBarItems = [
   {
     id: 1,
     name: "Home",
-    image: home,
+    image: <Home />,
     link: "/dashboard",
   },
   {
     id: 2,
     name: "Notifications",
-    image: realNotification,
+    image: <Notification />,
     link: "/dashboard/notifications",
   },
   {
     id: 3,
     name: "Messages",
-    image: notification,
+    image: <Messages />,
     link: "/dashboard/messages",
   },
   {
     id: 4,
     name: "Collections",
-    image: messages,
+    image: <Collections />,
     link: "/dashboard/collections",
   },
   {
+    id: 8,
+    name: "Schedule",
+    image: <Schedule />,
+    link: "/dashboard/schedule",
+  },
+  {
     id: 5,
-    name: "Subscriptions",
-    image: collections,
-    link: "/dashboard",
+    name: "My Account",
+    image: <MyAccount />,
+    link: "/dashboard/account/add-card",
   },
   {
     id: 6,
     name: "Profile",
-    image: sub,
+    image: <Profile />,
     link: "/dashboard/profile",
   },
   {
     id: 7,
     name: "More",
-    image: profile,
-    link: "/dashboard",
+    image: <More />,
+    link: "/dashboard/settings/account",
   },
 ];
 
@@ -63,10 +96,14 @@ export const commentOptions = [
   },
   {
     id: 2,
-    name: "Block",
+    name: "Add User to list",
   },
   {
     id: 3,
+    name: "Block",
+  },
+  {
+    id: 4,
     name: "Report",
   },
 ];
@@ -247,18 +284,1207 @@ export const dummyCollectionData = [
 export const collectionsOptions = [
   {
     id: 1,
-    name: "Remove from list",
+    name: "Add to another list",
   },
   {
     id: 2,
-    name: "Block",
+    name: "Remove from list",
   },
   {
     id: 3,
-    name: "Restrict",
+    name: "Block",
   },
   {
     id: 4,
+    name: "Restrict",
+  },
+  {
+    id: 5,
     name: "Report",
+  },
+];
+
+export const userListCollectionsOptions = [
+  {
+    id: 1,
+    name: "Subscription",
+  },
+  {
+    id: 2,
+    name: "Promotions",
+  },
+  {
+    id: 3,
+    name: "Tags",
+  },
+  {
+    id: 4,
+    name: "Comments",
+  },
+  {
+    id: 5,
+    name: "Mentions",
+  },
+];
+
+export const notificationTabs = [
+  {
+    id: 1,
+    name: "All",
+  },
+  {
+    id: 2,
+    name: "Promotions",
+  },
+  {
+    id: 3,
+    name: "Subscription",
+  },
+  {
+    id: 4,
+    name: "Tags",
+  },
+  {
+    id: 5,
+    name: "Comments",
+  },
+  {
+    id: 6,
+    name: "Mentions",
+  },
+];
+
+export const sampleChatGroups = [
+  {
+    id: 1,
+    groupName: "Newly subscribed users",
+    noOfUsers: "8 users",
+  },
+  {
+    id: 2,
+    groupName: "$30 users",
+    noOfUsers: "5 users",
+  },
+  {
+    id: 3,
+    groupName: "$50 users",
+    noOfUsers: "8 users",
+  },
+];
+
+export const images = [
+  gridOne,
+  timelineTwo,
+  gridThree,
+  gridFour,
+  gridFive,
+  gridSix,
+  gridOne,
+  gridTwo,
+  gridThree,
+  gridFour,
+  gridFive,
+  gridSix,
+];
+
+export const audioImages = [
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+  audioFile,
+];
+
+export const samplePollData = [
+  {
+    id: 1,
+    name: "This is option 1 of the poll",
+    percent: "70%",
+  },
+  {
+    id: 2,
+    name: "This is option 2 of the poll",
+    percent: "30%",
+  },
+];
+
+export const settingsModule = [
+  {
+    id: 1,
+    name: "Account",
+    path: "/dashboard/settings/account",
+  },
+  {
+    id: 2,
+    name: "Collections",
+    path: "/dashboard/settings/collections",
+  },
+  {
+    id: 3,
+    name: "Chat",
+    path: "/dashboard/settings/chat",
+  },
+  {
+    id: 4,
+    name: "Notifications",
+    path: "/dashboard/settings/notifications",
+  },
+  {
+    id: 5,
+    name: "Story",
+    path: "/dashboard/settings/story",
+  },
+  {
+    id: 6,
+    name: "Display",
+    path: "/dashboard/settings/display",
+  },
+  {
+    id: 7,
+    name: "QR Code",
+    path: "/dashboard/settings/qr-code",
+  },
+  {
+    id: 8,
+    name: "Privacy and safety",
+    path: "/dashboard/settings/privacy",
+  },
+];
+
+export const accountSettingsModules = [
+  {
+    groupName: "Security",
+    items: [
+      {
+        id: 1,
+        name: "Password",
+        path: "/dashboard/settings/account/change-password",
+      },
+      {
+        id: 2,
+        name: "Login sessions",
+        path: "/dashboard/settings/account/login-sessions",
+      },
+      {
+        id: 3,
+        name: "Two factor authentication",
+        path: "/dashboard/settings/account/two-factor",
+      },
+    ],
+  },
+  {
+    groupName: "Linked accounts",
+    items: [
+      {
+        id: 1,
+        name: "TikTok",
+        path: "/dashboard/settings/account/tiktok",
+      },
+      {
+        id: 2,
+        name: "X App",
+        path: "/dashboard/settings/account/twitter",
+      },
+      {
+        id: 3,
+        name: "Facebook",
+        path: "/dashboard/settings/account/facebook",
+      },
+      {
+        id: 4,
+        name: "Google",
+        path: "/dashboard/settings/account/google",
+      },
+    ],
+  },
+  {
+    groupName: "Account management",
+    items: [
+      {
+        id: 1,
+        name: "Delete account",
+        path: "/dashboard/settings/account/delete-account",
+      },
+    ],
+  },
+];
+
+export const sampleLoginSessions = [
+  {
+    id: 1,
+    deviceName: "Chrome 126, Mac 10.15, Apple",
+    ipAddress: "102.88.82.27 Nigeria",
+    status: true,
+    lastSeen: "",
+  },
+  {
+    id: 2,
+    deviceName: "Microsoft Edge 126, Windows 10",
+    ipAddress: "102.88.82.27 United States",
+    status: false,
+    lastSeen: "7/25/24 5:43pm",
+  },
+  {
+    id: 3,
+    deviceName: "Microsoft Edge 126, Windows 10",
+    ipAddress: "102.88.82.27 United States",
+    status: false,
+    lastSeen: "7/25/24 5:43pm",
+  },
+];
+
+export const sampleTwoFactor = [
+  { id: 1, name: "SMS", desc: "A one time code will be sent to your phone" },
+  { id: 2, name: "Face ID", desc: "Works only on your mobile phone" },
+];
+
+export const notificationsSettings = [
+  {
+    id: 1,
+    name: "Push notifications",
+    desc: "Get push notifications to find out what’s going on when you’re not on OnlyFans. You can turn them off anytime.",
+  },
+  {
+    id: 2,
+    name: "Mentions",
+    desc: "When OFF you will be notified when a friend mentions you",
+  },
+  {
+    id: 3,
+    name: "Email notification",
+    desc: "Get emails to find out what’s going on when you’re not on OnlyFans. You can turn them off anytime.",
+  },
+];
+
+export const displaySettings = [
+  {
+    groupName: "Language",
+    items: [
+      {
+        id: 1,
+        name: "English",
+      },
+      {
+        id: 2,
+        name: "French",
+      },
+      {
+        id: 3,
+        name: "Spanish",
+      },
+    ],
+  },
+  {
+    groupName: "Theme",
+    items: [
+      {
+        id: 1,
+        name: "Light",
+      },
+      {
+        id: 2,
+        name: "Dark",
+      },
+      {
+        id: 3,
+        name: "System",
+      },
+    ],
+  },
+];
+
+export const subscriptionSettings = [
+  {
+    id: 1,
+    name: "Profile  promotion campaign",
+    desc: "Offer a free trial or a discounted subscription on your profile for a limited number or already expired subscription",
+    buttonText: "Start promotion campaign",
+  },
+  {
+    id: 2,
+    name: "Subscription bundles",
+    desc: "Offer several months of subscription as a discounted bundle",
+    buttonText: "Add bundle",
+  },
+  {
+    id: 3,
+    name: "Trial links",
+    desc: "Create and share separate links with free trial subscription",
+    buttonText: "Create new free trial link",
+  },
+];
+
+export const limitedOfferData = [
+  {
+    id: 1,
+    name: "Started",
+    date: "July 31",
+  },
+  {
+    id: 2,
+    name: "End",
+    date: "August 4",
+  },
+  {
+    id: 3,
+    name: "Days left",
+    date: "2",
+  },
+  {
+    id: 4,
+    name: "Claims count",
+    date: "5",
+  },
+];
+
+export const happyPeopleFeed = [
+  {
+    id: 1,
+    name: "Link created",
+    date: "July 31",
+  },
+  {
+    id: 2,
+    name: "Link expires",
+    date: "August 4",
+  },
+  {
+    id: 3,
+    name: "Offer limit",
+    date: "August 4",
+  },
+  {
+    id: 4,
+    name: "Claims count",
+    date: "5",
+  },
+];
+
+export const subBundles = [
+  {
+    id: 1,
+    amount: "$15",
+    duration: "1 month",
+  },
+  {
+    id: 2,
+    amount: "$100",
+    duration: "6 months",
+  },
+];
+
+export const privacyAndSafetyItems = [
+  {
+    groupName: "Profile",
+    items: [
+      {
+        id: 1,
+        name: "Show activity status",
+        isOn: true,
+      },
+      {
+        id: 2,
+        name: "Show activity status",
+        isOn: false,
+      },
+      {
+        id: 3,
+        name: "Show media count on your profile",
+        isOn: true,
+      },
+      {
+        id: 4,
+        name: "Public friends lst",
+        isOn: true,
+      },
+      {
+        id: 5,
+        name: "Password",
+        isOn: true,
+      },
+    ],
+  },
+  {
+    groupName: "Discoverability",
+    items: [
+      {
+        id: 1,
+        name: "Opt out of suggestions",
+        isOn: false,
+      },
+    ],
+  },
+  {
+    groupName: "Water marks",
+    items: [
+      {
+        id: 1,
+        name: "Pictures",
+        isOn: false,
+      },
+      {
+        id: 2,
+        name: "Videos",
+        isOn: false,
+      },
+    ],
+  },
+  {
+    groupName: "Posts",
+    items: [
+      {
+        id: 1,
+        name: "Enable comments",
+        isOn: true,
+      },
+      {
+        id: 2,
+        name: "Allow comments only from subscribers who spent $1 or more",
+        isOn: false,
+      },
+      {
+        id: 3,
+        name: "Show post tips sum",
+        isOn: true,
+      },
+    ],
+  },
+];
+
+export const privacyAndSafety = [
+  {
+    id: 1,
+    name: "Blocked by country",
+    path: "/dashboard/settings/privacy/block-country",
+  },
+  {
+    id: 2,
+    name: "Blocked by IP address",
+    path: "/dashboard/settings/privacy/block-ip",
+  },
+];
+
+export const subscriptionMenu = [
+  {
+    id: 9,
+    name: "Subscribed",
+    path: "/dashboard/account/subscribed",
+    isCreator: false,
+  },
+  {
+    id: 1,
+    name: "Add card",
+    path: "/dashboard/account/add-card",
+    isCreator: false,
+  },
+  {
+    id: 6,
+    name: "Wallet",
+    path: "/dashboard/account/wallet",
+    isCreator: false,
+  },
+  {
+    id: 2,
+    name: "Subscriptions Settings",
+    path: "/dashboard/account/settings",
+    isCreator: true,
+  },
+  {
+    id: 3,
+    name: "Returned Payments",
+    path: "",
+    isCreator: true,
+  },
+  {
+    id: 4,
+    name: "Statistics",
+    path: "/dashboard/account/statistics",
+    isCreator: true,
+  },
+  {
+    id: 5,
+    name: "Statements",
+    path: "",
+    isCreator: true,
+  },
+  {
+    id: 7,
+    name: "Referrals",
+    path: "/dashboard/account/referrals",
+    isCreator: false,
+  },
+  {
+    id: 8,
+    name: "Profile Ads",
+    path: "/dashboard/account/profile-ads",
+    isCreator: true,
+  },
+];
+
+export const earningsSampleData = [
+  { id: 1, earningsType: "Total", amount: "$0.00", net: "$0.00" },
+  { id: 2, earningsType: "Subscriptions", amount: "$0.00", net: "$0.00" },
+  { id: 3, earningsType: "Tips", amount: "$0.00", net: "$0.00" },
+  { id: 4, earningsType: "Stream Tips", amount: "$0.00", net: "$0.00" },
+  { id: 5, earningsType: "Posts", amount: "$0.00", net: "$0.00" },
+  { id: 6, earningsType: "Messages", amount: "$0.00", net: "$0.00" },
+  { id: 7, earningsType: "Streams", amount: "$0.00", net: "$0.00" },
+  { id: 8, earningsType: "Referrals", amount: "$0.00", net: "$0.00" },
+];
+
+export const sampleStreakData = [
+  {
+    id: 1,
+    name: "New Post",
+    image: post,
+  },
+  {
+    id: 2,
+    name: "Add to Story",
+    image: story,
+  },
+  {
+    id: 3,
+    name: "Reply your followers",
+    image: post,
+  },
+  {
+    id: 4,
+    name: "Go Live",
+    image: video,
+  },
+];
+
+export const engagementSummary = [
+  {
+    id: 1,
+    name: "Posts",
+    extra: 1,
+  },
+  {
+    id: 2,
+    name: "Posts View",
+    extra: 0,
+  },
+  {
+    id: 3,
+    name: "Post Earnings",
+    extra: "$0.00",
+  },
+];
+
+export const sampleEngagementTableData = [
+  {
+    id: 1,
+    date: "Aug 13 2024, 8:14 pm",
+    views: 0,
+    tips: "$0.00",
+    price: "$0.00",
+    purchases: "$0.00",
+    image: sampleImageTwo,
+    text: "Hi there",
+    statsLink: "#",
+    imageNo: 0,
+  },
+  {
+    id: 2,
+    date: "Aug 12 2024, 6:12 pm",
+    views: 0,
+    tips: "$0.00",
+    price: "$0.00",
+    purchases: "$0.00",
+    image: sampleImageOne,
+    text: "Hi there",
+    statsLink: "#",
+    imageNo: 2,
+  },
+];
+
+export const engagementMessagesSummary = [
+  {
+    id: 1,
+    name: "Messages",
+    extra: "1",
+  },
+  {
+    id: 2,
+    name: "Top Messages",
+    extra: "0",
+  },
+  {
+    id: 3,
+    name: "Message Earnings",
+    extra: "$0.00",
+  },
+];
+
+export const engagementMessagesStories = [
+  {
+    id: 1,
+    name: "Stories",
+    extra: 0,
+  },
+  {
+    id: 2,
+    name: "Likes",
+    extra: 0,
+  },
+  {
+    id: 3,
+    name: "View",
+    extra: 0,
+  },
+  {
+    id: 4,
+    name: "Stories Tips",
+    extra: "$0.00",
+  },
+];
+
+export const statHeader = [
+  {
+    id: 1,
+    name: "Date",
+  },
+  {
+    id: 2,
+    name: "Views",
+  },
+  {
+    id: 3,
+    name: "Tips",
+  },
+  {
+    id: 4,
+    name: "Price",
+  },
+  {
+    id: 5,
+    name: "Purchases",
+  },
+];
+
+export const statHeaderTwo = [
+  {
+    id: 1,
+    name: "Date",
+  },
+  {
+    id: 2,
+    name: "Viewers",
+  },
+  {
+    id: 4,
+    name: "Likes",
+  },
+  {
+    id: 5,
+    name: "Comments",
+  },
+  {
+    id: 3,
+    name: "Tips",
+  },
+];
+
+export const reachStatHeader = [
+  {
+    id: 1,
+    name: "Statistics",
+  },
+  {
+    id: 2,
+    name: "Guests",
+  },
+  {
+    id: 3,
+    name: "Users",
+  },
+  {
+    id: 4,
+    name: "Total",
+  },
+];
+
+export const reachStatHeaderTwo = [
+  {
+    id: 1,
+    name: "Country",
+  },
+  {
+    id: 2,
+    name: "Guests",
+  },
+  {
+    id: 3,
+    name: "Users",
+  },
+  {
+    id: 4,
+    name: "Total",
+  },
+];
+
+export const reachPromotionHeader = [
+  {
+    id: 1,
+    name: "Start Date",
+  },
+  {
+    id: 2,
+    name: "End Date",
+  },
+  {
+    id: 3,
+    name: "Offer Limit",
+  },
+  {
+    id: 4,
+    name: "Claimed",
+  },
+];
+
+export const fanSubHeader = [
+  {
+    id: 1,
+    name: "Name",
+  },
+  {
+    id: 2,
+    name: "Price",
+  },
+  {
+    id: 3,
+    name: "New Subscribers",
+  },
+];
+
+export const storiesData = [
+  {
+    id: 1,
+    name: "New Post",
+    image: post,
+  },
+  {
+    id: 2,
+    name: "Add to Story",
+    image: story,
+  },
+  {
+    id: 3,
+    name: "Reply your followers",
+    image: post,
+  },
+  {
+    id: 4,
+    name: "Go Live",
+    image: video,
+  },
+];
+
+export const storyStatSample = [
+  {
+    id: 1,
+    name: "Viewers",
+    num: 0,
+    bgColor: "#131314",
+  },
+  {
+    id: 2,
+    name: "Likes",
+    num: 0,
+    bgColor: "#1775C1",
+  },
+  {
+    id: 3,
+    name: "Comments",
+    num: 0,
+    bgColor: "#29AF1D",
+  },
+  {
+    id: 4,
+    name: "Tips",
+    num: "0($0.00)",
+    bgColor: "#E20C0C",
+  },
+];
+
+export const reachProfileSummary = [
+  {
+    id: 1,
+    name: "Profile Visitors",
+    extra: 0,
+  },
+  {
+    id: 2,
+    name: "New Subs/Renews",
+    extra: "0 / 0",
+  },
+  {
+    id: 3,
+    name: "Subscription Earnings",
+    extra: "$0.00",
+  },
+];
+
+export const reachPromotionsSummary = [
+  {
+    id: 1,
+    name: "Mass Offers",
+    extra: 0,
+  },
+  {
+    id: 2,
+    name: "Claims",
+    extra: 0,
+  },
+  {
+    id: 3,
+    name: "Subscription Earnings",
+    extra: "$0.00",
+  },
+];
+
+export const fanPromotionsSummary = [
+  {
+    id: 1,
+    name: "Subscribers",
+    extra: 2,
+  },
+  {
+    id: 2,
+    name: "New Subs/Renews",
+    extra: 0,
+  },
+  {
+    id: 3,
+    name: "Subscription Earnings",
+    extra: "$0.00",
+  },
+  {
+    id: 4,
+    name: "Top Fan",
+    extra: "None Yet",
+  },
+];
+
+export const sampleReachStat = [
+  {
+    id: 1,
+    title: "Profile Visitors",
+    guests: 0,
+    users: 0,
+    total: "$0.00",
+  },
+  {
+    id: 2,
+    title: "View Duration",
+    guests: "0h:00m",
+    users: "0h:00m",
+    total: "0h:00m",
+  },
+];
+
+export const topCountriesData = [
+  {
+    id: 1,
+    country: "South Africa",
+    image: SA,
+    guests: 0,
+    users: 0,
+    total: 0,
+  },
+  {
+    id: 2,
+    country: "Nigeria",
+    image: NIG,
+    guests: 0,
+    users: 0,
+    total: 0,
+  },
+  {
+    id: 3,
+    country: "Ghana",
+    image: GH,
+    guests: 0,
+    users: 0,
+    total: 0,
+  },
+];
+
+export const walletSampleData = [
+  {
+    id: 1,
+    name: "Make wallet primary method for rebills",
+  },
+  {
+    id: 2,
+    name: "Auto Recharge",
+  },
+];
+
+export const subscribedTabs = [
+  {
+    id: 1,
+    name: "All Creators",
+  },
+  {
+    id: 2,
+    name: "All Creators",
+  },
+];
+
+export const subOptions = [
+  {
+    id: 1,
+    name: "Full access to this user's content",
+  },
+  {
+    id: 2,
+    name: "Direct message with this user",
+  },
+  {
+    id: 3,
+    name: "Cancel your subscription at any time",
+  },
+];
+
+export const scheduledPostsAndMessages = [
+  {
+    id: 1,
+    date: "Aug 15, 1:26 pm",
+    text: "Hi fan family! promo coming up",
+    type: "Post",
+  },
+  {
+    id: 2,
+    date: "Aug 15, 1:26 pm",
+    text: "Hi fan family! promo coming up",
+    type: "Message",
+  },
+  {
+    id: 3,
+    date: "Aug 15, 1:26 pm",
+    text: "Hi fan family! promo coming up",
+    type: "Message",
+  },
+];
+
+export const scheduleMessages = [
+  {
+    id: 1,
+    name: "Edit scheduled message",
+  },
+  {
+    id: 2,
+    name: "Send message right now",
+  },
+  {
+    id: 3,
+    name: "Send message right now",
+  },
+];
+
+export const schedulePosts = [
+  {
+    id: 4,
+    name: "Edit post",
+  },
+  {
+    id: 5,
+    name: "Publish now",
+  },
+  {
+    id: 6,
+    name: "Delete post",
+  },
+];
+
+export const giftSubOptions = [
+  {
+    id: 1,
+    name: "Subscription",
+    ans: "2 Months ($34)",
+  },
+  {
+    id: 2,
+    name: "Name of Receiver",
+    ans: "",
+  },
+  {
+    id: 3,
+    name: "Email Address to send Gift",
+    ans: "daaveyjohn1234@gmail.com",
+  },
+];
+
+export const profileAdsTabs = [
+  {
+    id: 1,
+    name: "Get to 200 Viewers",
+    date: "12 July - 19 July",
+    price: "$70",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Get to 200 Viewers",
+    date: "12 July - 19 July",
+    price: "$70",
+    status: "Inactive",
+  },
+];
+
+export const referralInfo = [
+  {
+    id: 1,
+    name: "Total Referrals",
+    num: "2 Referrals",
+  },
+  {
+    id: 2,
+    name: "Pending Earnings",
+    num: "$23.00",
+  },
+];
+
+export const referralHistoryTableHeader = [
+  {
+    id: 1,
+    name: "Referred User",
+  },
+  {
+    id: 2,
+    name: "Date",
+  },
+  {
+    id: 3,
+    name: "Reward",
+  },
+  {
+    id: 4,
+    name: "Status",
+  },
+];
+
+export const referralHistorySampleData = [
+  {
+    id: 1,
+    name: "John Doe",
+    date: "23 July 2024",
+    reward: "$23.00",
+    status: "Pending",
+  },
+  {
+    id: 2,
+    name: "Mavis Inyang",
+    date: "23 July 2024",
+    reward: "$23.00",
+    status: "Rewarded",
+  },
+];
+
+export const transactionHistorySampleData = [
+  {
+    id: 1,
+    title: "@2 Months Subscription",
+    content: "@yummychill54 paid $24 for your contents ",
+  },
+  {
+    id: 2,
+    title: "@2 Months Subscription",
+    content: "@yummychill54 paid $24 for your contents ",
+  },
+  {
+    id: 3,
+    title: "@2 Months Subscription",
+    content: "@yummychill54 paid $24 for your contents ",
+  },
+];
+
+export const thirdColumnSampleData = [
+  {
+    id: 1,
+    photo: defaultAvatar,
+    tag: "@yummychill54",
+    message: "Subscribed to your account",
+    name: "Priscilia yummy",
+    time: "Now",
+  },
+  {
+    id: 2,
+    photo: defaultAvatarTwo,
+    tag: "@Timmy88",
+    message: "Subscribed to your account",
+    name: "PetitTimmy",
+    time: "2 mins ago",
+  },
+  {
+    id: 3,
+    photo: defaultAvatarThree,
+    tag: "@investorchill",
+    message: "Commented on your post.",
+    name: "mArk 🤪 SpecCer 🤪",
+    time: "3 h ago",
+  },
+];
+
+export const continents = [
+  {
+    id: 1,
+    name: "All",
+    image: all,
+  },
+  {
+    id: 3,
+    name: "Asia",
+    image: asia,
+  },
+  {
+    id: 2,
+    name: "Africa",
+    image: africa,
+  },
+  {
+    id: 6,
+    name: "Oceania",
+    image: oceania,
+  },
+  {
+    id: 5,
+    name: "North America",
+    image: northAmerica,
+  },
+  {
+    id: 4,
+    name: "Europe",
+    image: europe,
+  },
+  {
+    id: 7,
+    name: "South America",
+    image: southAmerica,
+  },
+  {
+    id: 8,
+    name: "South America",
+    image: southAmerica,
+  },
+];
+
+export const countriesSample = [
+  {
+    id: 1,
+    name: "Algeria",
+    image: algeria,
+  },
+  {
+    id: 2,
+    name: "East Timor",
+    image: eastTimor,
   },
 ];

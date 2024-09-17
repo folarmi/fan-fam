@@ -31,10 +31,6 @@ const Home = () => {
   ]);
   const [activePoll, setActivePoll] = useState(pollOptions[0].name);
 
-  const handleBlur = () => {
-    console.log("Text area lost focus");
-  };
-  //
   return (
     <div>
       <SearchInput />

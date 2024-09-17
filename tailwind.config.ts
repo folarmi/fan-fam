@@ -44,21 +44,30 @@ const config: Config = {
         grey_300: "#A5A7AF",
         grey_400: "#8D8E96",
         grey_500: "#6F7076",
-        grey_600: "#F3F4FC",
+        grey_600: "#58595E",
         grey_700: "#414245",
         grey_800: "#2A2A2D",
         grey_900: "#131314",
+        grey_90: "#F3F4FC",
+        grey_80: "#D9D9D9",
+        gray_100: "#101510",
         blue_100: "#F7FAFC",
         blue_200: "#E4F1FC",
         blue_300: "#E0E2EE80",
         blue_400: "#C1E1FA",
         blue_500: "#2599F6",
+        blue_600: "#2599F6",
+        blue_900: "#011220",
         blue_10: "#A7D4FC",
         green_10: "#F5FBF5",
+        green_50: "#EFFAED",
         green_100: "#1CF417",
+        green_600: "#29AF1D",
         red_100: "#FC0404",
-        // "gradient-start": "#4F86F0",
-        // "gradient-end": "#2D72E6",
+        red_200: "#FFD1D1",
+        red_300: "#F50000",
+        red_400: "#E20C0C",
+        orange_100: "#F69625",
         "gradient-start": "#FFFFFF29",
         "gradient-end": "#FFFFFF00",
       },
@@ -79,6 +88,12 @@ const config: Config = {
         "custom-outer": "0px 2px 5px 0px rgba(0, 0, 0, 0.2)",
         "search-input":
           "inset 0 1px 3px rgba(236, 238, 251, 1), inset 0 1px 2px rgba(255, 255, 255, 0.25)",
+        "chat-interface": "inset 0px 4px 4px 0px rgba(236, 238, 251, 1)",
+        "custom-combined":
+          "0px 4px 4px 0px rgba(236, 238, 251, 1), inset 0px -4px 1px 0px rgba(255, 255, 255, 0.25)",
+        "disabled-button":
+          "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+        "timeline-card-shadow": "0px 4px 4px 0px rgba(236, 238, 251, 1)",
       },
       dropShadow: {
         "3xl": "0 4px 4px 0 rgba(183, 181, 181, 0.25)",
@@ -93,5 +108,44 @@ const config: Config = {
 };
 export default config;
 
-// rgba(236, 238, 251, 1)rgba(255, 255, 255, 0.25)
-// rgba(236, 238, 251, 1)
+// box-shadow: 0px 4px 4px 0px; rgba(236, 238, 251, 1)
+
+// Floating Input
+// import React, { useState } from 'react';
+
+// const FloatingLabelInput = () => {
+//   const [isFocused, setIsFocused] = useState(false);
+//   const [value, setValue] = useState('');
+
+//   const handleFocus = () => setIsFocused(true);
+//   const handleBlur = () => setIsFocused(!!value);
+
+//   return (
+//     <div className="relative z-0 w-full mb-6 group">
+//       <input
+//         type="text"
+//         id="price"
+//         className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+//         placeholder=" "
+//         value={value}
+//         onChange={(e) => setValue(e.target.value)}
+//         onFocus={handleFocus}
+//         onBlur={handleBlur}
+//       />
+//       <label
+//         htmlFor="price"
+//         className={`absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] ${
+//           isFocused || value ? 'peer-focus:left-0 peer-focus:text-blue-600 peer-focus:scale-75 peer-focus:-translate-y-6' : 'scale-100 translate-y-0'
+//         } left-0`}
+//       >
+//         Price per month
+//       </label>
+//       <div className="absolute top-0 left-0 flex items-center h-full px-3 pointer-events-none text-gray-500">
+//         <span>$</span>
+//       </div>
+//       {value === '' && <div className="absolute right-3 top-0 h-full flex items-center text-gray-500 pointer-events-none">Free</div>}
+//     </div>
+//   );
+// };
+
+// export default FloatingLabelInput;

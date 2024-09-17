@@ -17,6 +17,7 @@ const TimeLineHomeModal = () => {
         content={[
           { id: 1, name: "Add Bookmark" },
           { id: 2, name: "Repost" },
+          { id: 3, name: "Edit post" },
         ]}
       />
     </>

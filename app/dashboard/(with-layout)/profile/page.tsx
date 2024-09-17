@@ -22,7 +22,6 @@ import { commentOptions } from "@/app/data";
 import Post from "@/app/components/Post";
 import Replies from "@/app/components/Replies";
 import Media from "@/app/components/Media";
-import Link from "next/link";
 import SubscriptionButton from "@/app/components/molecules/SubscriptionButton";
 import CustomButton from "@/app/components/forms/CustomButton";
 import CustomInput from "@/app/components/forms/CustomInput";
@@ -32,8 +31,17 @@ import PaymentMethod from "@/app/components/PaymentMethod";
 import ModalContent from "@/app/components/modals/ModalContent";
 import Typography from "@/app/components/forms/Typography";
 import AmountInput from "@/app/components/forms/AmountInput";
+import Modal from "@/app/components/modals/Modal";
+import AddUserToListModal from "@/app/components/modals/AddUserToListModal";
+import blueGift from "@/public/icons/blueGift.svg";
+import GiftSubscription from "@/app/components/modals/GiftSubscription";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
+import BlueBorderedButton from "@/app/components/forms/BlueBorderedButton";
+import Link from "next/link";
 
 const Profile = () => {
+  const { isCreator } = useAppSelector((state: RootState) => state.auth);
   const { control } = useForm();
   const [isExpanded, setIsExpanded] = useState(false);
   const [tabs, setTabs] = useState([
@@ -57,8 +65,14 @@ const Profile = () => {
   const [isActiveTab, setIsActiveTab] = useState("Post");
   const [commentModal, setCommentModal] = useState(false);
   const [linkToProfileModal, setLinkToProfileModal] = useState(false);
-  const [subscription, setSubscription] = useState(true);
+  const [subscription, setSubscription] = useState(false);
   const [tipModal, setTipModal] = useState(false);
+  const [addUserToList, setAddUserToList] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
 
   const toggleCommentModal = () => {
     setCommentModal(!commentModal);
@@ -72,8 +86,19 @@ const Profile = () => {
     setLinkToProfileModal(!linkToProfileModal);
   };
 
+  const toggleAddUserToList = () => {
+    setAddUserToList(!addUserToList);
+  };
+
   const toggleTipModal = () => {
     setTipModal(!tipModal);
+  };
+
+  const getModalValue = (name: string) => {
+    if (name === "Add User to list") {
+      setCommentModal(false);
+      setAddUserToList(!addUserToList);
+    }
   };
 
   return (
@@ -103,14 +128,21 @@ const Profile = () => {
               <Image src={profilePicture} alt="profilePicture" />
             </div>
             <div className="w-full mt-6 flex items-center justify-between">
-              <div className="flex items-center ml-28">
+              {/* <div className="flex items-center ml-28">
                 <Image src={location} alt="location" />
                 <Typography className="text-grey_400 pl-1" variant="p3">
                   Nigeria
                 </Typography>
-              </div>
+              </div> */}
 
-              <div className="flex items-center gap-x-4">
+              <div className="flex items-center gap-x-4 justify-between w-full">
+                <div className="flex items-center ml-28">
+                  <Image src={location} alt="location" />
+                  <Typography className="text-grey_400 pl-1" variant="p3">
+                    Nigeria
+                  </Typography>
+                </div>
+
                 <div className="cursor-pointer">
                   <CircleChat className="cursor-pointer hover:fill-blue_200" />
                 </div>
@@ -180,16 +212,37 @@ const Profile = () => {
 
                 <Image src={circleStar} alt="circleStar" />
 
-                <div className="border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white">
-                  <Link
-                    href="/dashboard/profile/edit-profile"
-                    className="cursor-pointer"
-                  >
-                    <Typography variant="subtitle3" className="text-blue_500">
-                      {isActiveTab === "Media" ? "Edit profile" : "Subscribe"}
-                    </Typography>
-                  </Link>
-                </div>
+                {!isCreator && (
+                  <>
+                    <div
+                      className={`flex items-center gap-x-2 border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white `}
+                    >
+                      <Image src={blueGift} alt="gift" />
+                      <Typography variant="subtitle3" className="text-blue_500">
+                        Gift Subscription
+                      </Typography>
+                    </div>
+
+                    <CustomButton variant="primary" primaryButtonSize="xs px-3">
+                      Subscribe
+                    </CustomButton>
+                  </>
+                )}
+
+                {isCreator && (
+                  <>
+                    {" "}
+                    <Link href="/dashboard/profile/promote">
+                      <CustomButton
+                        variant="primary"
+                        primaryButtonSize="xs px-3"
+                      >
+                        Promote Profile
+                      </CustomButton>
+                    </Link>
+                    <BlueBorderedButton text="Edit Profile" />
+                  </>
+                )}
 
                 <div className="relative">
                   <Image
@@ -207,19 +260,12 @@ const Profile = () => {
                         </Typography>
                         <Image src={copy} alt="copy" />
                       </div>
-                      <ModalContent content={commentOptions} />
+                      <ModalContent
+                        content={commentOptions}
+                        onClick={getModalValue}
+                      />
                     </div>
                   )}
-                  {/* {linkToProfileModal && (
-                    <div className="flex flex-col absolute -right-[100%] top-[140%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white">
-                      <div className="flex items-center justify-between py-[9px] hover:bg-blue_200 hover:rounded-lg cursor-pointer px-6">
-                        <Typography variant="p2" className="text-grey_700">
-                          Copy link to profile
-                        </Typography>
-                        <Image src={copy} alt="copy" />
-                      </div>
-                    </div>
-                  )} */}
                 </div>
               </div>
             </div>
@@ -328,10 +374,27 @@ const Profile = () => {
           })}
         </div>
 
+        {
+          <Modal show={addUserToList} toggleModal={toggleAddUserToList}>
+            <AddUserToListModal toggleModal={toggleAddUserToList} />
+          </Modal>
+        }
+
         {isActiveTab === "Post" && <Post />}
         {isActiveTab === "Replies" && <Replies />}
         {isActiveTab === "Media" && <Media />}
       </div>
+
+      {showModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-40"
+          onClick={toggleModal}
+        >
+          <div className="" onClick={(e) => e.stopPropagation()}>
+            <GiftSubscription toggleModal={toggleModal} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

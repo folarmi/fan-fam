@@ -6,11 +6,13 @@ type EmailType = "Reset" | "Signup" | "";
 export interface AuthState {
   userEmail: string;
   emailType: EmailType;
+  isCreator: boolean;
 }
 
 const initialState: AuthState = {
   userEmail: "",
   emailType: "",
+  isCreator: true,
 };
 
 export const authSlice = createSlice({
