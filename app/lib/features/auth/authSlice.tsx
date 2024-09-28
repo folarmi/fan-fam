@@ -12,7 +12,7 @@ export interface AuthState {
 const initialState: AuthState = {
   userEmail: "",
   emailType: "",
-  isCreator: true,
+  isCreator: false,
 };
 
 export const authSlice = createSlice({

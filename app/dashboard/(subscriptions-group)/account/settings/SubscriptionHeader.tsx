@@ -11,7 +11,7 @@ const SubscriptionHeader = ({ text }: SubscriptionHeaderProps) => {
     //
     <div
       className={`w-full bg-white py-[18px] pl-7 border
- border-grey_20 shadow-custom-combined h-14 `}
+ border-grey_20 shadow-custom-combined h-14`}
     >
       <Typography variant="subtitle1" className="text-black">
         {text}
