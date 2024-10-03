@@ -2,7 +2,6 @@ import React from "react";
 import Typography from "../forms/Typography";
 import verifyBlue from "@/public/icons/verifyBlue.svg";
 import {
-  notificationSampleData,
   thirdColumnSampleData,
   transactionHistorySampleData,
 } from "@/app/data";

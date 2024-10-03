@@ -28,6 +28,28 @@ import Schedule from "../components/svgs/Schedule";
 import MyAccount from "../components/svgs/MyAccount";
 import Profile from "../components/svgs/Profile";
 import More from "../components/svgs/More";
+import all from "@/public/all.svg";
+import africa from "@/public/africa.svg";
+import asia from "@/public/asia.svg";
+import europe from "@/public/europe.svg";
+import northAmerica from "@/public/northAmerica.svg";
+import oceania from "@/public/oceania.svg";
+import southAmerica from "@/public/southAmerica.svg";
+import algeria from "@/public/icons/algeria.svg";
+import eastTimor from "@/public/icons/eastTimor.svg";
+import biking from "@/public/biking.svg";
+import skiDiving from "@/public/skiDiving.svg";
+import dance from "@/public/dance.svg";
+import party from "@/public/party.svg";
+import foods from "@/public/foods.svg";
+import tech from "@/public/tech.svg";
+import travels from "@/public/travels.svg";
+import music from "@/public/music.svg";
+import sports from "@/public/sports.svg";
+import happyEmoji from "@/public/icons/happyEmoji.svg";
+import videoEmoji from "@/public/icons/videoEmoji.svg";
+import blurEmoji from "@/public/icons/blurEmoji.svg";
+import galleryEmoji from "@/public/icons/galleryEmoji.svg";
 
 export const sideBarItems = [
   {
@@ -74,7 +96,7 @@ export const sideBarItems = [
   },
   {
     id: 7,
-    name: "More",
+    name: "Settings",
     image: <More />,
     link: "/dashboard/settings/account",
   },
@@ -444,6 +466,11 @@ export const settingsModule = [
     name: "Privacy and safety",
     path: "/dashboard/settings/privacy",
   },
+  {
+    id: 9,
+    name: "Preferences",
+    path: "/dashboard/settings/preferences",
+  },
 ];
 
 export const accountSettingsModules = [
@@ -764,46 +791,55 @@ export const subscriptionMenu = [
     id: 9,
     name: "Subscribed",
     path: "/dashboard/account/subscribed",
+    isCreator: false,
   },
   {
     id: 1,
     name: "Add card",
     path: "/dashboard/account/add-card",
+    isCreator: false,
   },
   {
     id: 6,
     name: "Wallet",
     path: "/dashboard/account/wallet",
+    isCreator: false,
   },
   {
     id: 2,
     name: "Subscriptions Settings",
     path: "/dashboard/account/settings",
+    isCreator: true,
   },
   {
     id: 3,
     name: "Returned Payments",
     path: "",
+    isCreator: true,
   },
   {
     id: 4,
     name: "Statistics",
     path: "/dashboard/account/statistics",
+    isCreator: true,
   },
   {
     id: 5,
     name: "Statements",
     path: "",
+    isCreator: true,
   },
   {
     id: 7,
     name: "Referrals",
     path: "/dashboard/account/referrals",
+    isCreator: false,
   },
   {
     id: 8,
     name: "Profile Ads",
     path: "/dashboard/account/profile-ads",
+    isCreator: true,
   },
 ];
 
@@ -1412,5 +1448,123 @@ export const thirdColumnSampleData = [
     message: "Commented on your post.",
     name: "mArk 🤪 SpecCer 🤪",
     time: "3 h ago",
+  },
+];
+
+export const continents = [
+  {
+    id: 1,
+    name: "All",
+    image: all,
+  },
+  {
+    id: 3,
+    name: "Asia",
+    image: asia,
+  },
+  {
+    id: 2,
+    name: "Africa",
+    image: africa,
+  },
+  {
+    id: 6,
+    name: "Oceania",
+    image: oceania,
+  },
+  {
+    id: 5,
+    name: "North America",
+    image: northAmerica,
+  },
+  {
+    id: 4,
+    name: "Europe",
+    image: europe,
+  },
+  {
+    id: 7,
+    name: "South America",
+    image: southAmerica,
+  },
+  {
+    id: 8,
+    name: "South America",
+    image: southAmerica,
+  },
+];
+
+export const countriesSample = [
+  {
+    id: 1,
+    name: "Algeria",
+    image: algeria,
+  },
+  {
+    id: 2,
+    name: "East Timor",
+    image: eastTimor,
+  },
+];
+
+export const interestData = [
+  {
+    id: 1,
+    image: biking,
+  },
+  {
+    id: 2,
+    image: skiDiving,
+  },
+  {
+    id: 3,
+    image: dance,
+  },
+  {
+    id: 4,
+    image: party,
+  },
+  {
+    id: 5,
+    image: foods,
+  },
+  {
+    id: 6,
+    image: tech,
+  },
+  {
+    id: 7,
+    image: travels,
+  },
+  {
+    id: 8,
+    image: music,
+  },
+  {
+    id: 9,
+    image: sports,
+  },
+];
+
+export const emojiData = [
+  {
+    id: 1,
+    img: happyEmoji,
+    name: "Emoji",
+  },
+  {
+    id: 4,
+    img: videoEmoji,
+    name: "Giphy",
+  },
+  {
+    id: 2,
+    img: galleryEmoji,
+    name: "Photo",
+  },
+  {
+    id: 3,
+    img: blurEmoji,
+    name: "Blur",
   },
 ];

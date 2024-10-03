@@ -35,8 +35,13 @@ import Modal from "@/app/components/modals/Modal";
 import AddUserToListModal from "@/app/components/modals/AddUserToListModal";
 import blueGift from "@/public/icons/blueGift.svg";
 import GiftSubscription from "@/app/components/modals/GiftSubscription";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
+import BlueBorderedButton from "@/app/components/forms/BlueBorderedButton";
+import Link from "next/link";
 
 const Profile = () => {
+  const { isCreator } = useAppSelector((state: RootState) => state.auth);
   const { control } = useForm();
   const [isExpanded, setIsExpanded] = useState(false);
   const [tabs, setTabs] = useState([
@@ -60,10 +65,10 @@ const Profile = () => {
   const [isActiveTab, setIsActiveTab] = useState("Post");
   const [commentModal, setCommentModal] = useState(false);
   const [linkToProfileModal, setLinkToProfileModal] = useState(false);
-  const [subscription, setSubscription] = useState(true);
+  const [subscription, setSubscription] = useState(false);
   const [tipModal, setTipModal] = useState(false);
   const [addUserToList, setAddUserToList] = useState(false);
-  const [showModal, setShowModal] = useState(true);
+  const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -207,18 +212,37 @@ const Profile = () => {
 
                 <Image src={circleStar} alt="circleStar" />
 
-                <div
-                  className={`flex items-center gap-x-2 border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white `}
-                >
-                  <Image src={blueGift} alt="gift" />
-                  <Typography variant="subtitle3" className="text-blue_500">
-                    Gift Subscription
-                  </Typography>
-                </div>
+                {!isCreator && (
+                  <>
+                    <div
+                      className={`flex items-center gap-x-2 border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white `}
+                    >
+                      <Image src={blueGift} alt="gift" />
+                      <Typography variant="subtitle3" className="text-blue_500">
+                        Gift Subscription
+                      </Typography>
+                    </div>
 
-                <CustomButton variant="primary" primaryButtonSize="xs px-3">
-                  {isActiveTab === "Media" ? "Edit profile" : "Subscribe"}
-                </CustomButton>
+                    <CustomButton variant="primary" primaryButtonSize="xs px-3">
+                      Subscribe
+                    </CustomButton>
+                  </>
+                )}
+
+                {isCreator && (
+                  <>
+                    {" "}
+                    <Link href="/dashboard/profile/promote">
+                      <CustomButton
+                        variant="primary"
+                        primaryButtonSize="xs px-3"
+                      >
+                        Promote Profile
+                      </CustomButton>
+                    </Link>
+                    <BlueBorderedButton text="Edit Profile" />
+                  </>
+                )}
 
                 <div className="relative">
                   <Image

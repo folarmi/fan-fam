@@ -2,7 +2,6 @@
 
 import Tabs from "@/app/components/forms/Tabs";
 import TimelineAndOverview from "@/app/components/forms/TimelineAndOverview";
-import Typography from "@/app/components/forms/Typography";
 import EmptyState from "@/app/components/molecules/EmptyState";
 import React, { useState } from "react";
 

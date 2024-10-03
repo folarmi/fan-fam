@@ -8,6 +8,8 @@ import Typography from "@/app/components/forms/Typography";
 import withAuth from "@/app/hoc/withAuth";
 import rightAshArrow from "@/public/icons/rightAshArrow.svg";
 import Sidebar from "@/app/components/molecules/Sidebar";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
 
 const SubscriptionLayout = ({
   children,
@@ -15,6 +17,18 @@ const SubscriptionLayout = ({
   children: React.ReactNode;
 }>) => {
   const [isActiveTab, setIsActiveTab] = useState("Add Card");
+  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+
+  // Filter menu items for display
+  const filteredMenuItems = subscriptionMenu.filter((item) => {
+    if (isCreator) {
+      // Show items for creators: items meant for creators and shared items
+      return item.isCreator === true || item.isCreator === undefined;
+    } else {
+      // Show items for regular users: items explicitly for users and shared items
+      return item.isCreator === false || item.isCreator === undefined;
+    }
+  });
 
   return (
     <div className="flex justify-center">
@@ -26,7 +40,7 @@ const SubscriptionLayout = ({
      border-grey_20 shadow-custom-combined mb-2"
         ></div>
 
-        {subscriptionMenu?.map(({ id, name, path }) => {
+        {filteredMenuItems?.map(({ id, name, path }) => {
           return (
             <Link
               key={id}

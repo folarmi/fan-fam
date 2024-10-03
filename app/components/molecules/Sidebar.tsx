@@ -5,18 +5,40 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import Typography from "../forms/Typography";
 import CustomButton from "../forms/CustomButton";
-import logo from "@/public/icons/logo.svg";
+import verifyBlue from "@/public/icons/verifyBlue.svg";
+import defaultAvatar from "@/public/defaultAvatar.svg";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
 
 const Sidebar = () => {
   const pathName = usePathname();
+  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+
   return (
     <div className="flex flex-col h-screen pr-12 pl-[109px] border-r border-grey_10">
-      <div className="flex items-center my-6 bg-white">
-        <Image src={logo} alt="fanFam logo" className="" />
-        <Typography variant="subtitle2" className="text-grey_900 pl-2">
-          Fan Fam
-        </Typography>
-      </div>
+      {/* User Avatar */}
+      {
+        <div className="flex items-center my-6 bg-white">
+          <Image src={defaultAvatar} alt="defaultAvatar" className="" />
+          <div className="ml-3">
+            <div className="flex items-center mb-1">
+              <Typography
+                variant="titleTwo"
+                className="text-grey_900 whitespace-nowrap"
+              >
+                Priscilia yummy
+              </Typography>
+
+              {isCreator && (
+                <Image src={verifyBlue} alt="demo" className=" h-4 w-4" />
+              )}
+            </div>
+            <Typography variant="p2" className="text-grey_400">
+              @yummychill54
+            </Typography>
+          </div>
+        </div>
+      }
 
       <div className="w-[25%]">
         {sideBarItems.map(({ id, name, image, link }) => {
