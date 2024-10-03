@@ -15,7 +15,7 @@ const Sidebar = () => {
   const { isCreator } = useAppSelector((state: RootState) => state.auth);
 
   return (
-    <div className="flex flex-col h-screen pr-12 pl-[109px] border-r border-grey_10">
+    <div className="hidden md:flex flex-col h-screen pr-12 pl-[109px] border-r border-grey_10">
       {/* User Avatar */}
       {
         <div className="flex items-center my-6 bg-white">

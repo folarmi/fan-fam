@@ -53,7 +53,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <>
         <SearchInput />
         {ifUserIsCreatingPoll ? (

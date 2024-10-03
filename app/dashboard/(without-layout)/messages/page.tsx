@@ -43,17 +43,26 @@ const Messages = () => {
   const [isActiveTab, setIsActiveTab] = useState("All");
   const [createNewGroup, setCreateNewGroup] = useState(false);
   const [selectedChatGroup, setSelectedChatGroup] = useState("");
+  const [selectedMessageOnMobile, setSelectedMessageOnMobile] = useState(true);
 
   const toggleCreateNewChatGroup = () => {
     setCreateNewGroup(!createNewGroup);
   };
 
-  console.log("fghfjjvjjvjhvhh", selectedChatGroup);
+  const toggleMessageAndChatInterface = () => {
+    if (window.innerWidth <= 425) {
+      setSelectedMessageOnMobile(!selectedMessageOnMobile);
+    }
+  };
 
   return (
     <section className="flex">
       {selectedChatGroup === "" && (
-        <div className="bg-grey_20 drop-shadow-4xl w-[42%] mt-4">
+        <div
+          className={`bg-grey_20 drop-shadow-4xl w-full md:w-[42%] mt-4 ${
+            selectedMessageOnMobile ? "hidden md:block" : ""
+          }`}
+        >
           <div
             className="flex items-center justify-between w-full bg-grey_20 py-3 px-4 rounded-sm
       border border-grey_20 drop-shadow-3xl shadow-header-md mb-2"
@@ -108,10 +117,11 @@ const Messages = () => {
                   <div
                     key={id}
                     className="flex items-center p-4 border-b border-grey_10"
+                    onClick={toggleMessageAndChatInterface}
                   >
                     <Image src={photo} alt="photo" className="w-10 h-10" />
                     <div className="ml-3">
-                      <div className="flex items-center mb-1">
+                      <div className="flex items-center mb-1 whitespace-nowrap">
                         <Typography
                           variant="titleTwo"
                           className="text-grey_900"
@@ -176,12 +186,20 @@ const Messages = () => {
 
       {selectedChatGroup !== "" && (
         <div className="w-[42%]">
-          <AddParticipant setSelectedChatGroup={setSelectedChatGroup} />
+          <AddParticipant />
         </div>
       )}
 
-      <section className="w-[58%]">
-        {isActiveTab !== "Chat groups" && <ChatInterface />}
+      <section
+        className={`${
+          selectedMessageOnMobile ? "" : "hidden md:block"
+        } w-full :w-[58%]`}
+      >
+        {isActiveTab !== "Chat groups" && (
+          <ChatInterface
+            toggleMessageAndChatInterface={toggleMessageAndChatInterface}
+          />
+        )}
         {isActiveTab === "Chat groups" && <GroupChatInterface />}
       </section>
 

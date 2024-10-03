@@ -13,8 +13,9 @@ import timelineImage from "@/public/timelineImage.svg";
 import CommentBox from "@/app/components/CommentBox";
 import Typography from "@/app/components/forms/Typography";
 import ModalContent from "@/app/components/modals/ModalContent";
+import leftArrow from "@/public/icons/arrowLeft.svg";
 
-const ChatInterface = () => {
+const ChatInterface = ({ toggleMessageAndChatInterface }: any) => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleModal = () => {
@@ -23,8 +24,15 @@ const ChatInterface = () => {
 
   return (
     <>
-      <section className="mt-8 w-full pl-4 pr-[88px]">
+      <section className="mt-8 w-full pl-4 md:pr-[88px]">
         <div className="flex items-center bg-white drop-shadow-4xl ">
+          <Image
+            src={leftArrow}
+            alt="leftArrow"
+            className="cursor-pointer"
+            onClick={toggleMessageAndChatInterface}
+          />
+
           <Image src={defaultAvatar} alt="demo" className="w-10 h-10" />
 
           <div className="ml-2">
@@ -87,7 +95,7 @@ const ChatInterface = () => {
             </Typography>
           </div>
 
-          <div className="flex ml-auto">
+          <div className="hidden md:flex ml-auto">
             <div className="relative w-[212px] ">
               <input
                 type="text"

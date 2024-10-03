@@ -10,9 +10,9 @@ const MessagesLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="flex  justify-center">
+    <div className="flex justify-center">
       <Sidebar />
-      <main className="w-[75%]">{children}</main>
+      <main className="w-full md:w-[75%]">{children}</main>
     </div>
   );
 };
