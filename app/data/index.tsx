@@ -50,6 +50,7 @@ import happyEmoji from "@/public/icons/happyEmoji.svg";
 import videoEmoji from "@/public/icons/videoEmoji.svg";
 import blurEmoji from "@/public/icons/blurEmoji.svg";
 import galleryEmoji from "@/public/icons/galleryEmoji.svg";
+import { SettingsIcon } from "../components/svgs/Settings";
 
 export const sideBarItems = [
   {
@@ -97,7 +98,7 @@ export const sideBarItems = [
   {
     id: 7,
     name: "Settings",
-    image: <More />,
+    image: <SettingsIcon />,
     link: "/dashboard/settings/account",
   },
 ];
@@ -557,7 +558,13 @@ export const sampleLoginSessions = [
 
 export const sampleTwoFactor = [
   { id: 1, name: "SMS", desc: "A one time code will be sent to your phone" },
+  { id: 3, name: "Email", desc: "A one time code will be sent to your email" },
   { id: 2, name: "Face ID", desc: "Works only on your mobile phone" },
+  {
+    id: 4,
+    name: "Authenticator App",
+    desc: "Connect your account with your 2FA app",
+  },
 ];
 
 export const notificationsSettings = [
@@ -1566,5 +1573,16 @@ export const emojiData = [
     id: 3,
     img: blurEmoji,
     name: "Blur",
+  },
+];
+
+export const twoFAInstructions = [
+  {
+    id: 1,
+    text: "Copy your 2FA key and paste it into your 2FA app.",
+  },
+  {
+    id: 2,
+    text: "Enter the generated code from your 2FA app in the field below.",
   },
 ];
