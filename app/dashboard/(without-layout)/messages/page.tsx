@@ -43,12 +43,18 @@ const Messages = () => {
   const [isActiveTab, setIsActiveTab] = useState("All");
   const [createNewGroup, setCreateNewGroup] = useState(false);
   const [selectedChatGroup, setSelectedChatGroup] = useState("");
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [areParticipantSelected, setAreParticipantSelected] = useState(false);
   const [selectedMessageOnMobile, setSelectedMessageOnMobile] = useState(true);
 
   const toggleCreateNewChatGroup = () => {
     setCreateNewGroup(!createNewGroup);
   };
 
+  const getSelectedGroup = (groupName: string) => {
+    setSelectedChatGroup(groupName);
+    setIsEmpty(!isEmpty);
+  };
   const toggleMessageAndChatInterface = () => {
     if (window.innerWidth <= 425) {
       setSelectedMessageOnMobile(!selectedMessageOnMobile);
@@ -162,7 +168,7 @@ const Messages = () => {
               {sampleChatGroups?.map(({ id, groupName, noOfUsers }) => (
                 <div
                   key={id}
-                  onClick={() => setSelectedChatGroup("jfdbjdfbhu")}
+                  onClick={() => getSelectedGroup(groupName)}
                   className="flex items-center justify-between cursor-pointer p-4 border-b border-grey_10 hover:bg-blue_200"
                 >
                   <div>
@@ -173,7 +179,7 @@ const Messages = () => {
                       {groupName}
                     </Typography>
                     <Typography variant="p2" className="text-grey_400">
-                      {noOfUsers} Users
+                      {noOfUsers}
                     </Typography>
                   </div>
                   <Image src={rightAshArrow} alt="arrow" className="w-6 h-6" />
@@ -186,28 +192,43 @@ const Messages = () => {
 
       {selectedChatGroup !== "" && (
         <div className="w-[42%]">
+          <AddParticipant
+            setSelectedChatGroup={setSelectedChatGroup}
+            setAreParticipantSelected={setAreParticipantSelected}
+            areParticipantSelected={areParticipantSelected}
+          />
           <AddParticipant />
         </div>
       )}
 
-      <section
-        className={`${
-          selectedMessageOnMobile ? "" : "hidden md:block"
-        } w-full :w-[58%]`}
-      >
-        {isActiveTab !== "Chat groups" && (
-          <ChatInterface
-            toggleMessageAndChatInterface={toggleMessageAndChatInterface}
+      <section className="w-[58%]">
+        {isActiveTab !== "Chat groups" && <ChatInterface />}
+        {isActiveTab === "Chat groups" && (
+          <GroupChatInterface
+            selectedChatGroup={selectedChatGroup}
+            isEmpty={isEmpty}
+            areParticipantSelected={areParticipantSelected}
           />
         )}
-        {isActiveTab === "Chat groups" && <GroupChatInterface />}
-      </section>
+        <section
+          className={`${
+            selectedMessageOnMobile ? "" : "hidden md:block"
+          } w-full :w-[58%]`}
+        >
+          {isActiveTab !== "Chat groups" && (
+            <ChatInterface
+              toggleMessageAndChatInterface={toggleMessageAndChatInterface}
+            />
+          )}
+          {isActiveTab === "Chat groups" && <GroupChatInterface />}
+        </section>
 
-      {
-        <Modal show={createNewGroup} toggleModal={toggleCreateNewChatGroup}>
-          <CreateChatGroup toggleModal={toggleCreateNewChatGroup} />
-        </Modal>
-      }
+        {
+          <Modal show={createNewGroup} toggleModal={toggleCreateNewChatGroup}>
+            <CreateChatGroup toggleModal={toggleCreateNewChatGroup} />
+          </Modal>
+        }
+      </section>
     </section>
   );
 };
