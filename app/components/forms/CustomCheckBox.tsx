@@ -27,7 +27,7 @@ const CustomCheckBox = ({
       />
       <label
         htmlFor="checked-checkbox"
-        className={`relative cursor-pointer w-6 h-6 rounded-lg flex items-center justify-center ${
+        className={`relative cursor-pointer w-4 h-4 rounded-sm flex items-center justify-center ${
           checked ? "bg-blue_500" : "bg-white border-[0.67px] border-grey_400"
         }`}
       >

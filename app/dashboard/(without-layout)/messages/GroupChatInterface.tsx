@@ -10,9 +10,12 @@ import CommentBox from "@/app/components/CommentBox";
 import Typography from "@/app/components/forms/Typography";
 import { audioImages, images } from "@/app/data";
 
-const GroupChatInterface = () => {
+const GroupChatInterface = ({
+  selectedChatGroup,
+  isEmpty,
+  areParticipantSelected,
+}: any) => {
   const [showModal, setShowModal] = useState(false);
-  const [isEmpty, setIsEmpty] = useState(true);
 
   const [generalTabs] = useState([
     {
@@ -55,7 +58,7 @@ const GroupChatInterface = () => {
 
   return (
     <>
-      {!isEmpty && (
+      {areParticipantSelected && (
         <section className="mt-8 w-full pl-4 pr-[88px]">
           <div className="flex justify-between">
             <Typography variant="titleOne" className="text-grey_900">
@@ -288,6 +291,17 @@ const GroupChatInterface = () => {
         <div className="flex items-center justify-center h-full">
           <Typography variant="subtitle3" className="text-grey_400  pt-[317px]">
             No chats yet. Select a group to get started
+          </Typography>
+        </div>
+      )}
+
+      {selectedChatGroup !== "" && (
+        <div
+          className="flex flex-col items-center justify-center h-full"
+          // onClick={toggleShowList}
+        >
+          <Typography variant="subtitle3" className="text-grey_400">
+            You do not have any chats in this group yet
           </Typography>
         </div>
       )}
