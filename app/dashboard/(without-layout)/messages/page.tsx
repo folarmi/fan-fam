@@ -213,14 +213,21 @@ const Messages = () => {
         <section
           className={`${
             selectedMessageOnMobile ? "" : "hidden md:block"
-          } w-full :w-[58%]`}
+          } w-full md:w-[58%]`}
         >
           {isActiveTab !== "Chat groups" && (
             <ChatInterface
               toggleMessageAndChatInterface={toggleMessageAndChatInterface}
             />
           )}
-          {isActiveTab === "Chat groups" && <GroupChatInterface />}
+          {isActiveTab === "Chat groups" && (
+            <GroupChatInterface
+              selectedChatGroup={selectedChatGroup}
+              isEmpty={isEmpty}
+              areParticipantSelected={areParticipantSelected}
+            />
+          )}
+          {/* {isActiveTab === "Chat groups" && <GroupChatInterface />} */}
         </section>
 
         {
