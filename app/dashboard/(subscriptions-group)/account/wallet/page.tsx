@@ -23,12 +23,9 @@ const Wallet = () => {
 
   return (
     <div className="">
-      <div className="flex items-center">
-        <AccountMobileBackButton />
-        <SubscriptionHeader text="Wallet" />
-      </div>
+      <SubscriptionHeader text="Wallet" />
 
-      <section>
+      <section className="ml-4">
         <div className="bg-grey_10 p-4">
           <div className="flex items-center justify-between">
             <Typography variant="subtitle2" className="text-grey_800">
@@ -72,7 +69,7 @@ const Wallet = () => {
       </section>
 
       {isCreator && (
-        <div className="">
+        <div className="ml-4">
           <section className="px-4 flex items-center justify-between border border-grey_10">
             {pendingWithdrawalsTableHeader.map(({ id, name }) => (
               <div key={id} className="my-2 ">

@@ -17,6 +17,7 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import SubscriptionHeader from "./SubscriptionHeader";
+import { AccountMobileBackButton } from "@/app/components/molecules/AccountMobileBackButton";
 
 const Subscriptions = () => {
   const { control } = useForm();
@@ -25,7 +26,7 @@ const Subscriptions = () => {
   const [isPromotion, setIsPromotion] = useState(false);
   const [isFreeTrial, setIsFreeTrial] = useState(false);
   const [isBundleModal, setIsBundleModal] = useState(false);
-  const [isBundleContent, setIsBundleContent] = useState(true);
+  const [isBundleContent, setIsBundleContent] = useState(false);
 
   const toggleModal = (buttonText: string) => {
     if (buttonText === "Start promotion campaign")
@@ -51,7 +52,7 @@ const Subscriptions = () => {
 
         <div className="flex items-center justify-between -mt-3">
           <Typography variant="p3" className="text-grey_500">
-            Minimum $5 or freesss
+            Minimum $5 or free
           </Typography>
 
           <div className="flex items-center">
@@ -144,25 +145,25 @@ const Subscriptions = () => {
                         className="flex items-center justify-between border border-grey_100 px-4 py-6 rounded-2xl mb-4"
                       >
                         <div className="flex items-center">
-                          <div className="flex items-center mr-6">
+                          <div className="flex flex-col md:flex-row md:items-center mr-6">
                             <Typography variant="p2" className="text-grey_500">
                               Amount:
                             </Typography>
                             <Typography
                               variant="subtitle2"
-                              className="text-grey_800 pl-2"
+                              className="text-grey_800 md:pl-2"
                             >
                               {amount}
                             </Typography>
                           </div>
 
-                          <div className="flex items-center">
+                          <div className="flex flex-col md:flex-row md:items-center">
                             <Typography variant="p2" className="text-grey_500">
                               Duration:
                             </Typography>
                             <Typography
                               variant="subtitle2"
-                              className="text-grey_800 pl-2"
+                              className="text-grey_800 md:pl-2"
                             >
                               {duration}
                             </Typography>

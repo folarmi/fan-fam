@@ -63,7 +63,7 @@ const Typography: React.FC<TypographyProps> = ({
       classes = "text-base font-normal leading-5";
       break;
     case "p2":
-      classes = "text-sm font-normal leading-5";
+      classes = "text-[12px] md:text-sm font-normal leading-5";
       break;
     case "p3":
       classes = "text-[12px] font-normal";

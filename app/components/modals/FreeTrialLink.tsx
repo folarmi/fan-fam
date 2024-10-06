@@ -9,7 +9,7 @@ const FreeTrialLink = ({ toggleModal }: any) => {
   const { control } = useForm();
 
   return (
-    <div className="bg-white rounded-2xl p-6 w-1/2">
+    <div className="bg-white rounded-2xl p-6 w-full md:w-1/2">
       <Typography variant="h5" className="cursor-pointer text-grey_800 pb-6">
         Free trial link
       </Typography>
