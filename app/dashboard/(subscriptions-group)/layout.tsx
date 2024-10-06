@@ -18,12 +18,15 @@ const SubscriptionLayout = ({
 }>) => {
   const [isActiveTab, setIsActiveTab] = useState("Add Card");
   const { isCreator } = useAppSelector((state: RootState) => state.auth);
+  const { showAccountOnMobile } = useAppSelector(
+    (state: RootState) => state.settingMobile
+  );
 
   // Filter menu items for display
   const filteredMenuItems = subscriptionMenu.filter((item) => {
     if (isCreator) {
       // Show items for creators: items meant for creators and shared items
-      return item.isCreator === true || item.isCreator === undefined;
+      return item.isCreator === true || item.isCreator === false;
     } else {
       // Show items for regular users: items explicitly for users and shared items
       return item.isCreator === false || item.isCreator === undefined;
@@ -34,7 +37,9 @@ const SubscriptionLayout = ({
     <div className="flex justify-center">
       <Sidebar />
 
-      <section className="w-[25%]">
+      <section
+        className={`${showAccountOnMobile ? "hidden" : "w-full md:w-[25%]"} `}
+      >
         <div
           className="w-full bg-grey_20 h-14 px-4 border
      border-grey_20 shadow-custom-combined mb-2"
@@ -65,7 +70,15 @@ const SubscriptionLayout = ({
           );
         })}
       </section>
-      <main className="w-[50%] pr-[88px]">{children}</main>
+      <main
+        className={`${
+          showAccountOnMobile
+            ? "w-full"
+            : "hidden md:block md:w-[50%] md:pr-[88px]"
+        }`}
+      >
+        {children}
+      </main>
     </div>
   );
 };

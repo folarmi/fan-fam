@@ -798,11 +798,11 @@ export const subscriptionMenu = [
     id: 9,
     name: "Subscribed",
     path: "/dashboard/account/subscribed",
-    isCreator: false,
+    isCreator: undefined,
   },
   {
     id: 1,
-    name: "Add card",
+    name: "Cards",
     path: "/dashboard/account/add-card",
     isCreator: false,
   },

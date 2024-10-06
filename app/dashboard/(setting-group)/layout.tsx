@@ -32,9 +32,7 @@ const SettingLayout = ({
     <div className="flex md:justify-center">
       <Sidebar />
 
-      <section
-        className={`${showOnMobile ? "hidden" : "w-screen md:w-[25%]"} `}
-      >
+      <section className={`${showOnMobile ? "hidden" : "w-full md:w-[25%]"} `}>
         <div
           className="w-full bg-grey_20 py-3 px-4 h-14 border
      border-grey_20 shadow-custom-combined mb-2"
@@ -67,7 +65,13 @@ const SettingLayout = ({
           );
         })}
       </section>
-      <main className={`w-full md:w-[50%] md:pr-[88px]`}>{children}</main>
+      <main
+        className={`${
+          showOnMobile ? "w-full" : "hidden md:block md:w-[50%] md:pr-[88px]"
+        }`}
+      >
+        {children}
+      </main>
     </div>
   );
 };

@@ -1,21 +1,13 @@
-"use client";
-
 import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CustomButton from "@/app/components/forms/CustomButton";
 import Typography from "@/app/components/forms/Typography";
-import { useAppSelector } from "@/app/lib/hook";
-import { RootState } from "@/app/lib/store";
 import qrCode from "@/public/QRCode.svg";
 import Image from "next/image";
 import React from "react";
 
 const QRCode = () => {
-  const { showOnMobile } = useAppSelector(
-    (state: RootState) => state.settingMobile
-  );
-
   return (
-    <div className={`${showOnMobile ? "w-full" : "hidden md:block"}`}>
+    <div>
       <AccountBackButton showBack={false} showMobileBack moduleName="QR Code" />
       <Typography variant="p2" className="text-grey_800 pt-4 pl-4">
         This QR code will lead to your profile page when scanned

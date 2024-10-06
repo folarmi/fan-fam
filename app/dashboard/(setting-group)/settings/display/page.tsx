@@ -1,20 +1,13 @@
-"use client";
-
 import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CollectionRadioButton from "@/app/components/forms/CollectionRadioButton";
 import Typography from "@/app/components/forms/Typography";
 import { displaySettings } from "@/app/data";
-import { useAppSelector } from "@/app/lib/hook";
-import { RootState } from "@/app/lib/store";
+
 import React from "react";
 
 const Display = () => {
-  const { showOnMobile } = useAppSelector(
-    (state: RootState) => state.settingMobile
-  );
-
   return (
-    <div className={`${showOnMobile ? "w-full" : "hidden md:block"}`}>
+    <div>
       <AccountBackButton showBack={false} showMobileBack moduleName="Display" />
 
       <section className="pl-4 mt-5">

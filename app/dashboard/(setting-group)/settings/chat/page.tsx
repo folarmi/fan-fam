@@ -1,19 +1,11 @@
-"use client";
-
 import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CustomSwitchButton from "@/app/components/forms/CustomSwitchButton";
 import Typography from "@/app/components/forms/Typography";
-import { useAppSelector } from "@/app/lib/hook";
-import { RootState } from "@/app/lib/store";
 import React from "react";
 
 const ChatSettings = () => {
-  const { showOnMobile } = useAppSelector(
-    (state: RootState) => state.settingMobile
-  );
-
   return (
-    <div className={`${showOnMobile ? "w-full" : "hidden md:block"}`}>
+    <div>
       <AccountBackButton showBack={false} showMobileBack moduleName="Chat" />
 
       <div className="flex items-center pb-2 border-b pt-4 border-grey_10 pl-4">

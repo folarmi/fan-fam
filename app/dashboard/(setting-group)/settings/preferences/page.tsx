@@ -5,8 +5,6 @@ import Typography from "@/app/components/forms/Typography";
 import InterestModal from "@/app/components/modals/InterestModal";
 import Modal from "@/app/components/modals/Modal";
 import { interestData } from "@/app/data";
-import { useAppSelector } from "@/app/lib/hook";
-import { RootState } from "@/app/lib/store";
 import Image from "next/image";
 import leftArrow from "@/public/icons/arrowLeft.svg";
 
@@ -17,9 +15,6 @@ import { updateShowOnMobile } from "@/app/lib/features/mobileView/settingMobileV
 const Preferences = () => {
   const dispatch = useDispatch();
   const [showInterestModal, setShowInterestModal] = useState(false);
-  const { showOnMobile } = useAppSelector(
-    (state: RootState) => state.settingMobile
-  );
 
   const toggleInterestModal = () => {
     setShowInterestModal(!showInterestModal);
@@ -30,7 +25,7 @@ const Preferences = () => {
   };
 
   return (
-    <div className={`${showOnMobile ? "w-full" : "hidden md:block"}`}>
+    <div>
       <div
         className="w-full flex items-center justify-between bg-grey_20 py-3 px-4 h-14 border
      border-grey_20 shadow-custom-combined mb-2"
