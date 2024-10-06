@@ -1586,3 +1586,59 @@ export const twoFAInstructions = [
     text: "Enter the generated code from your 2FA app in the field below.",
   },
 ];
+
+export const pendingWithdrawalsTableHeader = [
+  {
+    id: 1,
+    name: "Pending Withdrawals",
+  },
+  {
+    id: 2,
+    name: "Total",
+  },
+];
+
+export const pendingWithdrawalsSampleData = [
+  {
+    id: 1,
+    date: "12 July 2024 at 12:04pm",
+    desc: "$300.00 withdrawal request ",
+    status: "Pending",
+  },
+];
+
+export const transactionHistoryTableHeader = [
+  {
+    id: 1,
+    name: "Date and Time",
+  },
+  {
+    id: 2,
+    name: "Description",
+  },
+  {
+    id: 3,
+    name: "Amount",
+  },
+  {
+    id: 4,
+    name: "Fee",
+  },
+];
+
+export const transactionHistoryData = [
+  {
+    id: 1,
+    dateAndTime: "12 July 2024 at 12:04pm",
+    desc: "Subscription payment from Daniels Jacays",
+    amount: "+$300.00",
+    fee: "$5.00",
+  },
+  {
+    id: 2,
+    dateAndTime: "12 July 2024 at 12:04pm",
+    desc: "Subscription payment from Daniels Jacays",
+    amount: "+$300.00",
+    fee: "$5.00",
+  },
+];

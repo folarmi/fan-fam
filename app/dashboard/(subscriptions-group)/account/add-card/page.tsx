@@ -17,7 +17,7 @@ const AddCard = () => {
   const { showAccountOnMobile } = useAppSelector(
     (state: RootState) => state.settingMobile
   );
-  const [isCardAdded, setIsCardAdded] = useState(false);
+  const [isCardAdded, setIsCardAdded] = useState(true);
   const [addNewCard, setAddNewCard] = useState(false);
 
   return (

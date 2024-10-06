@@ -1,55 +1,160 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import SubscriptionHeader from "../settings/SubscriptionHeader";
 import Typography from "@/app/components/forms/Typography";
 import CustomButton from "@/app/components/forms/CustomButton";
-import { walletSampleData } from "@/app/data";
+import {
+  pendingWithdrawalsSampleData,
+  pendingWithdrawalsTableHeader,
+  transactionHistoryData,
+  transactionHistoryTableHeader,
+  walletSampleData,
+} from "@/app/data";
 import CustomSwitchButton from "@/app/components/forms/CustomSwitchButton";
 import EmptyState from "@/app/components/molecules/EmptyState";
+import { AccountMobileBackButton } from "@/app/components/molecules/AccountMobileBackButton";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
 
 const Wallet = () => {
-  return (
-    <div>
-      <SubscriptionHeader />
+  const [isEmpty, setIsEmpty] = useState(false);
+  const { isCreator } = useAppSelector((state: RootState) => state.auth);
 
-      <div className="bg-grey_10 p-4">
-        <div className="flex items-center justify-between">
-          <Typography variant="subtitle2" className="text-grey_800">
-            Wallet Credit
+  return (
+    <div className="">
+      <div className="flex items-center">
+        <AccountMobileBackButton />
+        <SubscriptionHeader text="Wallet" />
+      </div>
+
+      <section>
+        <div className="bg-grey_10 p-4">
+          <div className="flex items-center justify-between">
+            <Typography variant="subtitle2" className="text-grey_800">
+              Wallet {isCreator ? "Balance" : "Credit"}
+            </Typography>
+
+            <CustomButton primaryButtonSize="xs" className="px-3">
+              {isCreator ? "Request Withdrawal" : "  Add Funds to Wallet"}
+            </CustomButton>
+          </div>
+
+          <Typography variant="h6" className="py-4">
+            $0.00
           </Typography>
 
-          <CustomButton primaryButtonSize="xs" className="px-3">
-            Add Funds to Wallet
-          </CustomButton>
+          {isCreator && (
+            <Typography variant="p3" className="text-grey_600">
+              Minimum withdrawal amount is $20{" "}
+            </Typography>
+          )}
         </div>
 
-        <Typography variant="h6" className="py-4">
-          $0.00
-        </Typography>
-      </div>
+        {!isCreator && (
+          <div className="mt-1 px-4">
+            {walletSampleData.map(({ id, name }) => {
+              return (
+                <div
+                  key={id}
+                  className="flex items-center justify-between mt-3"
+                >
+                  <Typography variant="p3" className="text-grey_600">
+                    {name}
+                  </Typography>
 
-      <div className="mt-1 px-4">
-        {walletSampleData.map(({ id, name }) => {
-          return (
-            <div key={id} className="flex items-center justify-between mt-3">
-              <Typography variant="p3" className="text-grey_600">
-                {name}
-              </Typography>
+                  <CustomSwitchButton isChecked />
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
 
-              <CustomSwitchButton isChecked />
-            </div>
-          );
-        })}
-      </div>
+      {isCreator && (
+        <div className="">
+          <section className="px-4 flex items-center justify-between border border-grey_10">
+            {pendingWithdrawalsTableHeader.map(({ id, name }) => (
+              <div key={id} className="my-2 ">
+                <Typography variant="labelOne" className="text-grey_600">
+                  {name} {name === "Total" ? "$300.00" : ""}
+                </Typography>
+              </div>
+            ))}
+          </section>
 
-      <Typography variant="subtitle2" className="text-grey_800 pt-6 pl-4">
-        Transaction History
-      </Typography>
+          <div className="border-b border-x border-grey_10 px-4">
+            {pendingWithdrawalsSampleData.map(({ id, date, desc, status }) => (
+              <div key={id} className="my-2 flex items-center justify-between">
+                <Typography variant="p3" className="text-grey_600">
+                  {date}
+                </Typography>
+                <Typography variant="p3" className="text-grey_600">
+                  {desc}
+                </Typography>
+                <Typography variant="labelOne" className="text-orange_100">
+                  {status}
+                </Typography>
+              </div>
+            ))}
+          </div>
 
-      <EmptyState
-        text="No transactions made yet, when you make a transaction, 
+          <Typography variant="subtitle2" className="text-grey_800 pt-6 pb-2">
+            Transaction History
+          </Typography>
+
+          <section className="px-4 flex items-center justify-between border border-grey_10">
+            {transactionHistoryTableHeader.map(({ id, name }) => (
+              <div key={id} className="my-2 ">
+                <Typography
+                  variant="labelOne"
+                  className="text-grey_600 uppercase"
+                >
+                  {name}
+                </Typography>
+              </div>
+            ))}
+          </section>
+
+          <div className="border-x border-grey_10">
+            {transactionHistoryData.map(
+              ({ id, dateAndTime, desc, amount, fee }) => (
+                <div
+                  key={id}
+                  className="my-2 flex items-center justify-between border-b border-grey_10 px-4 py-2"
+                >
+                  <Typography variant="p3" className="text-grey_600">
+                    {dateAndTime}
+                  </Typography>
+                  <Typography variant="p3" className="text-grey_600">
+                    {desc}
+                  </Typography>
+                  <Typography variant="labelOne" className="text-grey_600">
+                    {amount}
+                  </Typography>
+                  <Typography variant="p3" className="text-grey_600">
+                    {fee}
+                  </Typography>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      )}
+
+      {isEmpty && (
+        <>
+          <Typography variant="subtitle2" className="text-grey_800 pt-6 pl-4">
+            Transaction History
+          </Typography>
+
+          <EmptyState
+            text="No transactions made yet, when you make a transaction, 
 it would display here"
-        width="400"
-      />
+            width="400"
+          />
+        </>
+      )}
     </div>
   );
 };

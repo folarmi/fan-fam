@@ -25,7 +25,9 @@ const SettingLayout = ({
   );
 
   const toggleView = () => {
-    dispatch(updateShowOnMobile(true));
+    if (window.innerWidth <= 425) {
+      dispatch(updateShowOnMobile(true));
+    }
   };
 
   return (

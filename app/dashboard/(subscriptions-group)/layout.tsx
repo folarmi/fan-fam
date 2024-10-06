@@ -8,19 +8,27 @@ import Typography from "@/app/components/forms/Typography";
 import withAuth from "@/app/hoc/withAuth";
 import rightAshArrow from "@/public/icons/rightAshArrow.svg";
 import Sidebar from "@/app/components/molecules/Sidebar";
-import { useAppSelector } from "@/app/lib/hook";
+import { useAppDispatch, useAppSelector } from "@/app/lib/hook";
 import { RootState } from "@/app/lib/store";
+import { updateAccountShowOnMobile } from "@/app/lib/features/mobileView/settingMobileViewSlice";
 
 const SubscriptionLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const dispatch = useAppDispatch();
   const [isActiveTab, setIsActiveTab] = useState("Add Card");
   const { isCreator } = useAppSelector((state: RootState) => state.auth);
   const { showAccountOnMobile } = useAppSelector(
     (state: RootState) => state.settingMobile
   );
+
+  const toggleView = () => {
+    if (window.innerWidth <= 425) {
+      dispatch(updateAccountShowOnMobile(true));
+    }
+  };
 
   // Filter menu items for display
   const filteredMenuItems = subscriptionMenu.filter((item) => {
@@ -41,9 +49,11 @@ const SubscriptionLayout = ({
         className={`${showAccountOnMobile ? "hidden" : "w-full md:w-[25%]"} `}
       >
         <div
-          className="w-full bg-grey_20 h-14 px-4 border
+          className="w-full bg-grey_20 py-3 h-14 px-4 border
      border-grey_20 shadow-custom-combined mb-2"
-        ></div>
+        >
+          <Typography variant="subtitle1">My Account</Typography>
+        </div>
 
         {filteredMenuItems?.map(({ id, name, path }) => {
           return (
@@ -55,7 +65,7 @@ const SubscriptionLayout = ({
                 isActiveTab === name ? "bg-blue_200" : ""
               }`}
             >
-              <div>
+              <div onClick={toggleView}>
                 <Typography variant="p2" className="text-grey_800">
                   {name}
                 </Typography>
