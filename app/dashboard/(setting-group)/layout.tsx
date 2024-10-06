@@ -8,19 +8,31 @@ import Typography from "@/app/components/forms/Typography";
 import withAuth from "@/app/hoc/withAuth";
 import rightAshArrow from "@/public/icons/rightAshArrow.svg";
 import Sidebar from "@/app/components/molecules/Sidebar";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
+import { useDispatch } from "react-redux";
+import { updateShowOnMobile } from "@/app/lib/features/mobileView/settingMobileViewSlice";
 
 const SettingLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
+  const dispatch = useDispatch();
   const [isActiveTab, setIsActiveTab] = useState("Account");
+  const { showOnMobile } = useAppSelector(
+    (state: RootState) => state.settingMobile
+  );
+
+  const toggleView = () => {
+    dispatch(updateShowOnMobile(true));
+  };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex md:justify-center">
       <Sidebar />
 
-      <section className="w-[25%]">
+      <section className={`${showOnMobile ? "hidden" : "w-full md:w-[25%]"} `}>
         <div
           className="w-full bg-grey_20 py-3 px-4 h-14 border
      border-grey_20 shadow-custom-combined mb-2"
@@ -38,7 +50,7 @@ const SettingLayout = ({
                 isActiveTab === name ? "bg-blue_200" : ""
               }`}
             >
-              <div>
+              <div onClick={toggleView}>
                 <Typography variant="p2" className="text-grey_800">
                   {name}
                 </Typography>
@@ -53,7 +65,7 @@ const SettingLayout = ({
           );
         })}
       </section>
-      <main className="w-[50%] pr-[88px]">{children}</main>
+      <main className={`w-full md:w-[50%] md:pr-[88px]`}>{children}</main>
     </div>
   );
 };

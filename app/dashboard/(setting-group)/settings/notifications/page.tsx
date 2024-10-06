@@ -1,13 +1,25 @@
+"use client";
+
 import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CustomSwitchButton from "@/app/components/forms/CustomSwitchButton";
 import Typography from "@/app/components/forms/Typography";
 import { notificationsSettings } from "@/app/data";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
 import React from "react";
 
 const page = () => {
+  const { showOnMobile } = useAppSelector(
+    (state: RootState) => state.settingMobile
+  );
+
   return (
-    <div>
-      <AccountBackButton showBack={false} />
+    <div className={`${showOnMobile ? "w-full" : "hidden md:block"}`}>
+      <AccountBackButton
+        showBack={false}
+        showMobileBack
+        moduleName="Notifications"
+      />
 
       <section className="mt-4 ml-4">
         {notificationsSettings?.map(({ id, name, desc }) => {

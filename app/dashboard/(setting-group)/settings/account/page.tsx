@@ -1,19 +1,29 @@
+"use client";
+
 import Typography from "@/app/components/forms/Typography";
 import { accountSettingsModules } from "@/app/data";
 import Image from "next/image";
 import React from "react";
 import rightAshArrow from "@/public/icons/rightAshArrow.svg";
 import Link from "next/link";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
+import MobileBackButton from "@/app/components/molecules/MobileBackButton";
 
 const Settings = () => {
+  const { showOnMobile } = useAppSelector(
+    (state: RootState) => state.settingMobile
+  );
+
   return (
-    <div>
+    <div className={`${showOnMobile ? "w-full" : "hidden md:block"}`}>
       <div
         className="w-full bg-white h-12 px-4 border
      border-grey_20 shadow-custom-combined mb-2"
-      ></div>
+      >
+        <MobileBackButton moduleName="Account" />
+      </div>
 
-      <div className=""></div>
       {accountSettingsModules?.map(({ groupName, items }) => {
         return (
           <div key={groupName} className={`cursor-pointer px-4 pt-2`}>

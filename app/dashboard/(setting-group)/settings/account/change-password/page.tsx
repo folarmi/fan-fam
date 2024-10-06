@@ -40,7 +40,7 @@ const ChangePassword = () => {
         />
 
         <div className="drop-shadow-5x shadow-post-button w-[104px] text-sm">
-          <CustomButton primaryButtonSize="xs" className="">
+          <CustomButton primaryButtonSize="xs" className="px-4">
             Save password
           </CustomButton>
         </div>

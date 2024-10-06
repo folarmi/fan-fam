@@ -40,6 +40,7 @@ const AddParticipant = ({
               Back
             </Typography>
           </div>
+
           <CustomButton
             variant="primary"
             className="shadow-custom px-4"

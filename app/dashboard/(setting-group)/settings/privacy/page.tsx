@@ -1,16 +1,28 @@
+"use client";
+
 import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CustomSwitchButton from "@/app/components/forms/CustomSwitchButton";
 import Typography from "@/app/components/forms/Typography";
 import { privacyAndSafety, privacyAndSafetyItems } from "@/app/data";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
 import rightArrow from "@/public/icons/rightAshArrow.svg";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const Privacy = () => {
+  const { showOnMobile } = useAppSelector(
+    (state: RootState) => state.settingMobile
+  );
+
   return (
-    <div>
-      <AccountBackButton showBack={false} />
+    <div className={`${showOnMobile ? "w-full" : "hidden md:block"}`}>
+      <AccountBackButton
+        showBack={false}
+        showMobileBack
+        moduleName="Privacy and Safety"
+      />
 
       <section className="mt-2 ml-4">
         {privacyAndSafetyItems?.map(({ groupName, items }) => {

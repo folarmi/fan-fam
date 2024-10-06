@@ -29,7 +29,7 @@ const ChatInterface = ({ toggleMessageAndChatInterface }: any) => {
           <Image
             src={leftArrow}
             alt="leftArrow"
-            className="cursor-pointer"
+            className="cursor-pointer md:hidden"
             onClick={toggleMessageAndChatInterface}
           />
 

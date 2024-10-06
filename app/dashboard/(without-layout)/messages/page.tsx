@@ -55,6 +55,7 @@ const Messages = () => {
     setSelectedChatGroup(groupName);
     setIsEmpty(!isEmpty);
   };
+
   const toggleMessageAndChatInterface = () => {
     if (window.innerWidth <= 425) {
       setSelectedMessageOnMobile(!selectedMessageOnMobile);
@@ -191,17 +192,16 @@ const Messages = () => {
       )}
 
       {selectedChatGroup !== "" && (
-        <div className="w-[42%]">
+        <div className="w-full md:w-[42%]">
           <AddParticipant
             setSelectedChatGroup={setSelectedChatGroup}
             setAreParticipantSelected={setAreParticipantSelected}
             areParticipantSelected={areParticipantSelected}
           />
-          <AddParticipant />
         </div>
       )}
 
-      <section className="w-[58%]">
+      {/* <section className="w-[58%]">
         {isActiveTab !== "Chat groups" && <ChatInterface />}
         {isActiveTab === "Chat groups" && (
           <GroupChatInterface
@@ -210,32 +210,33 @@ const Messages = () => {
             areParticipantSelected={areParticipantSelected}
           />
         )}
-        <section
-          className={`${
-            selectedMessageOnMobile ? "" : "hidden md:block"
-          } w-full md:w-[58%]`}
-        >
-          {isActiveTab !== "Chat groups" && (
-            <ChatInterface
-              toggleMessageAndChatInterface={toggleMessageAndChatInterface}
-            />
-          )}
-          {isActiveTab === "Chat groups" && (
-            <GroupChatInterface
-              selectedChatGroup={selectedChatGroup}
-              isEmpty={isEmpty}
-              areParticipantSelected={areParticipantSelected}
-            />
-          )}
-          {/* {isActiveTab === "Chat groups" && <GroupChatInterface />} */}
-        </section>
+      </section> */}
 
-        {
-          <Modal show={createNewGroup} toggleModal={toggleCreateNewChatGroup}>
-            <CreateChatGroup toggleModal={toggleCreateNewChatGroup} />
-          </Modal>
-        }
+      <section
+        className={`${
+          selectedMessageOnMobile ? "" : "hidden md:block"
+        } w-full md:w-[58%]`}
+      >
+        {isActiveTab !== "Chat groups" && (
+          <ChatInterface
+            toggleMessageAndChatInterface={toggleMessageAndChatInterface}
+          />
+        )}
+        {isActiveTab === "Chat groups" && (
+          <GroupChatInterface
+            selectedChatGroup={selectedChatGroup}
+            isEmpty={isEmpty}
+            areParticipantSelected={areParticipantSelected}
+          />
+        )}
+        {/* {isActiveTab === "Chat groups" && <GroupChatInterface />} */}
       </section>
+
+      {
+        <Modal show={createNewGroup} toggleModal={toggleCreateNewChatGroup}>
+          <CreateChatGroup toggleModal={toggleCreateNewChatGroup} />
+        </Modal>
+      }
     </section>
   );
 };
