@@ -1,6 +1,9 @@
 import React from "react";
 import DayAndTimeInput from "../forms/DayAndTimeInput";
 import CustomButton from "../forms/CustomButton";
+import calendar from "@/public/icons/blueCalendar.svg";
+import Image from "next/image";
+import Typography from "../forms/Typography";
 
 type ScheduleButtonProps = {
   setShowSchedulePost?: (value: boolean) => void;
@@ -23,17 +26,28 @@ const ScheduleButton: React.FC<ScheduleButtonProps> = ({
   };
 
   return (
-    <div className="flex justify-between items-center border border-grey-50 rounded-lg p-4 my-3 mx-4">
-      <DayAndTimeInput />
-      <CustomButton
-        primaryButtonSize="xs"
-        className="rounded-lg px-3"
-        onClick={handleClick} // Use the dynamic handler
-      >
-        {isPost ? "Schedule Post" : "Schedule Message"}{" "}
-        {/* Dynamic button text */}
-      </CustomButton>
-    </div>
+    <>
+      <div className="flex justify-between items-center md:border md:border-grey-50 rounded-lg md:p-4 my-3 mx-4">
+        <div className="flex items-center md:hidden">
+          <Image src={calendar} alt="calendar" />
+          <Typography variant="p2" className="whitespace-nowrap pl-2">
+            Scheduled for
+          </Typography>
+        </div>
+        <DayAndTimeInput />
+
+        <div className="hidden md:block">
+          {" "}
+          <CustomButton
+            primaryButtonSize="xs"
+            className="rounded-lg px-3"
+            onClick={handleClick}
+          >
+            {isPost ? "Schedule Post" : "Schedule Message"}{" "}
+          </CustomButton>
+        </div>
+      </div>
+    </>
   );
 };
 

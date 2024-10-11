@@ -4,11 +4,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 export interface SettingProp {
   showOnMobile: boolean;
   showAccountOnMobile: boolean;
+  showScheduleOnMobile: boolean;
 }
 
 const initialState: SettingProp = {
   showOnMobile: false,
   showAccountOnMobile: false,
+  showScheduleOnMobile: false,
 };
 
 export const settingMobileViewSlice = createSlice({
@@ -21,10 +23,16 @@ export const settingMobileViewSlice = createSlice({
     updateAccountShowOnMobile: (state, action: PayloadAction<boolean>) => {
       state.showAccountOnMobile = action.payload;
     },
+    updateScheduleShowOnMobile: (state, action: PayloadAction<boolean>) => {
+      state.showScheduleOnMobile = action.payload;
+    },
   },
 });
 
-export const { updateShowOnMobile, updateAccountShowOnMobile } =
-  settingMobileViewSlice.actions;
+export const {
+  updateShowOnMobile,
+  updateAccountShowOnMobile,
+  updateScheduleShowOnMobile,
+} = settingMobileViewSlice.actions;
 
 export default settingMobileViewSlice.reducer;

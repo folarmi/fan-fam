@@ -6,11 +6,19 @@ import leftArrow from "@/public/icons/arrowLeft.svg";
 import { useDispatch } from "react-redux";
 import { updateAccountShowOnMobile } from "@/app/lib/features/mobileView/settingMobileViewSlice";
 
-const AccountMobileBackButton = () => {
+type Prop = {
+  mobileText?: string | React.ReactNode;
+  dispatchFunction?: Function;
+};
+
+const AccountMobileBackButton = ({
+  mobileText,
+  dispatchFunction = updateAccountShowOnMobile,
+}: Prop) => {
   const dispatch = useDispatch();
 
   const toggleView = () => {
-    dispatch(updateAccountShowOnMobile(false));
+    dispatch(dispatchFunction(false));
   };
 
   return (
@@ -21,6 +29,9 @@ const AccountMobileBackButton = () => {
         className=""
         onClick={toggleView}
       />
+      {/* <div className="w-full"> */}
+      {mobileText}
+      {/* </div> */}
     </div>
   );
 };
