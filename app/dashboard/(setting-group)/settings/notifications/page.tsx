@@ -7,7 +7,11 @@ import React from "react";
 const page = () => {
   return (
     <div>
-      <AccountBackButton showBack={false} />
+      <AccountBackButton
+        showBack={false}
+        showMobileBack
+        moduleName="Notifications"
+      />
 
       <section className="mt-4 ml-4">
         {notificationsSettings?.map(({ id, name, desc }) => {

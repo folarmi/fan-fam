@@ -4,12 +4,19 @@ import Image from "next/image";
 
 import Typography from "@/app/components/forms/Typography";
 import Link from "next/link";
+import MobileBackButton from "../molecules/MobileBackButton";
 
 type AccountBackButton = {
   showBack?: boolean;
+  showMobileBack?: boolean;
+  moduleName?: string;
 };
 
-const AccountBackButton = ({ showBack = true }: AccountBackButton) => {
+const AccountBackButton = ({
+  showBack = true,
+  showMobileBack,
+  moduleName = "Account",
+}: AccountBackButton) => {
   return (
     //
     <div
@@ -33,6 +40,8 @@ const AccountBackButton = ({ showBack = true }: AccountBackButton) => {
           </Link>
         </div>
       )}
+
+      {showMobileBack && <MobileBackButton moduleName={moduleName} />}
     </div>
   );
 };

@@ -1,9 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-// import SearchInput from "../components/SearchInput";
-// import CommentBox from "../components/CommentBox";
-// import Timeline from "../components/cards/Timeline";
 import defaultLiveAvatar from "@/public/defaultLiveAvatar.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
 import timelineImage from "@/public/timelineImage.svg";
@@ -13,12 +10,22 @@ import CommentBox from "@/app/components/CommentBox";
 import Timeline from "@/app/components/cards/Timeline";
 import TimeLineHomeModal from "@/app/components/modals/TimeLineHomeModal";
 import Poll from "@/app/components/molecules/Poll";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
+import Modal from "@/app/components/modals/Modal";
+import InterestModal from "@/app/components/modals/InterestModal";
+import FileUploader from "@/app/components/molecules/FileUploader";
+import StoryModal from "@/app/components/modals/StoryModal";
 // import TimeLineHomeModal from "../components/modals/TimeLineHomeModal";
 
 const Home = () => {
+  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+
   const [showMoreModal, setShowMoreModal] = useState(false);
+  const [isEditingStory, setIsEditingStory] = useState(false);
   const [showMoreModalTwo, setShowMoreModalTwo] = useState(false);
   const [ifUserIsCreatingPoll, setIfUserIsCreatingPoll] = useState(false);
+  const [showInterestModal, setShowInterestModal] = useState(false);
   const [pollOptions, setPollOptions] = useState([
     {
       id: "1",
@@ -30,75 +37,120 @@ const Home = () => {
     },
   ]);
   const [activePoll, setActivePoll] = useState(pollOptions[0].name);
+  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+
+  const toggleInterestModal = () => {
+    setShowInterestModal(!showInterestModal);
+  };
+
+  const toggleIsEditingStoryModal = () => {
+    setIsEditingStory(!isEditingStory);
+  };
+
+  const handleFileUpload = (file: File) => {
+    setUploadedFile(file);
+    toggleIsEditingStoryModal();
+  };
 
   return (
-    <div>
-      <SearchInput />
-      {ifUserIsCreatingPoll ? (
-        <Poll
-          pollOptions={pollOptions}
-          setPollOptions={setPollOptions}
-          activePoll={activePoll}
-          setActivePoll={setActivePoll}
-        />
-      ) : (
-        <CommentBox setIfUserIsCreatingPoll={setIfUserIsCreatingPoll} />
-      )}
+    <div className="">
+      <>
+        <SearchInput />
+        {ifUserIsCreatingPoll ? (
+          <Poll
+            pollOptions={pollOptions}
+            setPollOptions={setPollOptions}
+            activePoll={activePoll}
+            setActivePoll={setActivePoll}
+          />
+        ) : (
+          <CommentBox setIfUserIsCreatingPoll={setIfUserIsCreatingPoll} />
+        )}
 
-      <div className="relative">
+        <div className="my-2">
+          <FileUploader
+            maxSizeMB={1}
+            acceptFormats={["png", "jpeg", "jpg", "gif"]}
+            onFileUpload={handleFileUpload}
+          />
+        </div>
+
+        <div className="relative">
+          <Timeline
+            profileName="Priscilia yummy"
+            avatar={defaultLiveAvatar}
+            handle="@yummychill54 ."
+            time="3 h ago"
+            paragraphOne="   Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
+        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
+        etra justo pretium sollic itudin digni ssim non solli citudin sit
+        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
+        dictum a."
+            paragraphTwo="   Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
+        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
+        etra justo pretium sollic itudin digni ssim non solli citudin sit
+        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
+        dictum a."
+            timeLineImage={timelineImage}
+            ifParagraph={true}
+            showModal={showMoreModal}
+            setShowModal={setShowMoreModal}
+            TimeLineModal={<TimeLineHomeModal />}
+          />
+        </div>
+
+        <div className="relative">
+          <Timeline
+            profileName="Priscilia yummy"
+            avatar={defaultAvatar}
+            handle="@yummychill54 ."
+            time="3 h ago"
+            paragraphOne="Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
+        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
+        etra justo pretium sollic itudin digni ssim non solli citudin sit
+        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
+        dictum a."
+            paragraphTwo="Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
+        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
+        etra justo pretium sollic itudin digni ssim non solli citudin sit
+        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
+        dictum a."
+            timeLineImage={timelineTwo}
+            ifParagraph={true}
+            showModal={setShowMoreModalTwo}
+            setShowModal={showMoreModalTwo}
+          />
+        </div>
         <Timeline
           profileName="Priscilia yummy"
           avatar={defaultLiveAvatar}
           handle="@yummychill54 ."
           time="3 h ago"
-          paragraphOne="   Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-        etra justo pretium sollic itudin digni ssim non solli citudin sit
-        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
-        dictum a."
-          paragraphTwo="   Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-        etra justo pretium sollic itudin digni ssim non solli citudin sit
-        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
-        dictum a."
           timeLineImage={timelineImage}
-          ifParagraph={true}
-          showModal={showMoreModal}
-          setShowModal={setShowMoreModal}
-          TimeLineModal={<TimeLineHomeModal />}
+          ifParagraph={false}
         />
-      </div>
+      </>
 
-      <div className="relative">
-        <Timeline
-          profileName="Priscilia yummy"
-          avatar={defaultAvatar}
-          handle="@yummychill54 ."
-          time="3 h ago"
-          paragraphOne="Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-        etra justo pretium sollic itudin digni ssim non solli citudin sit
-        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
-        dictum a."
-          paragraphTwo="Lorem ipsum dolor sit amet consectetur. Amet dolor arcu praesent
-        mi. Nulla sed cursus quis mas sa nato que at adip iscing. Phar
-        etra justo pretium sollic itudin digni ssim non solli citudin sit
-        pellentesque ipsum. Molestie dui tempus nec maecenas eget justo
-        dictum a."
-          timeLineImage={timelineTwo}
-          ifParagraph={true}
-          showModal={setShowMoreModalTwo}
-          setShowModal={showMoreModalTwo}
-        />
-      </div>
-      <Timeline
-        profileName="Priscilia yummy"
-        avatar={defaultLiveAvatar}
-        handle="@yummychill54 ."
-        time="3 h ago"
-        timeLineImage={timelineImage}
-        ifParagraph={false}
-      />
+      {!isCreator && (
+        <Modal show={showInterestModal} toggleModal={toggleInterestModal}>
+          <div className="p-4">
+            <InterestModal toggleModal={toggleInterestModal} />
+          </div>
+        </Modal>
+      )}
+
+      <Modal
+        ifClose={false}
+        show={isEditingStory}
+        toggleModal={toggleIsEditingStoryModal}
+      >
+        <div className="p-4">
+          <StoryModal
+            toggleModal={toggleIsEditingStoryModal}
+            uploadedFile={uploadedFile}
+          />
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -14,13 +14,13 @@ const LoginSession = () => {
       <AccountBackButton />
 
       <section className="mx-4">
-        <div className="flex items-center">
+        <div className="flex items-center mt-4">
           <CustomCheckBox
             checked={isSelected}
             onChange={() => setIsSelected(!isSelected)}
           />
           <div className="ml-4 drop-shadow-5x shadow-post-button w-[104px] text-sm">
-            <CustomButton primaryButtonSize="xs" className="">
+            <CustomButton primaryButtonSize="xs" className="px-4">
               Close Session
             </CustomButton>
           </div>

@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import rightAshArrow from "@/public/icons/rightAshArrow.svg";
 import Link from "next/link";
+import MobileBackButton from "@/app/components/molecules/MobileBackButton";
 
 const Settings = () => {
   return (
@@ -11,9 +12,10 @@ const Settings = () => {
       <div
         className="w-full bg-white h-12 px-4 border
      border-grey_20 shadow-custom-combined mb-2"
-      ></div>
+      >
+        <MobileBackButton moduleName="Account" />
+      </div>
 
-      <div className=""></div>
       {accountSettingsModules?.map(({ groupName, items }) => {
         return (
           <div key={groupName} className={`cursor-pointer px-4 pt-2`}>

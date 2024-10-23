@@ -2,12 +2,13 @@ import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CollectionRadioButton from "@/app/components/forms/CollectionRadioButton";
 import Typography from "@/app/components/forms/Typography";
 import { displaySettings } from "@/app/data";
+
 import React from "react";
 
 const Display = () => {
   return (
-    <>
-      <AccountBackButton showBack={false} />
+    <div>
+      <AccountBackButton showBack={false} showMobileBack moduleName="Display" />
 
       <section className="pl-4 mt-5">
         {displaySettings?.map(({ items, groupName }) => {
@@ -34,7 +35,7 @@ const Display = () => {
           );
         })}
       </section>
-    </>
+    </div>
   );
 };
 

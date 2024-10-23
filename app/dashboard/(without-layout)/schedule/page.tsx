@@ -19,7 +19,11 @@ import More from "@/app/components/svgs/More";
 import ModalContent from "@/app/components/modals/ModalContent";
 import SchedulePost from "./SchedulePost";
 import backArrow from "@/public/icons/backArrow.svg";
+import plus from "@/public/icons/plus.svg";
 import ScheduleMessage from "./ScheduleMessage";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
+import CustomButton from "@/app/components/forms/CustomButton";
 
 const Schedule = () => {
   const [tabs, setTabs] = useState([
@@ -44,8 +48,9 @@ const Schedule = () => {
   const [showPostModal, setShowPostModal] = useState(false);
   const [showSchedulePost, setShowSchedulePost] = useState(false);
   const [currentModal, setCurrentModal] = useState(0);
-
-  console.log(showMessagePost);
+  const { showScheduleOnMobile } = useAppSelector(
+    (state: RootState) => state.settingMobile
+  );
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -73,13 +78,11 @@ const Schedule = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-[40%]">
+      <div className="hidden md:block md:w-[40%]">
         <div
           className="w-full bg-grey_20 h-14 px-4 border
      border-grey_20 shadow-custom-combined mb-2 "
         ></div>
-
-        <AddToScheduleButton onClick={toggleModal} />
 
         {isEmpty && (
           <div className="flex justify-center items-center mt-28">
@@ -101,8 +104,10 @@ const Schedule = () => {
           </div>
         )}
 
+        <AddToScheduleButton onClick={toggleModal} />
+
         {!isEmpty && (
-          <div className="m-4">
+          <div className="block m-4">
             <Tabs
               tabsArray={tabs}
               isActiveTab={isActiveTab}
@@ -169,31 +174,66 @@ const Schedule = () => {
         )}
       </div>
 
-      <div className="w-[60%]">
+      <div className={`w-full md:w-[60%]`}>
         <SubscriptionHeader
           text={
             showModal
               ? ""
               : (showSchedulePost || showMessagePost) && (
-                  <div className="flex items-center">
-                    <Image
-                      src={backArrow}
-                      alt="back"
-                      className="w-6 h-6 cursor-pointer"
-                      onClick={() => {
-                        setShowSchedulePost(false);
-                        setShowMessagePost(false);
-                      }}
-                    />
-                    <Typography variant="subtitle1" className="pl-4">
+                  <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center">
+                      <Image
+                        src={backArrow}
+                        alt="back"
+                        className="w-6 h-6 cursor-pointer"
+                        onClick={() => {
+                          setShowSchedulePost(false);
+                          setShowMessagePost(false);
+                        }}
+                      />
+                    </div>
+
+                    <Typography variant="subtitle1" className="pl-1 md:pl-4">
                       {showSchedulePost
                         ? "Schedule Post"
                         : showMessagePost
                         ? "Schedule Mass Message"
                         : ""}
                     </Typography>
+
+                    <div className="md:hidden">
+                      {" "}
+                      <CustomButton
+                        primaryButtonSize="xs"
+                        className="rounded-3xl px-3"
+                        // onClick={(e) => handlePostOrMessageClickOnMobile(e)}
+                        onClick={() => {
+                          setShowSchedulePost(false);
+                          setShowMessagePost(false);
+                        }}
+                      >
+                        {showSchedulePost
+                          ? "Schedule Post"
+                          : "Schedule Message"}{" "}
+                      </CustomButton>
+                    </div>
                   </div>
                 )
+          }
+          mobileText={
+            <>
+              {!(showSchedulePost || showMessagePost) && (
+                <div className="flex items-center justify-between w-full">
+                  <Typography variant="subtitle1">Schedule</Typography>
+                  <Image
+                    src={plus}
+                    className="mr-4 w-6 h-6 cursor-pointer"
+                    alt="plus"
+                    onClick={toggleModal}
+                  />
+                </div>
+              )}
+            </>
           }
         />
         {showSchedulePost ? (

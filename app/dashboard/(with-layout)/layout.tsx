@@ -40,9 +40,9 @@ const DashboardLayout = ({
   return (
     <div className="flex justify-center">
       <Sidebar />
-      <main className="w-[50%]">{children}</main>
+      <main className="w-full md:w-[50%]">{children}</main>
 
-      <div className="w-[25%] px-8 mt-20">
+      <div className="hidden md:block w-[25%] px-8 mt-20">
         {isUserSubscribed && (
           <div className="">
             {!isCreator && (

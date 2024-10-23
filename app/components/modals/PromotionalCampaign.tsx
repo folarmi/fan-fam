@@ -15,8 +15,8 @@ const PromotionalCampaign = ({ toggleModal }: any) => {
         Promotional Campaign
       </Typography>
 
-      <div className="flex items-center pb-4 border-b border-grey_10">
-        <Tag text="Both new and expired" isActive={true} />
+      <div className="flex items-center pb-4 border-b border-grey_10 whitespace-nowrap">
+        <Tag text="All" isActive={true} />
         <Tag text="New subscribers only" />
         <Tag text="Expired subscribers only" />
       </div>
@@ -59,7 +59,7 @@ const PromotionalCampaign = ({ toggleModal }: any) => {
         />
       </div>
 
-      <div className="flex items-center mt-8 mb-6 justify-end w-1/2 ml-auto">
+      <div className="flex items-center mt-8 mb-6 justify-center md:justify-end w-full md:w-1/2 md:ml-auto">
         <CustomButton
           onClick={() => toggleModal("Start promotion campaign")}
           variant="secondary"

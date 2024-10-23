@@ -7,34 +7,67 @@ import Image from "next/image";
 import CustomButton from "../forms/CustomButton";
 import { notificationSampleData } from "@/app/data";
 import verfied from "@/public/icons/verifyBlue.svg";
+import close from "@/public/icons/close.svg";
 import CustomCheckBox from "../forms/CustomCheckBox";
 import SearchInput from "../SearchInput";
 
-const AddParticipant = ({ setSelectedChatGroup }: any) => {
-  const [showList, setShowList] = useState(true);
+const AddParticipant = ({
+  setSelectedChatGroup,
+  setAreParticipantSelected,
+  areParticipantSelected,
+}: any) => {
+  const [showList, setShowList] = useState(false);
   const [checked, setchecked] = useState(false);
+
+  const toggleShowList = () => {
+    setShowList(!showList);
+  };
   return (
     <section>
       <div
-        className="w-full bg-white pl-7 border
+        className="w-full bg-white border
     border-grey_20 shadow-custom-combined py-3"
       >
-        <div
-          onClick={() => setSelectedChatGroup("jfdbjdfbhu")}
-          className="flex items-center border border-grey_10 drop-shadow-7xl w-[69px]
+        <div className="flex items-center justify-between mx-2">
+          <div
+            onClick={() => setSelectedChatGroup("")}
+            className="flex items-center border border-grey_10 drop-shadow-7xl w-[69px]
           py-2 px-3 bg-secondary-btn
            rounded-3xl cursor-pointer"
-        >
-          <Image src={backArrow} alt="plus" className="w-5 h-4" />
-          <Typography variant="subtitle3" className="text-grey_800">
-            Back
-          </Typography>
+          >
+            <Image src={backArrow} alt="plus" className="w-5 h-4" />
+            <Typography variant="subtitle3" className="text-grey_800">
+              Back
+            </Typography>
+          </div>
+
+          <CustomButton
+            variant="primary"
+            className="shadow-custom px-4"
+            primaryButtonSize="xs"
+            onClick={() => setAreParticipantSelected(true)}
+          >
+            Add Participants
+          </CustomButton>
         </div>
       </div>
 
       {showList ? (
         <div className="bg-grey_20">
           <SearchInput ifBlur={false} />
+
+          <div className="flex items-center justify-between mx-4">
+            <Typography variant="subtitle2" className="text-grey_500">
+              Select Chat Group Participants
+            </Typography>
+            <div className="bg-grey_10 rounded-2xl px-2 py-1 flex items-center justify-center">
+              <Typography variant="subtitle2" className="text-grey_500 pr-2">
+                {" "}
+                3 Selected
+              </Typography>
+              <Image src={close} alt="close" />
+            </div>
+          </div>
           {notificationSampleData?.map(({ photo, name, tag }) => {
             return (
               <div className="flex items-center mx-4 justify-between border-b border-grey_200 py-4">
@@ -57,16 +90,21 @@ const AddParticipant = ({ setSelectedChatGroup }: any) => {
                     </Typography>
                   </section>
                 </div>
-                <CustomCheckBox
-                  checked={checked}
-                  onChange={() => setchecked(!checked)}
-                />
+                {!areParticipantSelected && (
+                  <CustomCheckBox
+                    checked={checked}
+                    onChange={() => setchecked(!checked)}
+                  />
+                )}
               </div>
             );
           })}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center h-full">
+        <div
+          className="flex flex-col items-center justify-center h-full"
+          onClick={toggleShowList}
+        >
           <Typography variant="subtitle3" className="text-grey_400 pt-[317px]">
             You do not have any participants yet
           </Typography>

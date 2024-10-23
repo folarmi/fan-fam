@@ -2,11 +2,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import "tailwindcss/tailwind.css";
-// import imageOne from "@/public/imageOne.svg";
-// import imageTwo from "@/public/imageTwo.svg";
-// import imageThree from "@/public/imageThree.svg";
-// import imageFour from "@/public/imageFour.svg";
-// import Suggestion from "./cards/Suggestion";
 import suggestionOne from "@/public/suggestionOne.svg";
 import suggestionFour from "@/public/suggestionFour.svg";
 import modelOne from "@/public/modelOne.svg";

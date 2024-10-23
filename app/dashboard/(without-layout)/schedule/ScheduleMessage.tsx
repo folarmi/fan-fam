@@ -13,10 +13,12 @@ const ScheduleMessage = ({
   setShowMessagePost: (show: boolean) => void;
 }) => {
   return (
-    <div>
-      <CommentBox />
+    <div className="flex flex-col">
+      <div className="order-2 md:order-1">
+        <CommentBox />
+      </div>
 
-      <section>
+      <section className="order-3 md:order-2">
         <div className="flex justify-between items-center px-2">
           <Typography variant="subtitle2" className="text-grey_500">
             Select Mass Message Participants
@@ -55,7 +57,12 @@ const ScheduleMessage = ({
         })}
       </section>
 
-      <ScheduleButton isPost={false} setShowMessagePost={setShowMessagePost} />
+      <div className="order-1 md:order-3">
+        <ScheduleButton
+          isPost={false}
+          setShowMessagePost={setShowMessagePost}
+        />
+      </div>
     </div>
   );
 };

@@ -42,7 +42,9 @@ const DeleteAccount = () => {
             <div className="w-1/2">
               <CustomButton
                 // disabled={isButtonDisabled}
+                primaryButtonSize="xs"
                 disabled={true}
+                className="px-4"
               >
                 Continue
               </CustomButton>

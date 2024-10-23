@@ -24,7 +24,7 @@ const Notifications = () => {
       <SearchInput ifBlur={false} />
 
       <section className="bg-grey_20 drop-shadow-4xl p-4">
-        <div className="flex items-center">
+        <div className="flex items-center overflow-x-scroll">
           {notificationTabs?.map(({ id, name }) => {
             return (
               <div

@@ -1,4 +1,5 @@
 "use client";
+
 import { dummyCollectionData } from "@/app/data";
 import Image from "next/image";
 import plus from "@/public/icons/plus.svg";
@@ -13,6 +14,7 @@ import moreIcon from "@/public/icons/moreIcon.svg";
 import CollectionSortingOptionsModal from "@/app/components/modals/CollectionSortingOptionsModal";
 import Modal from "@/app/components/modals/Modal";
 import CreateNewList from "@/app/components/modals/CreateNewList";
+import leftArrow from "@/public/icons/arrowLeft.svg";
 
 const Collections = () => {
   const [collectionsTab, setCollectionsTab] = useState([
@@ -38,6 +40,7 @@ const Collections = () => {
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [addUserToList, setAddUserToList] = useState(false);
   const [createNewList, setCreateNewList] = useState(false);
+  const [showOnMobile, setShowOnMobile] = useState(false);
 
   const toggleMoreOptions = () => {
     setShowMoreOptions(!showMoreOptions);
@@ -47,9 +50,17 @@ const Collections = () => {
     setCreateNewList(!createNewList);
   };
 
+  const toggleMobileView = () => {
+    setShowOnMobile(!showOnMobile);
+  };
+
   return (
     <div className="flex">
-      <section className="mt-6 border-r border-r-grey_10">
+      <section
+        className={`mt-6 border-r border-r-grey_10 ${
+          showOnMobile ? "hidden" : ""
+        }`}
+      >
         <div className="flex items-center px-4 mb-6">
           <CollectionsSearchInput placeholder="Search user list" />
 
@@ -63,7 +74,7 @@ const Collections = () => {
           </div>
         </div>
 
-        <div className="flex items-center  w-full justify-between border-b border-grey_10">
+        <div className="flex items-center w-full justify-between border-b border-grey_10 cursor-pointer">
           {collectionsTab?.map(({ id, name }) => {
             return (
               <div
@@ -91,6 +102,7 @@ const Collections = () => {
             return (
               <div
                 key={id}
+                onClick={toggleMobileView}
                 className="flex items-center justify-between py-[14px] px-4 border-b border-grey_10"
               >
                 <section>
@@ -111,10 +123,25 @@ const Collections = () => {
         )}
       </section>
 
-      <section className="w-[632px]">
-        <Typography variant="titleOne" className="my-[30px] text-grey_900 pl-4">
-          Following
-        </Typography>
+      <section
+        className={`${
+          showOnMobile ? "w-full" : "hidden md:block md:w-[632px]"
+        }`}
+      >
+        <div className="flex items-center">
+          <Image
+            src={leftArrow}
+            alt="leftArrow"
+            className="md:hidden ml-4"
+            // onClick={toggleView}
+          />
+          <Typography
+            variant="titleOne"
+            className="my-[30px] text-grey_900 pl-1 md:pl-4"
+          >
+            Following
+          </Typography>
+        </div>
         <div className="flex items-center  w-full justify-between border-b border-grey_10">
           {followingTabs?.map(({ id, name }) => {
             return (
@@ -142,7 +169,7 @@ const Collections = () => {
           })}
         </div>
 
-        <div className="w-full flex items-center">
+        <div className="w-full flex justify-center items-center">
           <CollectionsSearchInput
             className="m-4 w-full"
             placeholder="Search user"
@@ -161,7 +188,7 @@ const Collections = () => {
           )}
         </div>
 
-        <div className="flex flex-wrap w-full">
+        <div className="flex flex-wrap justify-center md:justify-start w-full">
           <CollectionCard
             profileName="Priscilia yummy"
             tag="@yummychill54"

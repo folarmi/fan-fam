@@ -120,7 +120,7 @@ const Poll = ({
 
           <div
             className="flex items-center border border-blue_500 drop-shadow-7xl 
-          py-2 px-3 bg-secondary-btn w-1/4 mt-2
+          py-2 px-3 bg-secondary-btn w-1/2 md:w-1/4 mt-2
            rounded-3xl cursor-pointer"
           >
             <Typography variant="subtitle3" className="text-blue_500">

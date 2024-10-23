@@ -69,7 +69,7 @@ const ForgotPassword = () => {
         <CustomButton
           loading={forgotPasswordMutation.isPending}
           variant="primary"
-          className="shadow-custom mb-6"
+          className="shadow-custom mb-6 px-8"
         >
           Send Link
         </CustomButton>

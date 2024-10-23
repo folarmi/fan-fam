@@ -7,8 +7,8 @@ import React from "react";
 
 const QRCode = () => {
   return (
-    <div className="">
-      <AccountBackButton showBack={false} />
+    <div>
+      <AccountBackButton showBack={false} showMobileBack moduleName="QR Code" />
       <Typography variant="p2" className="text-grey_800 pt-4 pl-4">
         This QR code will lead to your profile page when scanned
       </Typography>
@@ -17,7 +17,9 @@ const QRCode = () => {
         <Image src={qrCode} alt="qrCode" />
 
         <div className="mt-8 flex w-1/4">
-          <CustomButton primaryButtonSize="xs">Download QR code</CustomButton>
+          <CustomButton primaryButtonSize="xs" className="px-4">
+            Download QR code
+          </CustomButton>
         </div>
       </div>
     </div>

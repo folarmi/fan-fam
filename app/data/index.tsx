@@ -37,6 +37,20 @@ import oceania from "@/public/oceania.svg";
 import southAmerica from "@/public/southAmerica.svg";
 import algeria from "@/public/icons/algeria.svg";
 import eastTimor from "@/public/icons/eastTimor.svg";
+import biking from "@/public/biking.svg";
+import skiDiving from "@/public/skiDiving.svg";
+import dance from "@/public/dance.svg";
+import party from "@/public/party.svg";
+import foods from "@/public/foods.svg";
+import tech from "@/public/tech.svg";
+import travels from "@/public/travels.svg";
+import music from "@/public/music.svg";
+import sports from "@/public/sports.svg";
+import happyEmoji from "@/public/icons/happyEmoji.svg";
+import videoEmoji from "@/public/icons/videoEmoji.svg";
+import blurEmoji from "@/public/icons/blurEmoji.svg";
+import galleryEmoji from "@/public/icons/galleryEmoji.svg";
+import { SettingsIcon } from "../components/svgs/Settings";
 
 export const sideBarItems = [
   {
@@ -83,8 +97,8 @@ export const sideBarItems = [
   },
   {
     id: 7,
-    name: "More",
-    image: <More />,
+    name: "Settings",
+    image: <SettingsIcon />,
     link: "/dashboard/settings/account",
   },
 ];
@@ -453,6 +467,11 @@ export const settingsModule = [
     name: "Privacy and safety",
     path: "/dashboard/settings/privacy",
   },
+  {
+    id: 9,
+    name: "Preferences",
+    path: "/dashboard/settings/preferences",
+  },
 ];
 
 export const accountSettingsModules = [
@@ -539,7 +558,13 @@ export const sampleLoginSessions = [
 
 export const sampleTwoFactor = [
   { id: 1, name: "SMS", desc: "A one time code will be sent to your phone" },
+  { id: 3, name: "Email", desc: "A one time code will be sent to your email" },
   { id: 2, name: "Face ID", desc: "Works only on your mobile phone" },
+  {
+    id: 4,
+    name: "Authenticator App",
+    desc: "Connect your account with your 2FA app",
+  },
 ];
 
 export const notificationsSettings = [
@@ -773,11 +798,11 @@ export const subscriptionMenu = [
     id: 9,
     name: "Subscribed",
     path: "/dashboard/account/subscribed",
-    isCreator: false,
+    isCreator: undefined,
   },
   {
     id: 1,
-    name: "Add card",
+    name: "Cards",
     path: "/dashboard/account/add-card",
     isCreator: false,
   },
@@ -1486,5 +1511,134 @@ export const countriesSample = [
     id: 2,
     name: "East Timor",
     image: eastTimor,
+  },
+];
+
+export const interestData = [
+  {
+    id: 1,
+    image: biking,
+  },
+  {
+    id: 2,
+    image: skiDiving,
+  },
+  {
+    id: 3,
+    image: dance,
+  },
+  {
+    id: 4,
+    image: party,
+  },
+  {
+    id: 5,
+    image: foods,
+  },
+  {
+    id: 6,
+    image: tech,
+  },
+  {
+    id: 7,
+    image: travels,
+  },
+  {
+    id: 8,
+    image: music,
+  },
+  {
+    id: 9,
+    image: sports,
+  },
+];
+
+export const emojiData = [
+  {
+    id: 1,
+    img: happyEmoji,
+    name: "Emoji",
+  },
+  {
+    id: 4,
+    img: videoEmoji,
+    name: "Giphy",
+  },
+  {
+    id: 2,
+    img: galleryEmoji,
+    name: "Photo",
+  },
+  {
+    id: 3,
+    img: blurEmoji,
+    name: "Blur",
+  },
+];
+
+export const twoFAInstructions = [
+  {
+    id: 1,
+    text: "Copy your 2FA key and paste it into your 2FA app.",
+  },
+  {
+    id: 2,
+    text: "Enter the generated code from your 2FA app in the field below.",
+  },
+];
+
+export const pendingWithdrawalsTableHeader = [
+  {
+    id: 1,
+    name: "Pending Withdrawals",
+  },
+  {
+    id: 2,
+    name: "Total",
+  },
+];
+
+export const pendingWithdrawalsSampleData = [
+  {
+    id: 1,
+    date: "12 July 2024 at 12:04pm",
+    desc: "$300.00 withdrawal request ",
+    status: "Pending",
+  },
+];
+
+export const transactionHistoryTableHeader = [
+  {
+    id: 1,
+    name: "Date and Time",
+  },
+  {
+    id: 2,
+    name: "Description",
+  },
+  {
+    id: 3,
+    name: "Amount",
+  },
+  {
+    id: 4,
+    name: "Fee",
+  },
+];
+
+export const transactionHistoryData = [
+  {
+    id: 1,
+    dateAndTime: "12 July 2024 at 12:04pm",
+    desc: "Subscription payment from Daniels Jacays",
+    amount: "+$300.00",
+    fee: "$5.00",
+  },
+  {
+    id: 2,
+    dateAndTime: "12 July 2024 at 12:04pm",
+    desc: "Subscription payment from Daniels Jacays",
+    amount: "+$300.00",
+    fee: "$5.00",
   },
 ];

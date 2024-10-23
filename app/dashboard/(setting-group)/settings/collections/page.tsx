@@ -6,7 +6,11 @@ import React from "react";
 const CollectionSettings = () => {
   return (
     <div>
-      <AccountBackButton showBack={false} />
+      <AccountBackButton
+        showBack={false}
+        showMobileBack
+        moduleName="Collections"
+      />
 
       <div className="flex items-center justify-between mt-4 ml-4">
         <Typography variant="p2" className="text-grey_800">

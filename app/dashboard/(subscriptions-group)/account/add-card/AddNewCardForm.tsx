@@ -96,7 +96,9 @@ const AddNewCardForm = () => {
         />
 
         <div className="flex ml-auto justify-end my-8 w-1/4">
-          <CustomButton primaryButtonSize="xs">Proceed</CustomButton>
+          <CustomButton primaryButtonSize="xs" className="px-4">
+            Proceed
+          </CustomButton>
         </div>
       </form>
     </div>

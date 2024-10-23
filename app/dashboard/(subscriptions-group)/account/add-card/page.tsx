@@ -10,13 +10,18 @@ import Image from "next/image";
 import CardSample from "./CardSample";
 import Typography from "@/app/components/forms/Typography";
 import AddNewCardForm from "./AddNewCardForm";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
 
 const AddCard = () => {
-  const [isCardAdded, setIsCardAdded] = useState(false);
+  const { showAccountOnMobile } = useAppSelector(
+    (state: RootState) => state.settingMobile
+  );
+  const [isCardAdded, setIsCardAdded] = useState(true);
   const [addNewCard, setAddNewCard] = useState(false);
 
   return (
-    <div className="">
+    <div className={`${showAccountOnMobile ? "w-full" : "hidden md:block"}`}>
       <AddCardHeader addNewCard={addNewCard} setAddNewCard={setAddNewCard} />
 
       <div className="bg-grey_10 p-4 mt-4 mx-[14px]">

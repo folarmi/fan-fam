@@ -63,13 +63,23 @@ const Timeline = ({
                 {profileName}
               </Typography>
               <Image src={blueVerifiedTick} alt="default avatar" />
-              <Typography variant="p2" className="px-[6px] text-grey_500">
+              <Typography
+                variant="p2"
+                className="hidden md:block px-[6px] text-grey_500"
+              >
                 {handle}
               </Typography>
-              <Typography variant="p2" className="text-grey_500">
+              <Typography
+                variant="p2"
+                className="ml-auto md:ml-0 pr-6 md:pr-0 text-grey_500"
+              >
                 {time}
               </Typography>
             </section>
+
+            <Typography variant="p2" className="md:hidden text-grey_500">
+              {handle}
+            </Typography>
 
             {ifParagraph && (
               <>
@@ -90,7 +100,7 @@ const Timeline = ({
             className="cursor-pointer"
           />
           {showModal && (
-            <div className="flex flex-col absolute left-[62%] bottom-[73%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white z-50">
+            <div className="flex flex-col absolute left-[20%] md:left-[62%] bottom-[65%] md:bottom-[73%] bg-modal-gradient shadow-triple w-[262px] rounded-2xl border-2 border-white z-50">
               {TimeLineModal}
             </div>
           )}

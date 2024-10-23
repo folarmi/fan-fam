@@ -6,7 +6,7 @@ import React from "react";
 const ChatSettings = () => {
   return (
     <div>
-      <AccountBackButton showBack={false} />
+      <AccountBackButton showBack={false} showMobileBack moduleName="Chat" />
 
       <div className="flex items-center pb-2 border-b pt-4 border-grey_10 pl-4">
         <Typography variant="p2" className="text-grey_800 pr-6">

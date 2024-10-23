@@ -41,7 +41,7 @@ const Fans = () => {
           Summary
         </Typography>
 
-        <div className="flex items-center mb-4 w-full">
+        <div className="flex flex-wrap items-center mb-4 w-full">
           {fanPromotionsSummary?.map(({ extra, id, name }) => {
             return (
               <div className="mr-10 w-24" key={id}>

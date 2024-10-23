@@ -39,7 +39,7 @@ const RearrangeNotificationCategories = ({ toggleRearrangeModal }: any) => {
 
       <div className="ml-[128px] flex items-center mt-8 mb-2">
         <CustomButton
-          onClick={toggleRearrangeModal}
+          onClick={() => toggleRearrangeModal}
           variant="secondary"
           className="text-xs mr-6 w-[84px]"
         >

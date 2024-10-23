@@ -10,13 +10,13 @@ type TabsProps = {
 
 const Tabs = ({ tabsArray, isActiveTab, setIsActiveTab }: TabsProps) => {
   return (
-    <div className="flex items-center my-4">
+    <div className="flex flex-wrap  items-center my-3 md:my-4">
       {tabsArray?.map(({ id, name }) => {
         return (
           <div
             key={id}
             onClick={() => setIsActiveTab(name)}
-            className={`mr-2 py-2 px-4 cursor-pointer rounded-2xl ${
+            className={`mr-2 py-2 px-4 cursor-pointer rounded-2xl mt-2 md:mt-0 ${
               isActiveTab === name
                 ? "bg-blue_200 border border-blue_100"
                 : "bg-white border border-grey_10"

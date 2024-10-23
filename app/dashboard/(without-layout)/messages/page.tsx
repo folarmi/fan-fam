@@ -43,17 +43,33 @@ const Messages = () => {
   const [isActiveTab, setIsActiveTab] = useState("All");
   const [createNewGroup, setCreateNewGroup] = useState(false);
   const [selectedChatGroup, setSelectedChatGroup] = useState("");
+  const [isEmpty, setIsEmpty] = useState(true);
+  const [areParticipantSelected, setAreParticipantSelected] = useState(false);
+  const [selectedMessageOnMobile, setSelectedMessageOnMobile] = useState(true);
 
   const toggleCreateNewChatGroup = () => {
     setCreateNewGroup(!createNewGroup);
   };
 
-  console.log("fghfjjvjjvjhvhh", selectedChatGroup);
+  const getSelectedGroup = (groupName: string) => {
+    setSelectedChatGroup(groupName);
+    setIsEmpty(!isEmpty);
+  };
+
+  const toggleMessageAndChatInterface = () => {
+    if (window.innerWidth <= 425) {
+      setSelectedMessageOnMobile(!selectedMessageOnMobile);
+    }
+  };
 
   return (
     <section className="flex">
       {selectedChatGroup === "" && (
-        <div className="bg-grey_20 drop-shadow-4xl w-[42%] mt-4">
+        <div
+          className={`bg-grey_20 drop-shadow-4xl w-full md:w-[42%] mt-4 ${
+            selectedMessageOnMobile ? "hidden md:block" : ""
+          }`}
+        >
           <div
             className="flex items-center justify-between w-full bg-grey_20 py-3 px-4 rounded-sm
       border border-grey_20 drop-shadow-3xl shadow-header-md mb-2"
@@ -108,10 +124,11 @@ const Messages = () => {
                   <div
                     key={id}
                     className="flex items-center p-4 border-b border-grey_10"
+                    onClick={toggleMessageAndChatInterface}
                   >
                     <Image src={photo} alt="photo" className="w-10 h-10" />
                     <div className="ml-3">
-                      <div className="flex items-center mb-1">
+                      <div className="flex items-center mb-1 whitespace-nowrap">
                         <Typography
                           variant="titleTwo"
                           className="text-grey_900"
@@ -152,7 +169,7 @@ const Messages = () => {
               {sampleChatGroups?.map(({ id, groupName, noOfUsers }) => (
                 <div
                   key={id}
-                  onClick={() => setSelectedChatGroup("jfdbjdfbhu")}
+                  onClick={() => getSelectedGroup(groupName)}
                   className="flex items-center justify-between cursor-pointer p-4 border-b border-grey_10 hover:bg-blue_200"
                 >
                   <div>
@@ -163,7 +180,7 @@ const Messages = () => {
                       {groupName}
                     </Typography>
                     <Typography variant="p2" className="text-grey_400">
-                      {noOfUsers} Users
+                      {noOfUsers}
                     </Typography>
                   </div>
                   <Image src={rightAshArrow} alt="arrow" className="w-6 h-6" />
@@ -175,14 +192,44 @@ const Messages = () => {
       )}
 
       {selectedChatGroup !== "" && (
-        <div className="w-[42%]">
-          <AddParticipant setSelectedChatGroup={setSelectedChatGroup} />
+        <div className="w-full md:w-[42%]">
+          <AddParticipant
+            setSelectedChatGroup={setSelectedChatGroup}
+            setAreParticipantSelected={setAreParticipantSelected}
+            areParticipantSelected={areParticipantSelected}
+          />
         </div>
       )}
 
-      <section className="w-[58%]">
+      {/* <section className="w-[58%]">
         {isActiveTab !== "Chat groups" && <ChatInterface />}
-        {isActiveTab === "Chat groups" && <GroupChatInterface />}
+        {isActiveTab === "Chat groups" && (
+          <GroupChatInterface
+            selectedChatGroup={selectedChatGroup}
+            isEmpty={isEmpty}
+            areParticipantSelected={areParticipantSelected}
+          />
+        )}
+      </section> */}
+
+      <section
+        className={`${
+          selectedMessageOnMobile ? "" : "hidden md:block"
+        } w-full md:w-[58%]`}
+      >
+        {isActiveTab !== "Chat groups" && (
+          <ChatInterface
+            toggleMessageAndChatInterface={toggleMessageAndChatInterface}
+          />
+        )}
+        {isActiveTab === "Chat groups" && (
+          <GroupChatInterface
+            selectedChatGroup={selectedChatGroup}
+            isEmpty={isEmpty}
+            areParticipantSelected={areParticipantSelected}
+          />
+        )}
+        {/* {isActiveTab === "Chat groups" && <GroupChatInterface />} */}
       </section>
 
       {
