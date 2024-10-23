@@ -136,7 +136,7 @@ const Profile = () => {
               </div> */}
 
               <div className="flex items-center gap-x-4 justify-between w-full">
-                <div className="flex items-center ml-28">
+                <div className="hidden md:flex items-center ml-28">
                   <Image src={location} alt="location" />
                   <Typography className="text-grey_400 pl-1" variant="p3">
                     Nigeria
@@ -163,6 +163,7 @@ const Profile = () => {
                         className="w-10 h-10"
                       />
 
+                      {/* ml-28 */}
                       <div className="ml-3">
                         <div className="flex items-center mb-1">
                           <Typography
@@ -210,7 +211,9 @@ const Profile = () => {
                   </div>
                 )}
 
-                <Image src={circleStar} alt="circleStar" />
+                <div className="hidden md:block">
+                  <Image src={circleStar} alt="circleStar" />
+                </div>
 
                 {!isCreator && (
                   <>
@@ -271,8 +274,14 @@ const Profile = () => {
             </div>
           </div>
 
-          <section>
-            <div className="flex items-center mt-4">
+          <section className="mt-6">
+            <div className="md:hidden flex items-center ">
+              <Image src={location} alt="location" />
+              <Typography className="text-grey_400 pl-1" variant="p3">
+                Nigeria
+              </Typography>
+            </div>
+            <div className="flex items-center">
               <Typography
                 variant="titleTwo"
                 className="text-grey_800 font-bold pr-1"

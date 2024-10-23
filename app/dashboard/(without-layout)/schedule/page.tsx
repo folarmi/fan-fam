@@ -206,7 +206,11 @@ const Schedule = () => {
                       <CustomButton
                         primaryButtonSize="xs"
                         className="rounded-3xl px-3"
-                        // onClick={handleClick}
+                        // onClick={(e) => handlePostOrMessageClickOnMobile(e)}
+                        onClick={() => {
+                          setShowSchedulePost(false);
+                          setShowMessagePost(false);
+                        }}
                       >
                         {showSchedulePost
                           ? "Schedule Post"

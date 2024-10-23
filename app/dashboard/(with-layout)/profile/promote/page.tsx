@@ -21,7 +21,7 @@ const PromoteProfile = () => {
         <p>Promote Profile</p>
       </div>
 
-      <main className="mt-6 ml-14">
+      <main className="mt-6 ml-3 md:ml-14">
         <Typography variant="h5" className="text-grey_900">
           Promote your Profile
         </Typography>

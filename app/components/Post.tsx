@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Typography from "./forms/Typography";
 import Image from "next/image";
 import Timeline from "@/app/components/cards/Timeline";
@@ -9,6 +9,8 @@ import timelineImage from "@/public/timelineImage.svg";
 import timelineTwo from "@/public/timelineTwo.svg";
 import plus from "@/public/icons/plus.svg";
 import switchList from "@/public/icons/switchList.svg";
+import sort from "@/public/icons/sort.svg";
+import addFolder from "@/public/icons/addFolder.svg";
 import Modal from "./modals/Modal";
 import CreateFolder from "./cards/CreateFolder";
 import PersonPostModal from "./modals/PersonPostModal";
@@ -39,15 +41,28 @@ const Post = () => {
   ]);
   const [toggleCreateFolderModal, setToggleCreateFolderModal] = useState(false);
   const [showMoreModal, setShowMoreModal] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const toggleModal = () => {
     setToggleCreateFolderModal(!toggleCreateFolderModal);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  });
+
+  const tabsToDisplay = isMobile ? profileTabs.slice(0, 2) : profileTabs;
+
   return (
     <div>
       <div className={`my-4 flex items-center px-4 mr-[14px] justify-between `}>
-        {profileTabs.map(({ id, name, number }) => {
+        {tabsToDisplay.map(({ id, name, number }) => {
           return (
             <div
               onClick={() => setIsProfileTabActive(name)}
@@ -75,9 +90,11 @@ const Post = () => {
           );
         })}
 
+        <Image src={addFolder} alt="plus" className="md:hidden" />
+
         <div
           onClick={toggleModal}
-          className="flex items-center border border-grey_10 drop-shadow-7xl
+          className="hidden md:flex items-center border border-grey_10 drop-shadow-7xl
           py-2 px-3 bg-secondary-btn
            rounded-3xl cursor-pointer"
         >
