@@ -25,11 +25,8 @@ const Views = () => {
           {sampleEngagementTableData?.map(
             ({ date, views, tips, price, purchases, image, text, imageNo }) => {
               return (
-                <section>
-                  <div
-                    key={date}
-                    className="flex items-center justify-between border-b border-grey_10 py-2"
-                  >
+                <section key={date}>
+                  <div className="flex items-center justify-between border-b border-grey_10 py-2">
                     <Typography variant="subtitle3" className="text-grey_700">
                       {date}
                     </Typography>

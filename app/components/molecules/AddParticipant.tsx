@@ -70,7 +70,10 @@ const AddParticipant = ({
           </div>
           {notificationSampleData?.map(({ photo, name, tag }) => {
             return (
-              <div className="flex items-center mx-4 justify-between border-b border-grey_200 py-4">
+              <div
+                key={name}
+                className="flex items-center mx-4 justify-between border-b border-grey_200 py-4"
+              >
                 <div className="flex items-center">
                   <Image
                     src={photo}

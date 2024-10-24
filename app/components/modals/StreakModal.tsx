@@ -18,7 +18,7 @@ const StreakModal = ({ toggleModal }: any) => {
           className="w-6 h-6 absolute left-3"
         />
         <Typography variant="p2" className="w-[170px] pl-2">
-          Take action each day so your streak won't reset!
+          Take action each day so your streak won `&apos;`t reset!
         </Typography>
       </div>
 
