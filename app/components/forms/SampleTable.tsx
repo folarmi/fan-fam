@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const SampleTable = ({ data }: any) => {
@@ -29,7 +30,7 @@ const SampleTable = ({ data }: any) => {
               <td className="p-4 border-b">
                 {row.date}
                 <div className="flex items-center mt-2">
-                  <img
+                  <Image
                     src={row.image}
                     alt="Thumbnail"
                     className="w-10 h-10 object-cover mr-2"

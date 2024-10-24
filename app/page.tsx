@@ -82,7 +82,7 @@ const SignIn = () => {
         <CustomButton
           loading={signInMutation.isPending}
           variant="primary"
-          className="shadow-custom mb-6 px-8"
+          className="shadow-custom mb-6"
         >
           Sign in
         </CustomButton>

@@ -20,7 +20,7 @@ const DayAndTimeInput = ({ className }: DayAndTimeInputProps) => {
           <input
             aria-label="Date"
             readOnly
-            value={selectedDate.toLocaleDateString("en-US", {
+            value={selectedDate?.toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
               year: "numeric",

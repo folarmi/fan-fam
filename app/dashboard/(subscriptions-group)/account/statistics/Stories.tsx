@@ -81,11 +81,8 @@ const Stories = () => {
               imageNo,
             }) => {
               return (
-                <section>
-                  <div
-                    key={date}
-                    className="flex items-center justify-between border-b border-grey_10 py-2 relative"
-                  >
+                <section key={date}>
+                  <div className="flex items-center justify-between border-b border-grey_10 py-2 relative">
                     <Typography variant="subtitle3" className="text-grey_700">
                       {date}
                     </Typography>

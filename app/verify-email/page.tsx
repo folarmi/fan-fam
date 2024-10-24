@@ -1,9 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
-import React from "react";
-import Typography from "../components/forms/Typography";
-import Cookies from "js-cookie";
 
+import React, { Suspense } from "react"; // Import Suspense
+import Typography from "../components/forms/Typography";
 import AuthLayout from "../components/AuthLayout";
 import CustomInput from "../components/forms/CustomInput";
 import { useForm } from "react-hook-form";
@@ -14,10 +12,20 @@ import api from "../lib/axios";
 import { toast } from "react-toastify";
 
 const VerifyEmail = () => {
-  const searchParams = useSearchParams();
   const router = useRouter();
 
-  const { control, handleSubmit, getValues } = useForm({
+  // Wrap useSearchParams with Suspense
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyEmailForm />
+    </Suspense>
+  );
+};
+
+const VerifyEmailForm = () => {
+  const searchParams = useSearchParams(); // Extracted to be inside Suspense
+  const router = useRouter();
+  const { control, handleSubmit } = useForm({
     defaultValues: {
       email: searchParams.get("fanfam") || "",
       token: searchParams.get("mafanf") || "",
@@ -55,12 +63,7 @@ const VerifyEmail = () => {
           Verify Email
         </Typography>
 
-        <CustomInput
-          // label="Email"
-          name="email"
-          control={control}
-          readOnly={true}
-        />
+        <CustomInput name="email" control={control} readOnly={true} />
         <CustomButton
           loading={verifyUserMutation.isPending}
           variant="primary"
@@ -74,6 +77,3 @@ const VerifyEmail = () => {
 };
 
 export default VerifyEmail;
-
-// http://localhost:3456/api/v1/auth/verify-token?mafanf=5Ektz%2BjGyVPUERhYQq6XBZsAyrNecQis%2FYy4W%2FAc%2FQs&fanfam=4yS4pme0op75OjwxrWS7Kx3XdHnsxEPurkU8X6JArog
-// http://localhost:3456/api/v1/auth/verify-token?mafanf=FANFAM-20240725R820ABR9ZN&fanfam=paradiseUser@mailinator.com

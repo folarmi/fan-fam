@@ -19,9 +19,9 @@ const ScheduleButton: React.FC<ScheduleButtonProps> = ({
   // Dynamic onClick handler
   const handleClick = () => {
     if (isPost) {
-      setShowSchedulePost(false);
+      setShowSchedulePost?.(false);
     } else {
-      setShowMessagePost(false);
+      setShowMessagePost?.(false);
     }
   };
 
@@ -52,3 +52,11 @@ const ScheduleButton: React.FC<ScheduleButtonProps> = ({
 };
 
 export default ScheduleButton;
+
+// > Export encountered errors on following paths:
+//         /dashboard/(with-layout)/notifications/page: /dashboard/notifications
+//         /dashboard/(with-layout)/page: /dashboard
+//         /dashboard/(with-layout)/profile/edit-profile/page: /dashboard/profile/edit-profile
+//         /dashboard/(with-layout)/profile/page: /dashboard/profile
+//         /dashboard/(with-layout)/profile/promote/page: /dashboard/profile/promote
+//         /verify-email/page: /verify-email

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import CustomInput from "../components/forms/CustomInput";
 import { useForm } from "react-hook-form";
 import CustomButton from "../components/forms/CustomButton";
@@ -10,12 +10,22 @@ import { useMutation } from "@tanstack/react-query";
 import api from "../lib/axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
-import Cookies from "js-cookie";
 import { handleCopy, handleCut, handlePaste } from "../utils/helper";
 
 const ResetPassword = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+
+  // Wrap useSearchParams with Suspense
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPasswordForm />
+    </Suspense>
+  );
+};
+
+const ResetPasswordForm = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams(); // Extracted to be inside Suspense
   const { control, handleSubmit, getValues } = useForm();
 
   const resetPasswordMutation = useMutation({
@@ -50,6 +60,7 @@ const ResetPassword = () => {
 
     resetPasswordMutation.mutate(formValues);
   };
+
   return (
     <AuthLayout>
       <Typography variant="h5">Create new password</Typography>
