@@ -1,7 +1,7 @@
 "use client";
 
 import SearchInput from "@/app/components/SearchInput";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import suggestTwo from "@/public/suggestTwo.svg";
 import Image from "next/image";
 import IconAndNumber from "@/app/components/IconAndNumber";
@@ -18,7 +18,7 @@ import CircleChat from "@/public/icons/circleChat";
 import CirclePay from "@/public/icons/circlePay";
 import copy from "@/public/copy.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
-import { commentOptions } from "@/app/data";
+import { commentOptions, UserRole } from "@/app/data";
 import Post from "@/app/components/Post";
 import Replies from "@/app/components/Replies";
 import Media from "@/app/components/Media";
@@ -39,10 +39,14 @@ import { useAppSelector } from "@/app/lib/hook";
 import { RootState } from "@/app/lib/store";
 import BlueBorderedButton from "@/app/components/forms/BlueBorderedButton";
 import Link from "next/link";
+import { useCustomMutation, useGetData } from "@/app/hooks/apiCalls";
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
-  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+  const { userObject } = useAppSelector((state: RootState) => state.auth);
   const { control } = useForm();
+  const router = useRouter();
+
   const [isExpanded, setIsExpanded] = useState(false);
   const [tabs, setTabs] = useState([
     {
@@ -58,7 +62,7 @@ const Profile = () => {
       name: "Replies",
     },
     {
-      id: 2,
+      id: 4,
       name: "Likes",
     },
   ]);
@@ -69,6 +73,21 @@ const Profile = () => {
   const [tipModal, setTipModal] = useState(false);
   const [addUserToList, setAddUserToList] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const getUserProfileUserMutation = useCustomMutation({
+    endpoint: `/profile/view`,
+    successMessage: (data: any) => data?.message,
+    errorMessage: (error: any) => error,
+    onSuccessCallback: (data) => {},
+  });
+
+  useEffect(() => {
+    getUserProfileUserMutation.mutate({
+      email: userObject.email,
+      role: userObject.role,
+      usid: userObject.usid,
+    });
+  }, []);
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -215,7 +234,7 @@ const Profile = () => {
                   <Image src={circleStar} alt="circleStar" />
                 </div>
 
-                {!isCreator && (
+                {userObject.role !== UserRole.creator && (
                   <>
                     <div
                       className={`flex items-center gap-x-2 border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white `}
@@ -232,7 +251,7 @@ const Profile = () => {
                   </>
                 )}
 
-                {isCreator && (
+                {userObject.role === UserRole.creator && (
                   <>
                     {" "}
                     <Link href="/dashboard/profile/promote">
@@ -243,7 +262,12 @@ const Profile = () => {
                         Promote Profile
                       </CustomButton>
                     </Link>
-                    <BlueBorderedButton text="Edit Profile" />
+                    <BlueBorderedButton
+                      onClick={() =>
+                        router.push("/dashboard/profile/edit-profile")
+                      }
+                      text="Edit Profile"
+                    />
                   </>
                 )}
 

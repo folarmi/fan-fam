@@ -9,6 +9,7 @@ import {
   pendingWithdrawalsTableHeader,
   transactionHistoryData,
   transactionHistoryTableHeader,
+  UserRole,
   walletSampleData,
 } from "@/app/data";
 import CustomSwitchButton from "@/app/components/forms/CustomSwitchButton";
@@ -19,7 +20,7 @@ import { RootState } from "@/app/lib/store";
 
 const Wallet = () => {
   const [isEmpty, setIsEmpty] = useState(false);
-  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+  const { userObject } = useAppSelector((state: RootState) => state.auth);
 
   return (
     <div className="">
@@ -29,11 +30,14 @@ const Wallet = () => {
         <div className="bg-grey_10 p-4">
           <div className="flex items-center justify-between">
             <Typography variant="subtitle2" className="text-grey_800">
-              Wallet {isCreator ? "Balance" : "Credit"}
+              Wallet{" "}
+              {userObject.role === UserRole.creator ? "Balance" : "Credit"}
             </Typography>
 
             <CustomButton primaryButtonSize="xs" className="px-3">
-              {isCreator ? "Request Withdrawal" : "  Add Funds to Wallet"}
+              {userObject.role === UserRole.creator
+                ? "Request Withdrawal"
+                : "  Add Funds to Wallet"}
             </CustomButton>
           </div>
 
@@ -41,14 +45,14 @@ const Wallet = () => {
             $0.00
           </Typography>
 
-          {isCreator && (
+          {userObject.role === UserRole.creator && (
             <Typography variant="p3" className="text-grey_600">
               Minimum withdrawal amount is $20{" "}
             </Typography>
           )}
         </div>
 
-        {!isCreator && (
+        {userObject.role !== UserRole.creator && (
           <div className="mt-1 px-4">
             {walletSampleData.map(({ id, name }) => {
               return (
@@ -68,7 +72,7 @@ const Wallet = () => {
         )}
       </section>
 
-      {isCreator && (
+      {userObject.role === UserRole.creator && (
         <div className="ml-4">
           <section className="px-4 flex items-center justify-between border border-grey_10">
             {pendingWithdrawalsTableHeader.map(({ id, name }) => (

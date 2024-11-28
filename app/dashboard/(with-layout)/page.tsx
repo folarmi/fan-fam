@@ -16,10 +16,11 @@ import Modal from "@/app/components/modals/Modal";
 import InterestModal from "@/app/components/modals/InterestModal";
 import FileUploader from "@/app/components/molecules/FileUploader";
 import StoryModal from "@/app/components/modals/StoryModal";
+import { UserRole } from "@/app/data";
 // import TimeLineHomeModal from "../components/modals/TimeLineHomeModal";
 
 const Home = () => {
-  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+  const { userObject } = useAppSelector((state: RootState) => state.auth);
 
   const [showMoreModal, setShowMoreModal] = useState(false);
   const [isEditingStory, setIsEditingStory] = useState(false);
@@ -131,7 +132,7 @@ const Home = () => {
         />
       </>
 
-      {!isCreator && (
+      {userObject.role !== UserRole.creator && (
         <Modal show={showInterestModal} toggleModal={toggleInterestModal}>
           <div className="p-4">
             <InterestModal toggleModal={toggleInterestModal} />

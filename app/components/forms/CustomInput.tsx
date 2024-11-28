@@ -55,7 +55,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         type={showPassword ? "text" : type}
         {...field}
         {...rest}
-        className={`block w-full h-10 rounded-${borderRadius} px-4 text-sm bg-white border appearance-none focus:outline-none focus:ring-0 peer ${
+        className={`block w-full h-12 rounded-${borderRadius} px-4 text-sm bg-white border appearance-none focus:outline-none focus:ring-0 peer ${
           error
             ? "border border-red-500"
             : "border-gray-300 focus:border-primary"
@@ -77,17 +77,28 @@ const CustomInput: React.FC<CustomInputProps> = ({
         <button
           type="button"
           onClick={togglePasswordVisibility}
-          className="absolute right-4 top-2.5 text-gray-500 focus:outline-none"
+          className="absolute right-4 top-3 text-gray-500 focus:outline-none"
         >
-          {showPassword ? "🙈" : "👁️"}
+          {showPassword ? "👁️" : "🙈"}
         </button>
       )}
+
+      {/* <label
+        htmlFor={name}
+        className={`absolute left-4 text-sm font-normal text-grey_200 duration-300 transform scale-75 origin-[0] -translate-y-4 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-[0.5] peer-placeholder-shown:top-1/2 peer-focus:scale-75 peer-focus:-translate-y-4 ${
+          isFocused || field.value
+            ? "-translate-y-4 scale-75"
+            : "translate-y-1/2 scale-100"
+        }`}
+      >
+        {label}
+      </label> */}
       <label
         htmlFor={name}
-        className={`absolute left-4 top-2 text-sm font-normal text-grey_200 duration-300 transform -translate-y-4 scale-75 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3 peer-focus:scale-75 peer-focus:-translate-y-7 ${
+        className={`absolute left-4 text-sm font-normal text-grey_200 duration-300 transform scale-75 origin-[0] peer-focus:scale-75 peer-focus:-translate-y-4 ${
           isFocused || field.value
-            ? "-translate-y-6 scale-75"
-            : "translate-y-2.5 scale-100"
+            ? "-translate-y-4 scale-75"
+            : "top-1/2 transform -translate-y-2 scale-100"
         }`}
       >
         {label}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense } from "react"; // Import Suspense
+import React, { Suspense, useEffect, useState } from "react"; // Import Suspense
 import Typography from "../components/forms/Typography";
 import AuthLayout from "../components/AuthLayout";
 import CustomInput from "../components/forms/CustomInput";
@@ -10,6 +10,14 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import api from "../lib/axios";
 import { toast } from "react-toastify";
+import {
+  fetchDeviceIP,
+  getBrowserInfo,
+  getDeviceOS,
+  getPlatformFromUAParser,
+  getReadableLocation,
+} from "../utils/helper";
+import { useCustomMutation } from "../hooks/apiCalls";
 
 const VerifyEmail = () => {
   const router = useRouter();
@@ -23,8 +31,29 @@ const VerifyEmail = () => {
 };
 
 const VerifyEmailForm = () => {
-  const searchParams = useSearchParams(); // Extracted to be inside Suspense
+  const searchParams = useSearchParams();
   const router = useRouter();
+  const [ip, setIp] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [, setError] = useState<string | null>(null);
+  const browser = getBrowserInfo();
+  const platform = getPlatformFromUAParser();
+
+  useEffect(() => {
+    const fetchIP = async () => {
+      const deviceIP = await fetchDeviceIP();
+      setIp(deviceIP);
+    };
+
+    fetchIP();
+  }, []);
+
+  useEffect(() => {
+    getReadableLocation()
+      .then((location) => setLocation(location))
+      .catch((err) => setError(err.message));
+  }, []);
+
   const { control, handleSubmit } = useForm({
     defaultValues: {
       email: searchParams.get("fanfam") || "",
@@ -32,41 +61,26 @@ const VerifyEmailForm = () => {
     },
   });
 
-  const verifyUserMutation = useMutation({
-    mutationFn: async (data: any) => {
-      const response = await api.post(
-        `auth/verify-token?mafanf=${searchParams.get(
-          "mafanf"
-        )}&fanfam=${searchParams.get("fanfam")}`,
-        data
-      );
-      return response;
-    },
-    onSuccess: (data) => {
-      if (data?.data?.statusCode === 991) {
-        localStorage.setItem("token", data?.data?.data?.accessToken);
-        localStorage.setItem("refreshToken", data?.data?.data?.refreshToken);
-        router.push("/dashboard");
-      }
-    },
-    onError: (error: any) => {
-      console.log(error);
-      toast.error(error?.response?.data?.data?.message);
+  const verifyUserMutation = useCustomMutation({
+    endpoint: `auth/verify-token?mafanf=${searchParams.get(
+      "mafanf"
+    )}&fanfam=${searchParams.get("fanfam")}`,
+    successMessage: (data: any) => data?.message,
+    errorMessage: (error: any) => error,
+    onSuccessCallback: (data) => {
+      localStorage.setItem("token", data?.data?.accessToken);
+      localStorage.setItem("refreshToken", data?.data?.refreshToken);
+      router.push("/dashboard");
     },
   });
 
-  const userAgent = navigator.userAgent;
-  const platform = navigator.platform;
-
-  console.log(userAgent, platform);
-
   const submitForm = (data: any) => {
     const formData = {
-      deviceOS: "Windows 10",
-      deviceIP: "192.168.1.41",
-      location: "New York, USA",
-      platform: "Desktop",
-      browser: "Chrome",
+      deviceOS: getDeviceOS(),
+      deviceIP: ip,
+      location: location,
+      platform: platform,
+      browser: browser,
     };
 
     verifyUserMutation.mutate(formData);
@@ -83,7 +97,7 @@ const VerifyEmailForm = () => {
         <CustomButton
           loading={verifyUserMutation.isPending}
           variant="primary"
-          className="shadow-custom mb-6 px-6"
+          className="shadow-custom mb-6 px-6 w-full"
         >
           Verify Email
         </CustomButton>

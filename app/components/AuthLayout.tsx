@@ -17,7 +17,7 @@ const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
           </div>
         </div>
 
-        <div className="px-5 lg:px-0 w-full lg:w-2/6 lg:pr-[106px] pt-10 lg:pt-14">
+        <div className="px-5 lg:px-0 w-full lg:w-2/6 lg:pr-[76px] pt-10 lg:pt-14">
           <div className="lg:hidden w-full mb-14 flex justify-center items-center">
             <Image
               src={paradise}

@@ -1,6 +1,6 @@
 "use client";
 
-import { subscriptionMenu } from "@/app/data";
+import { subscriptionMenu, UserRole } from "@/app/data";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -19,7 +19,7 @@ const SubscriptionLayout = ({
 }>) => {
   const dispatch = useAppDispatch();
   const [isActiveTab, setIsActiveTab] = useState("Add Card");
-  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+  const { userObject } = useAppSelector((state: RootState) => state.auth);
   const { showAccountOnMobile } = useAppSelector(
     (state: RootState) => state.settingMobile
   );
@@ -32,7 +32,7 @@ const SubscriptionLayout = ({
 
   // Filter menu items for display
   const filteredMenuItems = subscriptionMenu.filter((item) => {
-    if (isCreator) {
+    if (userObject.role === UserRole.creator) {
       // Show items for creators: items meant for creators and shared items
       return item.isCreator === true || item.isCreator === false;
     } else {

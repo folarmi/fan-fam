@@ -34,7 +34,7 @@ const Post = () => {
       number: "56",
     },
     {
-      id: 3,
+      id: 4,
       name: "Best of 2024",
       number: "37",
     },

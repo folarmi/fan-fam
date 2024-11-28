@@ -18,27 +18,39 @@ import {
   updateUserEmail,
 } from "../lib/features/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { useCustomMutation } from "../hooks/apiCalls";
 
 const ForgotPassword = () => {
   const router = useRouter();
   const { control, handleSubmit, getValues } = useForm();
   const dispatch = useAppDispatch();
 
-  const forgotPasswordMutation = useMutation({
-    mutationFn: async (data: any) => {
-      const response = await api.post("auth/forgot-password", data);
-      return response;
-    },
-    onSuccess: (data) => {
-      if (data?.data?.statusCode === 991) {
-        toast("Kindly check your email for a password reset link");
-        dispatch(updateUserEmail(getValues("email")));
-        dispatch(updateEmailType("Reset"));
-        router.push("/email-sent");
-      }
-    },
-    onError: (error: any) => {
-      toast.error(error?.response?.data?.data?.message);
+  // const forgotPasswordMutation = useMutation({
+  //   mutationFn: async (data: any) => {
+  //     const response = await api.post("auth/forgot-password", data);
+  //     return response;
+  //   },
+  //   onSuccess: (data) => {
+  //     if (data?.data?.statusCode === 991) {
+  //       toast("Kindly check your email for a password reset link");
+  //       dispatch(updateUserEmail(getValues("email")));
+  //       dispatch(updateEmailType("Reset"));
+  //       router.push("/email-sent");
+  //     }
+  //   },
+  //   onError: (error: any) => {
+  //     toast.error(error?.response?.data?.data?.message);
+  //   },
+  // });
+
+  const forgotPasswordMutation = useCustomMutation({
+    endpoint: "auth/forgot-password",
+    successMessage: (data: any) => data?.message,
+    errorMessage: (error: any) => error,
+    onSuccessCallback: () => {
+      dispatch(updateUserEmail(getValues("email")));
+      dispatch(updateEmailType("Reset"));
+      router.push("/email-sent");
     },
   });
 
@@ -69,7 +81,7 @@ const ForgotPassword = () => {
         <CustomButton
           loading={forgotPasswordMutation.isPending}
           variant="primary"
-          className="shadow-custom mb-6"
+          className="shadow-custom mb-6 px-6 w-full"
         >
           Send Link
         </CustomButton>

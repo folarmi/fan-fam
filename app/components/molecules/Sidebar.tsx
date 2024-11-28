@@ -1,7 +1,7 @@
 import { sideBarItems } from "@/app/data";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import Typography from "../forms/Typography";
 import CustomButton from "../forms/CustomButton";
@@ -9,10 +9,22 @@ import verifyBlue from "@/public/icons/verifyBlue.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
 import { useAppSelector } from "@/app/lib/hook";
 import { RootState } from "@/app/lib/store";
+import { useCustomMutation } from "@/app/hooks/apiCalls";
 
 const Sidebar = () => {
+  const router = useRouter();
   const pathName = usePathname();
   const { isCreator } = useAppSelector((state: RootState) => state.auth);
+
+  const logOutMutation = useCustomMutation({
+    endpoint: "auth/logout",
+    successMessage: (data: any) => data?.data?.message,
+    errorMessage: (error: any) => error,
+    onSuccessCallback: () => {
+      router.push("/");
+      localStorage.clear();
+    },
+  });
 
   return (
     <div className="hidden md:flex flex-col h-screen pr-12 pl-[109px] border-r border-grey_10">
@@ -60,6 +72,17 @@ const Sidebar = () => {
             </Link>
           );
         })}
+      </div>
+
+      <div
+        className="flex items-center py-2 pl-4 cursor-pointer"
+        onClick={() => logOutMutation.mutate({})}
+      >
+        {/* <Image src={image} alt="icon" className="" /> */}
+        ff
+        <Typography variant="subtitle2" className="text-grey_400 pl-4">
+          Logout
+        </Typography>
       </div>
 
       <div className="drop-shadow-5xl shadow-post-button w-[221px]">

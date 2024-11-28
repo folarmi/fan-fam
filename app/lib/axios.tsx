@@ -7,14 +7,21 @@ const api: AxiosInstance = axios.create({
   },
 });
 
+const EAONCREDENTIALVALUE = process.env.NEXT_PUBLIC_EAONCREDENTIALVALUE;
+const EAONCREDENTIALKEY = process.env.NEXT_PUBLIC_EAONCREDENTIALKEY;
+
 api.interceptors.request.use(
   async (config) => {
     try {
-      // const token = sessionStorage.getItem("token");
-      const token = localStorage.getItem("auth-token");
+      const token = localStorage.getItem("token");
       if (token) {
         const newConfig = { ...config };
-        newConfig.headers.Authorization = `Bearer ${token}`;
+
+        newConfig.headers.Authorization = `${token}`;
+        newConfig.headers.EAONCREDENTIALKEY =
+          "K1T2U3V4W5X6Y7Z8a9b0c1d2e3f4g5h6i7j8k9l0m1n2o3p4q5r6s7t8u9v0w1x2y3z4A5B6C7D8E9F0G1H2I3J4K5L6M7N8O9P0Q1R2S3T4U5V6W7X8Y9Z0g3h4i5j6k7l8m9n0o1p2q3r4s5t6u7v8w9x0y1z2A3B4C5D6E7F8G9H0I1J2K3L4M5N6O7P8Q9R0S4Y5Z6a7b8c9d0e1f2";
+        newConfig.headers.EAONCREDENTIALVALUE =
+          "V1T2bR3yL4FpU5qZvS6xC7dG8hIoJ9kApLbQcM1uN2vXwO3xY4zU5hV6mB7nC8oD9pE0qF1rG2sH3tI4uJ5vK6wL7xM8yN9zA0bB1cC2dD3eE4fF5gG6hH7iI8jJ9kK0lL1mM2nN3oO4pP5qQ6rR7sS8tT9uU0vV1wW2xX3yY4zZ50A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0U1V2W3X";
         return newConfig;
       }
       return config;
@@ -35,7 +42,6 @@ api.interceptors.response.use(
     // Any status codes that falls outside the range of 2xx causes this function to trigger
     if (error?.response?.status === 401) {
       // Handle unauthorized errors (e.g., redirect to login)
-      console.log("Unauthorized, logging out...");
       localStorage.removeItem("token");
       // window.location.href = "/sign-in";
     }

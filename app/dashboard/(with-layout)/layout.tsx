@@ -11,6 +11,7 @@ import withAuth from "@/app/hoc/withAuth";
 import Sidebar from "@/app/components/molecules/Sidebar";
 import { useAppSelector } from "@/app/lib/hook";
 import { RootState } from "@/app/lib/store";
+import { UserRole } from "@/app/data";
 
 const DashboardLayout = ({
   children,
@@ -19,7 +20,7 @@ const DashboardLayout = ({
 }>) => {
   const router = useRouter();
   const [isUserSubscribed] = useState(true);
-  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+  const { userObject } = useAppSelector((state: RootState) => state.auth);
 
   const logOutMutation = useMutation({
     mutationFn: async () => {
@@ -45,7 +46,7 @@ const DashboardLayout = ({
       <div className="hidden md:block w-[25%] px-8 mt-20">
         {isUserSubscribed && (
           <div className="">
-            {!isCreator && (
+            {userObject.role !== UserRole.creator && (
               <p className="font-medium text-sm text-grey_800">SUGGESTIONS</p>
             )}
             <VerticalCarousel />

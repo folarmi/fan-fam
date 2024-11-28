@@ -13,6 +13,7 @@ import verify from "@/public/icons/verify.svg";
 import { useAppSelector } from "../lib/hook";
 import { RootState } from "../lib/store";
 import CreatorThirdColumn from "./molecules/CreatorThirdColumn";
+import { UserRole } from "../data";
 
 const items = [
   {
@@ -78,7 +79,7 @@ const items = [
 ];
 
 const VerticalCarousel = () => {
-  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+  const { userObject } = useAppSelector((state: RootState) => state.auth);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
@@ -99,7 +100,7 @@ const VerticalCarousel = () => {
 
   return (
     <>
-      {isCreator ? (
+      {userObject.role === UserRole.creator ? (
         <CreatorThirdColumn />
       ) : (
         <div className="flex">

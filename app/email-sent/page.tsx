@@ -8,31 +8,21 @@ import AuthLayout from "../components/AuthLayout";
 import Link from "next/link";
 import { useAppSelector } from "../lib/hook";
 import { RootState } from "../lib/store";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import api from "../lib/axios";
+
+import { useCustomMutation } from "../hooks/apiCalls";
 
 const EmailSent = () => {
   const { userEmail, emailType } = useAppSelector(
     (state: RootState) => state.auth
   );
 
-  const resendVerificationLinkMutation = useMutation({
-    mutationFn: async () => {
-      const response = await api.post(`auth/resend-token?email=${userEmail}`);
-      return response;
-    },
-    onSuccess: (data) => {
-      if (data?.data?.statusCode === 991) {
-        toast("Kindly check your email for a verification link");
-        // dispatch(updateUserEmail(getValues("email")));
-        // dispatch(updateEmailType("Reset"));
-        // router.push("/email-sent");
-      }
-    },
-    onError: (error: any) => {
-      toast.error(error?.response?.data?.data?.message);
-    },
+  console.log(userEmail);
+
+  const resendVerificationLinkMutation = useCustomMutation({
+    endpoint: `auth/resend-verification-link?email=${userEmail}`,
+    successMessage: (data: any) => data?.message,
+    errorMessage: (error: any) => error,
+    onSuccessCallback: () => {},
   });
 
   return (
@@ -48,7 +38,7 @@ const EmailSent = () => {
         </Typography>
 
         <Typography
-          onClick={() => resendVerificationLinkMutation.mutate()}
+          onClick={() => resendVerificationLinkMutation.mutate({})}
           variant="p2"
           className="pt-10 pb-4 text-grey_500 cursor-pointer"
         >

@@ -6,13 +6,13 @@ type EmailType = "Reset" | "Signup" | "";
 export interface AuthState {
   userEmail: string;
   emailType: EmailType;
-  isCreator: boolean;
+  userObject: object;
 }
 
 const initialState: AuthState = {
   userEmail: "",
   emailType: "",
-  isCreator: true,
+  userObject: {},
 };
 
 export const authSlice = createSlice({
@@ -25,10 +25,14 @@ export const authSlice = createSlice({
     updateEmailType: (state, action: PayloadAction<EmailType>) => {
       state.emailType = action.payload;
     },
+    updateUserObject: (state, action: PayloadAction<any>) => {
+      state.userObject = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateUserEmail, updateEmailType } = authSlice.actions;
+export const { updateUserEmail, updateEmailType, updateUserObject } =
+  authSlice.actions;
 
 export default authSlice.reducer;

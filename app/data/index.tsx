@@ -51,6 +51,7 @@ import videoEmoji from "@/public/icons/videoEmoji.svg";
 import blurEmoji from "@/public/icons/blurEmoji.svg";
 import galleryEmoji from "@/public/icons/galleryEmoji.svg";
 import { SettingsIcon } from "../components/svgs/Settings";
+import { UserRoleType } from "../lib/types";
 
 export const sideBarItems = [
   {
@@ -102,6 +103,11 @@ export const sideBarItems = [
     link: "/dashboard/settings/account",
   },
 ];
+
+export const UserRole = {
+  creator: "CREATOR",
+  viewer: "VIEWER",
+};
 
 export const commentOptions = [
   {

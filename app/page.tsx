@@ -1,8 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import React from "react";
-import Cookies from "js-cookie";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
@@ -16,26 +15,58 @@ import Typography from "./components/forms/Typography";
 import CustomButton from "./components/forms/CustomButton";
 import TextBetweenLines from "./components/molecules/TextBetweenLines";
 import SocialMedia from "./components/SocialMedia";
+import { useCustomMutation } from "./hooks/apiCalls";
+import {
+  fetchDeviceIP,
+  getBrowserInfo,
+  getDeviceOS,
+  getPlatformFromUAParser,
+  getReadableLocation,
+} from "./utils/helper";
+import { useDispatch } from "react-redux";
+import { updateUserObject } from "./lib/features/auth/authSlice";
 
 const SignIn = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const { control, handleSubmit } = useForm();
+  const platform = getPlatformFromUAParser();
+  const browser = getBrowserInfo();
+  const [ip, setIp] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [, setError] = useState<string | null>(null);
 
-  const signInMutation = useMutation({
-    mutationFn: async (data: any) => {
-      const response = await api.post("auth/login", data);
-      return response;
-    },
-    onSuccess: (data) => {
-      if (data?.data?.statusCode === 991) {
-        // Set the token in a cookie
-        localStorage.setItem("token", data?.data?.data?.accessToken);
-        localStorage.setItem("refreshToken", data?.data?.data?.refreshToken);
-        router.push("/dashboard");
-      }
-    },
-    onError: (error: any) => {
-      toast.error(error?.response?.data?.data?.message);
+  useEffect(() => {
+    const fetchIP = async () => {
+      const deviceIP = await fetchDeviceIP();
+      setIp(deviceIP);
+    };
+
+    fetchIP();
+  }, []);
+
+  useEffect(() => {
+    getReadableLocation()
+      .then((location) => setLocation(location))
+      .catch((err) => setError(err.message));
+  }, []);
+
+  const signInMutation = useCustomMutation({
+    endpoint: `auth/login`,
+    successMessage: (data: any) => data?.message,
+    errorMessage: (error: any) => error,
+    onSuccessCallback: (data) => {
+      const userObject = {
+        email: data?.data?.email,
+        role: data?.data?.role,
+        usid: data?.data?.usid,
+      };
+
+      console.log(userObject);
+      localStorage.setItem("token", data?.data?.accessToken);
+      localStorage.setItem("refreshToken", data?.data?.refreshToken);
+      dispatch(updateUserObject(userObject));
+      router.push("/dashboard");
     },
   });
 
@@ -43,6 +74,13 @@ const SignIn = () => {
     const formValues = {
       email: data.email,
       password: data.password,
+      deviceMeta: {
+        deviceOS: getDeviceOS(),
+        deviceIP: ip,
+        location: location,
+        platform: platform,
+        browser: browser,
+      },
     };
 
     signInMutation.mutate(formValues);
@@ -66,14 +104,18 @@ const SignIn = () => {
           className="-mb-2"
         />
 
-        <div className="flex items-center justify-between mb-10">
+        <div className="w-full flex justify-between items-center mb-10">
           <Checkbox
             text="Remember me"
             control={control}
             name="termsAndCondition"
           />
+          {/* <p>dfghjm</p> */}
           <Link href="forgot-password">
-            <Typography variant="subtitle2" className="text-blue_500">
+            <Typography
+              variant="subtitle2"
+              className="text-blue_500 whitespace-nowrap"
+            >
               Forgot password?
             </Typography>
           </Link>
@@ -82,7 +124,7 @@ const SignIn = () => {
         <CustomButton
           loading={signInMutation.isPending}
           variant="primary"
-          className="shadow-custom mb-6"
+          className="shadow-custom mb-6 px-6 w-full"
         >
           Sign in
         </CustomButton>

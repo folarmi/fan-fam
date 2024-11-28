@@ -23,16 +23,18 @@ const Checkbox = ({ text, className, rules, name, control }: CheckboxProps) => {
   return (
     <>
       {" "}
-      <div className={`flex ${className}`}>
+      <div className={`flex w-full ${className}`}>
         <input
           id={name}
           type="checkbox"
-          value={field.value || ""}
           onChange={field.onChange}
-          checked={field.value}
-          className="w-4 h-4 mr-1 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          checked={!!field.value}
+          className="w-4 h-4 mr-2 bg-[#F8F7F7] rounded shadow-custom-double focus:ring-2"
         />
-        <Typography variant="p3" className="leading-[18px]">
+        <Typography
+          variant="p3"
+          className="text-[13px] leading-[18px] text-grey_500 w-fit"
+        >
           {text}
         </Typography>
       </div>

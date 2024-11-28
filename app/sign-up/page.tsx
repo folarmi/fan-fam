@@ -20,27 +20,23 @@ import {
   updateUserEmail,
 } from "../lib/features/auth/authSlice";
 import { phoneRegex } from "../utils/helper";
+import { useCustomMutation } from "../hooks/apiCalls";
+import axios from "axios";
 
 const Signup = () => {
   const router = useRouter();
   const { control, handleSubmit } = useForm();
   const dispatch = useAppDispatch();
 
-  const signUpMutation = useMutation({
-    mutationFn: async (data: any) => {
-      const response = await api.post("auth/register", data);
-      return response;
-    },
-    onSuccess: (data) => {
-      if (data?.data?.statusCode === 991) {
-        toast("Kindly check your email for a verification link");
-        dispatch(updateUserEmail(data?.data?.data?.email));
-        dispatch(updateEmailType("Signup"));
-        router.push("/email-sent");
-      }
-    },
-    onError: (error: any) => {
-      toast.error(error?.response?.data?.data?.message);
+  const signUpMutation = useCustomMutation({
+    endpoint: "auth/register",
+    successMessage: (data: any) => data?.data?.message,
+    errorMessage: (error: any) => error,
+    onSuccessCallback: (data) => {
+      toast("Kindly check your email for a verification link");
+      dispatch(updateUserEmail(data?.data?.email));
+      dispatch(updateEmailType("Signup"));
+      router.push("/email-sent");
     },
   });
 
@@ -49,7 +45,7 @@ const Signup = () => {
       email: data?.email,
       password: data?.password,
       phoneNumber: data?.phoneNumber,
-      role: "VIEWER",
+      role: "CREATOR",
     };
     signUpMutation.mutate(formValues);
   };
@@ -103,7 +99,7 @@ const Signup = () => {
         <CustomButton
           loading={signUpMutation.isPending}
           variant="primary"
-          className="shadow-custom mt-10 mb-6"
+          className="shadow-custom mt-10 mb-6 px-6 w-full"
         >
           Signup
         </CustomButton>

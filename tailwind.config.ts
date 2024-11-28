@@ -100,6 +100,8 @@ const config: Config = {
         "disabled-button":
           "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
         "timeline-card-shadow": "0px 4px 4px 0px rgba(236, 238, 251, 1)",
+        "custom-double":
+          "0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 5px rgba(255, 255, 255, 1)",
       },
       dropShadow: {
         "3xl": "0 4px 4px 0 rgba(183, 181, 181, 0.25)",
