@@ -4,11 +4,11 @@ services:
   - docker:20.10.17-dind
 
 variables:
-  DOCKER_HOST: tcp://docker:2375
-  DOCKER_TLS_CERTDIR: ""
-  DOCKER_DRIVER: overlay2
-  DOCKER_IMAGE_NAME: fanfam-frontend-$CI_COMMIT_REF_SLUG
-  DOCKER_REGISTRY: registry.gitlab.com/biyartech1/fan-fam-apps/fanfam-frontend:$CI_COMMIT_REF_SLUG
+  # DOCKER_HOST: tcp://docker:2375
+  # DOCKER_TLS_CERTDIR: ""
+  # DOCKER_DRIVER: overlay2
+  DOCKER_IMAGE_NAME: fanfam-frontend-$CI_COMMIT_REF_NAME
+  DOCKER_REGISTRY: registry.gitlab.com/biyartech1/fan-fam-apps/fanfam-frontend:$CI_COMMIT_REF_NAME
   DOCKER_REGISTRY_SERVER: "registry.gitlab.com"
 
 stages:
@@ -18,26 +18,26 @@ stages:
   - cleanup
   - deploy
 
-before_script:
-  # Install Docker CLI
-  - echo "Installing Docker CLI..."
-  - apk add --no-cache docker-cli
-  # Confirm installations
-  - echo "Node.js version:"
-  - node -v
-  - echo "npm version:"
-  - npm -v
-  - echo "Docker version:"
-  - docker version
+# before_script:
+#   # Install Docker CLI
+#   - echo "Installing Docker CLI..."
+#   - apk add --no-cache docker-cli
+#   # Confirm installations
+#   - echo "Node.js version:"
+#   - node -v
+#   - echo "npm version:"
+#   - npm -v
+#   - echo "Docker version:"
+#   - docker version
 
-cache:
-  paths:
-    - node_modules/
+# cache:
+#   paths:
+#     - node_modules/
 
 build_and_push:
   stage: build
   script:
-    - echo "CI_COMMIT_REF_SLUG - $CI_COMMIT_REF_SLUG"
+    - echo "CI_COMMIT_REF_NAME - $CI_COMMIT_REF_NAME"
     - echo "DOCKER_REGISTRY in build stage:" $DOCKER_REGISTRY
     - echo "Installing dependencies..."
     - npm install
@@ -100,7 +100,7 @@ deploy:
   script:
     - echo "Logging into Docker registry..."
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - export DOCKER_TAG=$CI_COMMIT_REF_SLUG
+    - export DOCKER_TAG=$CI_COMMIT_REF_NAME
     - echo "Deploying application with tag $DOCKER_TAG..."
     - docker-compose -f docker/docker-compose.yml -p $DOCKER_IMAGE_NAME down
     - docker-compose -f docker/docker-compose.yml -p $DOCKER_IMAGE_NAME up -d
