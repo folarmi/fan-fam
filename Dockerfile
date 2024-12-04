@@ -1,5 +1,5 @@
 # Stage 1: Build the React app
-FROM node:latest as node
+# FROM node:latest as node
 
 WORKDIR /app
 
@@ -19,7 +19,7 @@ RUN npm run build
 FROM nginx:alpine
 
 # Copy the build output to Nginx's HTML directory
-COPY --from=build /app/build /usr/share/nginx/html
+COPY ./build /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
