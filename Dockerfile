@@ -1,5 +1,5 @@
 # Stage 1: Build the React app
-FROM mcr.microsoft.com/windows/node:lts-windowsservercore-2022 AS build
+FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS build
 
 WORKDIR /app
 
