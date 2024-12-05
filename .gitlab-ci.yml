@@ -41,9 +41,9 @@ build_and_push:
     - echo "CI_COMMIT_REF_NAME - $CI_COMMIT_REF_NAME"
     - echo "DOCKER_REGISTRY in build stage:" $DOCKER_REGISTRY
     - echo "Installing dependencies..."
-    # - npm install
+    - npm install
     - echo "Building the React app..."
-    # - npm run build
+    - npm run build
     - echo "Logging into Docker registry..."
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $DOCKER_REGISTRY_SERVER
     - echo "Building Docker image..."
