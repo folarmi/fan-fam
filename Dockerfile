@@ -2,7 +2,7 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
 # Set the working directory
-WORKDIR C:\nginx
+WORKDIR C:\\nginx
 
 # Install Nginx
 RUN powershell -Command \
