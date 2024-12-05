@@ -31,9 +31,9 @@ stages:
 #   - echo "Docker version:"
 #   - docker version
 
-# cache:
-#   paths:
-#     - node_modules/
+cache:
+  paths:
+    - node_modules/
 
 build_and_push:
   stage: build
@@ -44,6 +44,8 @@ build_and_push:
     - npm install
     - echo "Building the React app..."
     - npm run build
+    - echo "Build completed. Listing files..."
+    - ls -la
     - echo "Logging into Docker registry..."
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $DOCKER_REGISTRY_SERVER
     - echo "Building Docker image..."
