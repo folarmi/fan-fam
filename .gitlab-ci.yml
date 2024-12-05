@@ -45,7 +45,7 @@ build_and_push:
     - echo "Building the React app..."
     - npm run build
     - echo "Build completed. Listing files..."
-    - ls -la
+    - ls -Force
     - echo "Logging into Docker registry..."
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $DOCKER_REGISTRY_SERVER
     - echo "Building Docker image..."
