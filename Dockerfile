@@ -1,14 +1,23 @@
-# Stage 1: Build the React app
+# Use a Windows Server Core base image
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
 
+# Set the working directory
+WORKDIR C:\nginx
 
-# Stage 2: Serve the app with Nginx
-FROM nginx:alpine
+# Install Nginx
+RUN powershell -Command `
+    Invoke-WebRequest -Uri https://nginx.org/download/nginx-1.24.0.zip -OutFile nginx.zip; `
+    Expand-Archive -Path nginx.zip -DestinationPath .; `
+    Remove-Item -Force nginx.zip
 
-# Copy the build output to Nginx's HTML directory
-COPY ./build /usr/share/nginx/html
+# Set environment variables
+ENV PATH="C:\\nginx;${PATH}"
 
-# Expose port 80
+# Expose port 80 for HTTP traffic
 EXPOSE 80
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Expose port 443 for HTTPS traffic (if needed)
+# EXPOSE 443
+
+# Default command to start Nginx
+CMD ["nginx.exe", "-g", "daemon off;"]
