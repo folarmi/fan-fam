@@ -7,7 +7,7 @@ variables:
   # DOCKER_HOST: tcp://docker:2375
   # DOCKER_TLS_CERTDIR: ""
   DOCKER_DRIVER: overlay2
-  DOCKER_IMAGE_NAME: fanfam-frontend-$CI_COMMIT_REF_NAME
+  DOCKER_IMAGE_NAME: $(echo "fanfam-frontend-$CI_COMMIT_REF_NAME" | tr '.' '-')
   DOCKER_REGISTRY: registry.gitlab.com/biyartech1/fan-fam-apps/fanfam-frontend:$CI_COMMIT_REF_NAME
   DOCKER_REGISTRY_SERVER: "registry.gitlab.com"
 
