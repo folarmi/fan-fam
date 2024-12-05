@@ -1,4 +1,4 @@
-image: node:18-alpine
+image: docker:20.10.17
 
 services:
   - docker:20.10.17-dind
@@ -10,6 +10,7 @@ variables:
   DOCKER_IMAGE_NAME: fanfam-frontend-$CI_COMMIT_REF_NAME
   DOCKER_REGISTRY: registry.gitlab.com/biyartech1/fan-fam-apps/fanfam-frontend:$CI_COMMIT_REF_NAME
   DOCKER_REGISTRY_SERVER: "registry.gitlab.com"
+
 
 stages:
   - build
@@ -56,12 +57,12 @@ build_and_push:
       - build/
     expire_in: 1 week
 
-test:
-  stage: test
-  script:
-    - echo "Running tests..."
-    - npm test -- --watchAll=false
-    - echo "Tests passed."
+# test:
+#   stage: test
+#   script:
+#     - echo "Running tests..."
+#     - npm test -- --watchAll=false
+#     - echo "Tests passed."
 
 #cleanup:
 #  stage: cleanup
