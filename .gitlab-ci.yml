@@ -105,5 +105,5 @@ deploy:
     - $env:DOCKER_TAG = ${CI_COMMIT_REF_NAME//./-}
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - echo "Deploying application with tag $DOCKER_TAG..."
-    - docker-compose -f docker/docker-compose.yml -p $env:DOCKER_TAG down
-    - docker-compose -f docker/docker-compose.yml -p $env:DOCKER_TAG up --detach
+    - docker compose -f docker/docker-compose.yml -p $env:DOCKER_TAG down
+    - docker compose -f docker/docker-compose.yml -p $env:DOCKER_TAG up --detach
