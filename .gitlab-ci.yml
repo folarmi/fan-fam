@@ -101,9 +101,12 @@ cleanup:
 deploy:
   stage: deploy
   script:
+    - echo "Setting DOCKER_IMAGE_NAME..."
+    - $env:DOCKER_IMAGE_NAME = ($CI_COMMIT_REF_NAME -replace '\.', '-')
     - echo "Logging into Docker registry..."
-    - $env:DOCKER_TAG = ${CI_COMMIT_REF_NAME//./-}
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - echo "Deploying application with tag $DOCKER_TAG..."
-    - docker compose -f docker/docker-compose.yml -p $env:DOCKER_TAG down
-    - docker compose -f docker/docker-compose.yml -p $env:DOCKER_TAG up --detach
+    - echo "Deploying application with image $env:DOCKER_IMAGE_NAME..."
+    - |
+      docker compose -f docker/docker-compose.$env:DOCKER_IMAGE_NAME.yml -p $env:DOCKER_IMAGE_NAME down
+      docker compose -f docker/docker-compose.$env:DOCKER_IMAGE_NAME.yml -p $env:DOCKER_IMAGE_NAME up -d
+
