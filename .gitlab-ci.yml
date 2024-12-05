@@ -107,6 +107,6 @@ deploy:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - echo "Deploying application with image $env:DOCKER_IMAGE_NAME..."
     - |
-      docker compose -f docker/docker-compose.$env:DOCKER_IMAGE_NAME.yml -p $env:DOCKER_IMAGE_NAME down
-      docker compose -f docker/docker-compose.$env:DOCKER_IMAGE_NAME.yml -p $env:DOCKER_IMAGE_NAME up -d
+      docker compose -f docker/docker-compose.yml -p $env:DOCKER_IMAGE_NAME down
+      docker compose -f docker/docker-compose.yml -p $env:DOCKER_IMAGE_NAME up -d
 
