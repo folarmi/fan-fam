@@ -101,7 +101,6 @@ deploy:
   script:
     - echo "Logging into Docker registry..."
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - export DOCKER_TAG=$CI_COMMIT_REF_NAME
     - echo "Deploying application with tag $DOCKER_TAG..."
     - docker-compose -f docker/docker-compose.yml -p $DOCKER_IMAGE_NAME down
     - docker-compose -f docker/docker-compose.yml -p $DOCKER_IMAGE_NAME up -d
