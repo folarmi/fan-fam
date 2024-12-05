@@ -56,7 +56,7 @@ build_and_push:
     - echo "Docker image $DOCKER_REGISTRY built and pushed successfully."
   artifacts:
     paths:
-      - build/
+      - .next/
     expire_in: 1 week
 
 # test:
