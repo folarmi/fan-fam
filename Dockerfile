@@ -5,9 +5,9 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2022
 WORKDIR C:\nginx
 
 # Install Nginx
-RUN powershell -Command `
-    Invoke-WebRequest -Uri https://nginx.org/download/nginx-1.24.0.zip -OutFile nginx.zip; `
-    Expand-Archive -Path nginx.zip -DestinationPath .; `
+RUN powershell -Command \
+    Invoke-WebRequest -Uri https://nginx.org/download/nginx-1.24.0.zip -OutFile nginx.zip; \
+    Expand-Archive -Path nginx.zip -DestinationPath .; \
     Remove-Item -Force nginx.zip
 
 # Set environment variables
