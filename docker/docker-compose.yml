@@ -4,7 +4,7 @@ volumes:
 services:
   fanfam-frontend:
     container_name: fanfam-frontend-dev
-    image: registry.gitlab.com/biyartech1/fan-fam-apps/fanfam-frontend:release-1-0-0
+    image: registry.gitlab.com/biyartech1/fan-fam-apps/fanfam-frontend:release-1.0.0
     # Add any environment variables needed by your React app
     ports:
       - "80:80"  # Map host port 80 to container port 80 (Nginx default)
