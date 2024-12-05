@@ -106,4 +106,4 @@ deploy:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
     - echo "Deploying application with tag $DOCKER_TAG..."
     - docker-compose -f docker/docker-compose.yml -p $env:DOCKER_TAG down
-    - docker-compose -f docker/docker-compose.yml -p $env:DOCKER_TAG up -d
+    - docker-compose -f docker/docker-compose.yml -p $env:DOCKER_TAG up --detach
