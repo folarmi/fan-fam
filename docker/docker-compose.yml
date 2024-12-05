@@ -13,6 +13,7 @@ services:
 
 networks:
   biyar-network:
+    external:
       name: nat
 
 #version: '3.8'
