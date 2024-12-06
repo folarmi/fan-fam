@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2022 as builder
-WORKDIR C:\app
+WORKDIR C:/app
 COPY package*.json .\
 RUN powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "npm install"
 COPY . .
