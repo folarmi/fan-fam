@@ -1,7 +1,8 @@
 
 stages:
-  - build
-  - build-static
+  - build_project
+  - build_and_push_image
+  - build_static
   - deploy
 
 variables:
@@ -19,7 +20,7 @@ cache:
 
 
 build_project:
-  stage: build
+  stage: build_project
   script:
     - echo "CI_COMMIT_REF_NAME - $CI_COMMIT_REF_NAME"
     - echo "DOCKER_REGISTRY in build stage:" $DOCKER_REGISTRY
@@ -29,6 +30,17 @@ build_project:
     - npm run build
     - echo "Build completed. Listing files..."
     - ls -Force
+  artifacts:
+    paths:
+      - .next/
+    expire_in: 1 week
+
+
+build_image:
+  stage: build_and_push_image
+  only:
+    - main
+  script: 
     - echo "Logging into Docker registry..."
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $DOCKER_REGISTRY_SERVER
     - echo "Building Docker image..."
@@ -37,12 +49,8 @@ build_project:
     - docker image
     - docker push "$DOCKER_REGISTRY"
     - echo "Docker image $DOCKER_REGISTRY built and pushed successfully."
-  artifacts:
-    paths:
-      - .next/
-    expire_in: 1 week
 
-build_static-files:
+build_static_files:
   stage: build-static
   only:
     - dev
