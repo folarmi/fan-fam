@@ -1,10 +1,7 @@
-image: docker:20.10.17
-services:
-  - docker:20.10.17-dind
 
 stages:
   - build
-  - push
+  - build-static
   - deploy
 
 variables:
@@ -16,30 +13,12 @@ variables:
   DOCKER_REGISTRY_SERVER: "registry.gitlab.com"
 
 
-stages:
-  - build
-  - test
-  - push
-  - cleanup
-  - deploy
-
-# before_script:
-#   # Install Docker CLI
-#   - echo "Installing Docker CLI..."
-#   - apk add --no-cache docker-cli
-#   # Confirm installations
-#   - echo "Node.js version:"
-#   - node -v
-#   - echo "npm version:"
-#   - npm -v
-#   - echo "Docker version:"
-#   - docker version
-
 cache:
   paths:
     - node_modules/
 
-build_and_push:
+
+build_project:
   stage: build
   script:
     - echo "CI_COMMIT_REF_NAME - $CI_COMMIT_REF_NAME"
@@ -63,54 +42,11 @@ build_and_push:
       - .next/
     expire_in: 1 week
 
-# test:
-#   stage: test
-#   script:
-#     - echo "Running tests..."
-#     - npm test -- --watchAll=false
-#     - echo "Tests passed."
-
-#cleanup:
-#  stage: cleanup
-#  script:
-#    - echo "Cleaning up old images..."
-#    - docker image prune -af || true
-
-cleanup:
-  stage: cleanup
+build_static-files:
+  stage: build-static
+  only:
+    - dev
   script:
-    - echo "$CI_DEPLOY_PASSWORD" | docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
-    - docker pull "$DOCKER_REGISTRY"
-    - docker-compose version
-    - docker compose version
-    - |
-      $CONTAINER_NAMES = docker ps --format '{{.Names}}' | ForEach-Object { $_.Trim() }
-      echo "Running Containers: $CONTAINER_NAMES"
-      echo "Running Containers: $DOCKER_IMAGE_NAME"
-
-      if ($CONTAINER_NAMES -like "*$DOCKER_IMAGE_NAME*") {
-        docker stop $DOCKER_IMAGE_NAME
-        docker rm $DOCKER_IMAGE_NAME
-        Write-Host "CONTAINER_NAMES contains DOCKER_IMAGE_NAME"
-      } 
-
-# deploy:
-#  stage: deploy
-#  script:
-#    - echo "Deploying application..."
-#    - |
-#      docker-compose -f docker/docker-compose.yml -p $DOCKER_IMAGE_NAME down
-#      docker-compose -f docker/docker-compose.yml -p $DOCKER_IMAGE_NAME up -d
-
-deploy:
-  stage: deploy
-  script:
-    - echo "Setting DOCKER_IMAGE_NAME..."
-    - $env:DOCKER_IMAGE_NAME = ($CI_COMMIT_REF_NAME -replace '\.', '-')
-    - echo "Logging into Docker registry..."
-    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - echo "Deploying application with image $env:DOCKER_IMAGE_NAME..."
-    - |
-      docker compose -f docker/docker-compose.yml -p $env:DOCKER_IMAGE_NAME down
-      docker compose -f docker/docker-compose.yml -p $env:DOCKER_IMAGE_NAME up -d
-
+    - echo "Exporting Static files"
+    - npm run export
+    - ls -Force
