@@ -12,6 +12,7 @@ variables:
   DOCKER_IMAGE_NAME: $(echo "fanfam-frontend-$CI_COMMIT_REF_NAME" | tr '.' '-')
   DOCKER_REGISTRY: registry.gitlab.com/biyartech1/fan-fam-apps/fanfam-frontend:$CI_COMMIT_REF_NAME
   DOCKER_REGISTRY_SERVER: "registry.gitlab.com"
+  STATIC_ARTIFACT_NAME: fanfam-frontend-static
 
 
 cache:
@@ -58,3 +59,10 @@ build_static_files:
     - echo "Exporting Static files"
     - npm run export
     - ls -Force
+    - echo "Static files exported. Packaging for deployment..."
+    - mv out $STATIC_ARTIFACT_NAME
+    - tar -czf $STATIC_ARTIFACT_NAME.tar.gz $STATIC_ARTIFACT_NAME
+  artifacts:
+    paths:
+      - $STATIC_ARTIFACT_NAME.tar.gz
+    expire_in: 1 week
