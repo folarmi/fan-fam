@@ -51,9 +51,9 @@ build_image:
     - echo "Docker image $DOCKER_REGISTRY built and pushed successfully."
 
 build_static_files:
-  stage: build-static
+  stage: build_static
   only:
-    - dev
+    - release-1.0.0
   script:
     - echo "Exporting Static files"
     - npm run export
