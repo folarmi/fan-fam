@@ -59,11 +59,11 @@ deploy_static_files:
     - echo "Exporting Static files"
     - ls -Force
     - echo "Replacing files in the fan-farm folder in Tomcat"
-    - set "TOMCAT_DIR=C:\path\to\tomcat\webapps\ROOT"
-    - set "OUT_DIR=out"
-    - if not exist "%TOMCAT_DIR%" mkdir "%TOMCAT_DIR%"
-    - if exist "%TOMCAT_DIR%\*" del /q "%TOMCAT_DIR%\*"
-    - xcopy /e /y "%OUT_DIR%\*" "%TOMCAT_DIR%"
+    - set "TOMCAT_DIR=C:\Program Files\Apache Software Foundation\Tomcat 11.0_Tomcat\webapps\ROOT"
+    - $OUT_DIR="out"
+    - if (-Not (Test-Path $TOMCAT_DIR)) { New-Item -ItemType Directory -Path $TOMCAT_DIR }
+    - Remove-Item "$TOMCAT_DIR\*" -Recurse -Force
+    - Copy-Item "$OUT_DIR\*" -Destination $TOMCAT_DIR -Recurse
     - echo "fan-farm folder in Tomcat replaced with new build files."
   artifacts:
     paths:
