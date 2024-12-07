@@ -80,7 +80,3 @@ deploy_static_files:
       Copy-Item "$OUT_DIR\*" -Destination $TOMCAT_DIR -Recurse
 
       Write-Host "fan-farm folder in Tomcat replaced with new build files."
-  artifacts:
-    paths:
-      - $STATIC_ARTIFACT_NAME.tar.gz
-    expire_in: 1 week
