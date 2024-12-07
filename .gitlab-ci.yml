@@ -33,7 +33,7 @@ build_project:
     - ls -Force
   artifacts:
     paths:
-      - .next/
+      - out/
     expire_in: 1 week
 
 
