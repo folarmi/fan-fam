@@ -2,8 +2,8 @@
 stages:
   - build_project
   - build_and_push_image
-  - build_static
-  - deploy
+  - deploy_static
+  - deploy_image
 
 variables:
   # DOCKER_HOST: tcp://docker:2375
@@ -51,24 +51,20 @@ build_image:
     - docker push "$DOCKER_REGISTRY"
     - echo "Docker image $DOCKER_REGISTRY built and pushed successfully."
 
-build_static_files:
-  stage: build_static
+deploy_static_files:
+  stage: deploy_static
   except:
     - main
   script:
     - echo "Exporting Static files"
-    - npm run build
     - ls -Force
     - echo "Replacing files in the fan-farm folder in Tomcat"
-    - set "TOMCAT_DIR=C:\path\to\tomcat\webapps\fan-farm"
+    - set "TOMCAT_DIR=C:\path\to\tomcat\webapps\ROOT"
     - set "OUT_DIR=out"
     - if not exist "%TOMCAT_DIR%" mkdir "%TOMCAT_DIR%"
     - if exist "%TOMCAT_DIR%\*" del /q "%TOMCAT_DIR%\*"
     - xcopy /e /y "%OUT_DIR%\*" "%TOMCAT_DIR%"
     - echo "fan-farm folder in Tomcat replaced with new build files."
-
-
-
   artifacts:
     paths:
       - $STATIC_ARTIFACT_NAME.tar.gz
