@@ -1,0 +1,82 @@
+
+stages:
+  - build_project
+  - build_and_push_image
+  - deploy_static
+  - deploy_image
+
+variables:
+  # DOCKER_HOST: tcp://docker:2375
+  # DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+  DOCKER_IMAGE_NAME: $(echo "fanfam-frontend-$CI_COMMIT_REF_NAME" | tr '.' '-')
+  DOCKER_REGISTRY: registry.gitlab.com/biyartech1/fan-fam-apps/fanfam-frontend:$CI_COMMIT_REF_NAME
+  DOCKER_REGISTRY_SERVER: "registry.gitlab.com"
+  STATIC_ARTIFACT_NAME: fanfam-frontend-static
+
+
+cache:
+  paths:
+    - node_modules/
+
+
+build_project:
+  stage: build_project
+  script:
+    - echo "CI_COMMIT_REF_NAME - $CI_COMMIT_REF_NAME"
+    - echo "DOCKER_REGISTRY in build stage:" $DOCKER_REGISTRY
+    - echo "Installing dependencies..."
+    - npm install
+    - echo "Building the React app..."
+    - npm run build
+    - echo "Build completed. Listing files..."
+    - ls -Force
+  artifacts:
+    paths:
+      - out/
+    expire_in: 1 week
+
+
+build_image:
+  stage: build_and_push_image
+  only:
+    - main
+  script: 
+    - echo "Logging into Docker registry..."
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin $DOCKER_REGISTRY_SERVER
+    - echo "Building Docker image..."
+    - docker build -t $DOCKER_REGISTRY .
+    - echo "Pushing Docker image..."
+    - docker image
+    - docker push "$DOCKER_REGISTRY"
+    - echo "Docker image $DOCKER_REGISTRY built and pushed successfully."
+
+deploy_static_files:
+  stage: deploy_static
+  except:
+    - main
+  script:
+    - echo "Exporting Static files"
+    - ls -Force
+    - echo "Replacing files in the fan-farm folder in Tomcat"
+    - |
+      $TOMCAT_DIR = "C:\Program Files\Apache Software Foundation\Tomcat 11.0_Tomcat\webapps\ROOT"
+      $OUT_DIR = "out"
+
+      # Ensure TOMCAT_DIR exists
+      if (-Not (Test-Path -Path $TOMCAT_DIR)) {
+          Write-Host "Directory does not exist. Creating: $TOMCAT_DIR"
+          New-Item -ItemType Directory -Path $TOMCAT_DIR -Force | Out-Null
+      } else {
+          Write-Host "Directory already exists: $TOMCAT_DIR"
+      }
+
+      # Remove existing files in TOMCAT_DIR
+      Write-Host "Removing existing files in $TOMCAT_DIR"
+      Remove-Item "$TOMCAT_DIR\*" -Recurse -Force
+
+      # Copy new files to TOMCAT_DIR
+      Write-Host "Copying files from $OUT_DIR to $TOMCAT_DIR"
+      Copy-Item "$OUT_DIR\*" -Destination $TOMCAT_DIR -Recurse
+
+      Write-Host "fan-farm folder in Tomcat replaced with new build files."

@@ -18,18 +18,24 @@ const config: Config = {
         "subscribe-gradient": "linear-gradient(to bottom, #ffffff, #f0f0f0)",
         "create-folder":
           "linear-gradient(to bottom, rgba(228, 241, 252, 1), rgba(255, 255, 255, 1))",
+<<<<<<< HEAD
         "create-folder-btn":
           "'linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(45, 54, 44, 0) 0%, rgba(45, 54, 44, 0.1) 10%)'",
+=======
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
         "secondary-btn":
           "linear-gradient(to bottom, rgba(45, 54, 44, 0), rgba(45, 54, 44, 0.1), rgba(255, 255, 255, 1))",
         "primary-btn":
           "linear-gradient(to bottom, rgba(37, 153, 246, 1), rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0))",
+<<<<<<< HEAD
         "overlay-bg":
           "linear-gradient(to right, rgba(1, 26, 39, 0.28), rgba(1, 26, 39, 0.25), rgba(1, 26, 39, 0.37))",
         // "my-gradient":
         //   "linear-gradient(180deg, rgba(37, 153, 246, 1), rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0))",
         "my-gradient":
           "linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0))",
+=======
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
       },
       colors: {
         primary: "#2599F6",
@@ -37,13 +43,17 @@ const config: Config = {
         grey_20: "#FAFAFA",
         grey_30: "#707072",
         grey_40: "#E7E8F1",
+<<<<<<< HEAD
         grey_50: "#E0E2EE",
         grey_60: "#F7F8FD",
+=======
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
         grey_100: "#D3D5E0",
         grey_200: "#BDBFC9",
         grey_300: "#A5A7AF",
         grey_400: "#8D8E96",
         grey_500: "#6F7076",
+<<<<<<< HEAD
         grey_600: "#58595E",
         grey_700: "#414245",
         grey_800: "#2A2A2D",
@@ -76,6 +86,20 @@ const config: Config = {
         bloomTextHeading: "#1C2024",
         "gradient-start": "#FFFFFF29",
         "gradient-end": "#FFFFFF00",
+=======
+        grey_600: "#F3F4FC",
+        grey_700: "#414245",
+        grey_800: "#2A2A2D",
+        grey_900: "#131314",
+        blue_100: "#F7FAFC",
+        blue_200: "#E4F1FC",
+        blue_300: "#E0E2EE80",
+        blue_500: "#2599F6",
+        green_100: "#1CF417",
+        red_100: "#FC0404",
+        "gradient-start": "#4F86F0",
+        "gradient-end": "#2D72E6",
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
       },
 
       boxShadow: {
@@ -90,6 +114,7 @@ const config: Config = {
           "0px 1px 20px 0px rgba(18, 34, 16, 0.1), 1px 0px 20px 0px rgba(18, 34, 16, 0.1)",
         "primary-btn":
           "0px 1px 1px 0px rgba(1, 18, 32, 0.2), inset 0px 2px 0px 0px rgba(255, 255, 255, 0.16)",
+<<<<<<< HEAD
         "custom-inner": "inset 0px 2px 0px 0px #ffffff29",
         "custom-outer": "0px 2px 5px 0px rgba(0, 0, 0, 0.2)",
         "search-input":
@@ -102,6 +127,8 @@ const config: Config = {
         "timeline-card-shadow": "0px 4px 4px 0px rgba(236, 238, 251, 1)",
         "custom-double":
           "0px 4px 10px rgba(0, 0, 0, 0.25), 0px 0px 5px rgba(255, 255, 255, 1)",
+=======
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
       },
       dropShadow: {
         "3xl": "0 4px 4px 0 rgba(183, 181, 181, 0.25)",
@@ -115,3 +142,9 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+<<<<<<< HEAD
+=======
+
+// box-shadow: 0px 1px 1px 0px rgba(1, 18, 32, 0.2);
+// box-shadow: 0px 2px 0px 0px rgba(255, 255, 255, 0.16) inset;
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a

@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import SearchInput from "@/app/components/SearchInput";
 import React, { useEffect, useState } from "react";
+=======
+"use client";
+
+import SearchInput from "@/app/components/SearchInput";
+import React, { useState } from "react";
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
 import suggestTwo from "@/public/suggestTwo.svg";
 import Image from "next/image";
 import IconAndNumber from "@/app/components/IconAndNumber";
@@ -19,7 +26,11 @@ import CircleChat from "@/public/icons/circleChat";
 import CirclePay from "@/public/icons/circlePay";
 import copy from "@/public/copy.svg";
 import defaultAvatar from "@/public/defaultAvatar.svg";
+<<<<<<< HEAD
 import { commentOptions, UserRole } from "@/app/data";
+=======
+import { commentOptions } from "@/app/data";
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
 import Post from "@/app/components/Post";
 import Replies from "@/app/components/Replies";
 import Media from "@/app/components/Media";
@@ -40,6 +51,7 @@ import { useAppSelector } from "@/app/lib/hook";
 import { RootState } from "@/app/lib/store";
 import BlueBorderedButton from "@/app/components/forms/BlueBorderedButton";
 import Link from "next/link";
+<<<<<<< HEAD
 import { useCustomMutation, useGetData } from "@/app/hooks/apiCalls";
 import { useRouter } from "next/navigation";
 
@@ -48,6 +60,12 @@ const Profile = () => {
   const { control } = useForm();
   const router = useRouter();
 
+=======
+
+const Profile = () => {
+  const { isCreator } = useAppSelector((state: RootState) => state.auth);
+  const { control } = useForm();
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
   const [isExpanded, setIsExpanded] = useState(false);
   const [tabs, setTabs] = useState([
     {
@@ -63,7 +81,11 @@ const Profile = () => {
       name: "Replies",
     },
     {
+<<<<<<< HEAD
       id: 4,
+=======
+      id: 2,
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
       name: "Likes",
     },
   ]);
@@ -75,6 +97,7 @@ const Profile = () => {
   const [addUserToList, setAddUserToList] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
+<<<<<<< HEAD
   const getUserProfileUserMutation = useCustomMutation({
     endpoint: `/profile/view`,
     successMessage: (data: any) => data?.message,
@@ -90,6 +113,8 @@ const Profile = () => {
     });
   }, []);
 
+=======
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
   const toggleModal = () => {
     setShowModal(!showModal);
   };
@@ -235,7 +260,11 @@ const Profile = () => {
                   <Image src={circleStar} alt="circleStar" />
                 </div>
 
+<<<<<<< HEAD
                 {userObject.role !== UserRole.creator && (
+=======
+                {!isCreator && (
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
                   <>
                     <div
                       className={`flex items-center gap-x-2 border border-blue_500 rounded-3xl py-2 px-3 drop-shadow-6xl bg-subscribe-gradient shadow-inner-white `}
@@ -252,7 +281,11 @@ const Profile = () => {
                   </>
                 )}
 
+<<<<<<< HEAD
                 {userObject.role === UserRole.creator && (
+=======
+                {isCreator && (
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
                   <>
                     {" "}
                     <Link href="/dashboard/profile/promote">
@@ -263,12 +296,16 @@ const Profile = () => {
                         Promote Profile
                       </CustomButton>
                     </Link>
+<<<<<<< HEAD
                     <BlueBorderedButton
                       onClick={() =>
                         router.push("/dashboard/profile/edit-profile")
                       }
                       text="Edit Profile"
                     />
+=======
+                    <BlueBorderedButton text="Edit Profile" />
+>>>>>>> c159dd657341b16f54e64ff3a508b38015cc606a
                   </>
                 )}
 

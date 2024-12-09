@@ -179,19 +179,4 @@ export const useCustomMutation = <
   });
 };
 
-{
-  /* <div className="grid grid-cols-3 gap-4 w-[604px]">
-  {photos.map((photo) => (
-    <div
-      key={photo.id}
-      className={`rounded-lg overflow-hidden ${photo.span || ""} ${photo.custom}`}
-    >
-      <Image
-        src={photo.src}
-        alt={photo.alt}
-        className="w-full h-full object-cover"
-      />
-    </div>
-  ))}
-</div> */
-}
+// git merge <source-branch> --allow-unrelated-histories
