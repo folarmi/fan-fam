@@ -25,24 +25,6 @@ const ForgotPassword = () => {
   const { control, handleSubmit, getValues } = useForm();
   const dispatch = useAppDispatch();
 
-  // const forgotPasswordMutation = useMutation({
-  //   mutationFn: async (data: any) => {
-  //     const response = await api.post("auth/forgot-password", data);
-  //     return response;
-  //   },
-  //   onSuccess: (data) => {
-  //     if (data?.data?.statusCode === 991) {
-  //       toast("Kindly check your email for a password reset link");
-  //       dispatch(updateUserEmail(getValues("email")));
-  //       dispatch(updateEmailType("Reset"));
-  //       router.push("/email-sent");
-  //     }
-  //   },
-  //   onError: (error: any) => {
-  //     toast.error(error?.response?.data?.data?.message);
-  //   },
-  // });
-
   const forgotPasswordMutation = useCustomMutation({
     endpoint: "auth/forgot-password",
     successMessage: (data: any) => data?.message,

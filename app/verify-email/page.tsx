@@ -74,7 +74,7 @@ const VerifyEmailForm = () => {
     },
   });
 
-  const submitForm = (data: any) => {
+  const submitForm = () => {
     const formData = {
       deviceOS: getDeviceOS(),
       deviceIP: ip,
@@ -82,7 +82,6 @@ const VerifyEmailForm = () => {
       platform: platform,
       browser: browser,
     };
-
     verifyUserMutation.mutate(formData);
   };
 

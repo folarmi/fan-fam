@@ -54,7 +54,9 @@ const SignIn = () => {
   const signInMutation = useCustomMutation({
     endpoint: `auth/login`,
     successMessage: (data: any) => data?.message,
-    errorMessage: (error: any) => error,
+    errorMessage: (error: any) => {
+      toast.error(error);
+    },
     onSuccessCallback: (data) => {
       const userObject = {
         email: data?.data?.email,
@@ -62,7 +64,6 @@ const SignIn = () => {
         usid: data?.data?.usid,
       };
 
-      console.log(userObject);
       localStorage.setItem("token", data?.data?.accessToken);
       localStorage.setItem("refreshToken", data?.data?.refreshToken);
       dispatch(updateUserObject(userObject));
@@ -85,6 +86,7 @@ const SignIn = () => {
 
     signInMutation.mutate(formValues);
   };
+
   return (
     <AuthLayout>
       <form className="" onSubmit={handleSubmit(submitForm)}>

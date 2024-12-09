@@ -2,6 +2,43 @@ import Image from "next/image";
 import React from "react";
 import paradise from "@/public/paradise.svg";
 import PhotoFrame from "./PhotoFrame";
+import displayImageOne from "@/public/displayImageOne.svg";
+import displayImageTwo from "@/public/displayImageTwo.svg";
+import displayImageThree from "@/public/displayImageThree.svg";
+
+const photos = [
+  {
+    id: 1,
+    src: displayImageThree,
+    alt: "Photo 1",
+    custom: "row-span-1 mt",
+  },
+  {
+    id: 2,
+    src: displayImageOne,
+    alt: "Photo 2",
+    custom: "row-span-1 mt-36",
+  },
+  {
+    id: 3,
+    src: displayImageTwo,
+    alt: "Photo 3",
+    custom: "row-span-2 mt-52",
+  },
+  {
+    id: 4,
+    src: displayImageOne,
+    alt: "Photo 4",
+    custom: "h-32 overflow-hidden row-span-1 -mt-20",
+  },
+  {
+    id: 5,
+    src: displayImageThree,
+    alt: "Photo 5",
+    span: "row-span-1",
+    custom: "h-12 overflow-hidden row-span-1",
+  },
+];
 
 const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
   return (
@@ -13,7 +50,23 @@ const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
             <Image src={paradise} alt="paradise logo" loading="lazy" />
           </div>
           <div className="mt-auto justify-start">
-            <PhotoFrame />
+            <div className="grid grid-cols-3 gap-4 lg:w-[604px]">
+              {photos.map((photo) => (
+                <div
+                  key={photo.id}
+                  className={`rounded-lg overflow-hidden   ${
+                    photo.span || ""
+                  } ${photo.custom}`}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+            {/* <PhotoFrame /> */}
           </div>
         </div>
 

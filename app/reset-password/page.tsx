@@ -105,7 +105,7 @@ const ResetPasswordForm = () => {
         <CustomButton
           loading={resetPasswordMutation.isPending}
           variant="primary"
-          className="shadow-custom mb-6"
+          className="shadow-custom mb-6 px-6 w-full"
         >
           Reset Password
         </CustomButton>

@@ -56,7 +56,7 @@ interface CustomMutationOptions<TData, TError, TVariables, TContext>
   endpoint: string;
   method?: "get" | "post" | "put" | "delete";
   successMessage?: (data: TData) => string;
-  errorMessage?: (error: TError) => string;
+  errorMessage?: (error: TError) => void | string;
   onSuccessCallback?: (data: TData) => void;
   contentType?: "multipart/form-data" | "application/json";
   mutationOptions?: Omit<
@@ -145,9 +145,19 @@ export const useCustomMutation = <
         return response.data;
       }
     },
+
     onSuccess: (data: any) => {
-      //   Using the condition data === " for when a user logs out"
-      if (data?.statusCode === 991 || data === "") {
+      // Custom handling based on statusCode
+      if (data?.statusCode === -991) {
+        // Treat as an error based on business logic
+        const message =
+          errorMessage?.(data?.message) ||
+          data?.message ||
+          "An unexpected error occurred";
+        toast.error(message);
+        //   Using the condition data === " for when a user logs out"
+      } else if (data?.statusCode === 991 || data === "") {
+        // Standard success logic
         if (successMessage) {
           toast.success(successMessage(data));
         }
@@ -158,7 +168,9 @@ export const useCustomMutation = <
     },
     onError: (error: any) => {
       const message = errorMessage
-        ? errorMessage(error?.response?.data?.data?.message || error?.response)
+        ? errorMessage(
+            error?.response?.data?.data?.message || error?.response || error
+          )
         : error?.response?.data?.data?.message ||
           "An unexpected error occurred";
       toast.error(message);
@@ -166,3 +178,20 @@ export const useCustomMutation = <
     ...mutationOptions,
   });
 };
+
+{
+  /* <div className="grid grid-cols-3 gap-4 w-[604px]">
+  {photos.map((photo) => (
+    <div
+      key={photo.id}
+      className={`rounded-lg overflow-hidden ${photo.span || ""} ${photo.custom}`}
+    >
+      <Image
+        src={photo.src}
+        alt={photo.alt}
+        className="w-full h-full object-cover"
+      />
+    </div>
+  ))}
+</div> */
+}
