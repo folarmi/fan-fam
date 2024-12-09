@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./reducers";
+import rootReducer from "./reducers"; // Assuming you have a `reducers` file
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import { persistStore } from "redux-persist";
@@ -8,7 +8,7 @@ import { persistStore } from "redux-persist";
 const persistConfig = {
   key: "root",
   version: 1,
-  whitelist: ["auth"],
+  whitelist: ["auth"], // Add the reducers you want to persist
   storage,
 };
 
@@ -26,6 +26,7 @@ export const persistor = persistStore(store);
 // Export the store
 export default store;
 
-// Infer the `RootState` and `AppDispatch` types from the store
+// Define and export the store type
+export type AppStore = typeof store; // Add this to define the store type
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
