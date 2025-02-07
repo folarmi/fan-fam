@@ -1,10 +1,20 @@
 import axios, { AxiosInstance } from "axios";
+import https from "https";
+// const https = require("https");
+// const fs = require("fs");
+
+// const cert = new (require("fs").Agent)({});
+
+// console.log(cert);
 
 const api: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   headers: {
     "Content-Type": "application/json",
   },
+  httpsAgent: new https.Agent({
+    rejectUnauthorized: false,
+  }),
 });
 
 const EAONCREDENTIALVALUE = process.env.NEXT_PUBLIC_EAONCREDENTIALVALUE;
@@ -108,3 +118,17 @@ export default api;
 // }
 // return Promise.reject(error);
 // }
+
+// const axios = require('axios');
+// const https = require('https');
+// const fs = require('fs');
+
+// // Load the .pem certificate
+// const cert = fs.readFileSync('path/to/your_cert.pem'); // Replace with your .pem file path
+
+// // Create an HTTPS agent with the certificate
+// const httpsAgent = new https.Agent({
+//   cert: cert,
+//   key: cert,  // Use this if your key is in the same .pem file
+//   rejectUnauthorized: false // Set to true if you want to verify the certificate
+// });

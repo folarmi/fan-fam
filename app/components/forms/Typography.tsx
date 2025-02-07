@@ -96,4 +96,3 @@ const Typography: React.FC<TypographyProps> = ({
 };
 
 export default Typography;
-// box-shadow: 3px 3px 5px 0px #E0E2EE80;

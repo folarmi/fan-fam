@@ -1,10 +1,18 @@
+"use client";
+
 import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CustomSwitchButton from "@/app/components/forms/CustomSwitchButton";
 import Typography from "@/app/components/forms/Typography";
 import { notificationsSettings } from "@/app/data";
+import { useGetData } from "@/app/hooks/apiCalls";
 import React from "react";
 
 const page = () => {
+  const { data: displaySettingsData, isLoading } = useGetData({
+    url: `/profile/settings/view/display`,
+    queryKey: ["ViewDisplaySettings"],
+  });
+
   return (
     <div>
       <AccountBackButton

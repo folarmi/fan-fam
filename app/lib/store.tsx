@@ -8,7 +8,7 @@ import { persistStore } from "redux-persist";
 const persistConfig = {
   key: "root",
   version: 1,
-  whitelist: ["auth"], // Add the reducers you want to persist
+  whitelist: ["auth", "profile"], // Add the reducers you want to persist
   storage,
 };
 

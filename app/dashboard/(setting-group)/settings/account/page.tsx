@@ -1,12 +1,43 @@
+"use client";
+
 import Typography from "@/app/components/forms/Typography";
 import { accountSettingsModules } from "@/app/data";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import rightAshArrow from "@/public/icons/rightAshArrow.svg";
 import Link from "next/link";
 import MobileBackButton from "@/app/components/molecules/MobileBackButton";
+import { useCustomMutation, useGetData } from "@/app/hooks/apiCalls";
+import { useAppSelector } from "@/app/lib/hook";
+import { RootState } from "@/app/lib/store";
+
+const useFetchAccountSettings = () =>
+  useCustomMutation({
+    endpoint: "/profile/settings/account/view",
+    successMessage: (data: any) =>
+      data?.data?.message || "Account settings fetched successfully!",
+    errorMessage: (error: any) =>
+      error?.response?.data?.message || "Failed to fetch account settings.",
+    onSuccessCallback: () => {},
+  });
 
 const Settings = () => {
+  const fetchDisplaySettings = useFetchAccountSettings();
+  const { userObject } = useAppSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    const handleFetchSettings = () => {
+      fetchDisplaySettings.mutate({
+        email: userObject.email,
+        role: userObject.role,
+        usid: userObject.usid,
+      });
+    };
+
+    handleFetchSettings();
+    return () => {};
+  }, []);
+
   return (
     <div>
       <div

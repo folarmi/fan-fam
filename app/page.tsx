@@ -5,8 +5,6 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
-import api from "./lib/axios";
 import AuthLayout from "./components/AuthLayout";
 import CustomInput from "./components/forms/CustomInput";
 import Checkbox from "./components/Checkbox";

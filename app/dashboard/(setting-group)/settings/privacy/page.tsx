@@ -1,14 +1,27 @@
+"use client";
+
 import AccountBackButton from "@/app/components/forms/AccountBackButton";
 import CustomSwitchButton from "@/app/components/forms/CustomSwitchButton";
 import Typography from "@/app/components/forms/Typography";
 import { privacyAndSafety, privacyAndSafetyItems } from "@/app/data";
+import { useGetData } from "@/app/hooks/apiCalls";
 
 import rightArrow from "@/public/icons/rightAshArrow.svg";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 const Privacy = () => {
+  const [checkedBox, setCheckedBox] = useState(true);
+  const { data: privacyAndSafetyData, isLoading } = useGetData({
+    url: `/profile/settings/view/privacy-safety`,
+    queryKey: ["ViewPrivacySafety"],
+  });
+
+  const toggleChange = () => {
+    setCheckedBox(!checkedBox);
+  };
+
   return (
     <div>
       <AccountBackButton
@@ -35,7 +48,10 @@ const Privacy = () => {
                       {name}
                     </Typography>
 
-                    <CustomSwitchButton isChecked={isOn} />
+                    <CustomSwitchButton
+                      isChecked={isOn}
+                      onChange={toggleChange}
+                    />
                   </div>
                 );
               })}

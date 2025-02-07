@@ -55,7 +55,7 @@ interface CustomMutationOptions<TData, TError, TVariables, TContext>
   extends UseMutationOptions<TData, TError, TVariables, TContext> {
   endpoint: string;
   method?: "get" | "post" | "put" | "delete";
-  successMessage?: (data: TData) => string;
+  successMessage?: (data: TData) => void | string;
   errorMessage?: (error: TError) => void | string;
   onSuccessCallback?: (data: TData) => void;
   contentType?: "multipart/form-data" | "application/json";
@@ -121,16 +121,7 @@ export const useCustomMutation = <
   return useMutation<TData, TError, TVariables, TContext>({
     mutationFn: async (variables: TVariables) => {
       if (contentType === "multipart/form-data") {
-        const formData = new FormData();
-
-        // Assuming variables is an object and needs to be appended to formData
-        if (typeof variables === "object" && variables !== null) {
-          for (const key in variables) {
-            formData.append(key, (variables as any)[key]);
-          }
-        }
-
-        const response = await api[method]<TData>(endpoint, formData, {
+        const response = await api[method]<TData>(endpoint, variables, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -179,4 +170,32 @@ export const useCustomMutation = <
   });
 };
 
-// git merge <source-branch> --allow-unrelated-histories
+export const useUploadMutation = (
+  onSuccessHandler?: SuccessHandler,
+  onErrorHandler?: ErrorHandler
+): UseMutationResult<UploadResponse, UploadError, FormData> => {
+  return useMutation<UploadResponse, UploadError, FormData>({
+    mutationFn: async (data: FormData) => {
+      const response = await api.post("profile/upload-picture", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    },
+    onSuccess: (data: any) => {
+      toast(data?.remark);
+      if (onSuccessHandler) {
+        onSuccessHandler(data);
+      }
+    },
+    onError: (error) => {
+      const { CreatedBy, UploadFile } = error?.response?.data?.errors || {};
+      if (CreatedBy) toast.error(CreatedBy[0]);
+      if (UploadFile) toast.error(UploadFile[0]);
+      if (onErrorHandler) {
+        onErrorHandler(error);
+      }
+    },
+  });
+};
